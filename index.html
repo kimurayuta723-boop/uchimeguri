@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#efefed">
-<title>うちめぐり</title>
+<title>おうちめぐり</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,6 +24,9 @@ button{font-family:inherit}
 .eyebrow{margin:0;font-family:var(--latin);font-style:italic;font-size:15px;letter-spacing:.12em;color:var(--oak-d)}
 .cap{font-size:10px;letter-spacing:.28em;color:var(--sub);font-weight:500;text-transform:uppercase}
 .hint{color:var(--sub);font-size:12px;line-height:1.8;font-weight:400}
+.jp{word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
+h1,h2,.stitle,.q{text-wrap:balance}
+p,.tt,.txt{text-wrap:pretty}
 .tag{display:inline-flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.14em;color:var(--ink2);font-weight:500}
 .tag::before{content:"";width:16px;height:1px;background:var(--c)}
 .spin{width:22px;height:22px;border:1.5px solid var(--g2);border-top-color:var(--ink);border-radius:50%;margin:140px auto;animation:sp 1s linear infinite}
@@ -165,10 +168,12 @@ textarea{resize:vertical}
 .center{text-align:center;padding:120px 24px}
 .center h1{font-family:var(--serif);font-weight:500;font-size:23px;margin:14px 0}
 .ownerbar{position:fixed;left:14px;bottom:20px;background:var(--ink);color:#fff;text-decoration:none;font-size:12px;letter-spacing:.08em;padding:11px 16px;box-shadow:0 6px 20px rgba(35,34,33,.18);z-index:5}
-.fab{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:6;display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border:0;padding:14px 24px 14px 20px;border-radius:999px;font-size:13px;letter-spacing:.1em;cursor:pointer;box-shadow:0 10px 30px rgba(35,34,33,.28)}
+.fab{position:fixed;right:16px;bottom:18px;z-index:6;display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border:0;padding:14px 24px 14px 20px;border-radius:999px;font-size:13px;letter-spacing:.1em;cursor:pointer;box-shadow:0 10px 30px rgba(35,34,33,.28)}
+.fab{transition:opacity .2s,transform .2s}
+body.fab-hide .fab{opacity:0;pointer-events:none;transform:translateY(16px)}
 .fab svg{width:20px;height:20px}
 body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
-.fab::after{content:"";position:absolute;left:22px;right:22px;bottom:7px;height:2px;border-radius:2px;background:var(--grain);opacity:.9}
+.fab::after{content:"";position:absolute;left:20px;right:22px;bottom:7px;height:2px;border-radius:2px;background:var(--grain);opacity:.9}
 .scanner{position:fixed;inset:0;z-index:30;background:#161514;color:#fff;display:flex;flex-direction:column}
 .scanner video,.scanner canvas.sv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .scanner .shade{display:none}
@@ -250,11 +255,12 @@ body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
 .empty{padding:28px;text-align:center;color:var(--sub);font-size:12.5px;background:var(--g0)}
 .glist{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}
 .gitem{background:var(--g0);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13px}
-.gitem b{font-weight:500}
+.gitem b{font-weight:500;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.gitem span{flex:none}
 .gitem span{font-size:11px;color:var(--sub);font-family:var(--latin)}
 .cgroup{margin-bottom:18px}
 .cgroup h3{font-size:12px;font-weight:500;color:var(--ink2);margin:0 0 8px;letter-spacing:.06em}
-.crow{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;background:var(--g0);padding:10px 14px;margin-bottom:4px;font-size:13px;line-height:1.7}
+.crow{overflow-wrap:anywhere;display:flex;justify-content:space-between;gap:12px;align-items:flex-start;background:var(--g0);padding:10px 14px;margin-bottom:4px;font-size:13px;line-height:1.7}
 .crow .who{font-size:11px;color:var(--sub);display:block}
 .steps ol{margin:0;padding:0;list-style:none;counter-reset:st}
 .steps li{counter-increment:st;display:grid;grid-template-columns:36px 1fr;gap:4px;font-size:13px;line-height:1.85;padding:7px 0;color:var(--ink2);border-top:1px solid var(--g1)}
@@ -1566,6 +1572,18 @@ const pad=n=>String(n).padStart(2,'0');
 const clone=o=>JSON.parse(JSON.stringify(o));
 const AV=['#b08559','#8f9d82','#c48a68','#6f7f8c','#a3927f','#7d8f8a','#b9967a'];
 const avColor=id=>{let h=0;for(const ch of String(id||''))h=(h*31+ch.charCodeAt(0))|0;return AV[Math.abs(h)%AV.length]};
+const SEG=(typeof Intl!=='undefined'&&Intl.Segmenter)?new Intl.Segmenter('ja',{granularity:'word'}):null;
+const HIRA=/^[ぁ-ゟー]+$/, PUN=/^[、。，．,.!?！？」』）)\]］・…ー〜~：:；;%％]+$/, OPN=/[「『（(\[［]$/;
+function jp(s){
+  const t=String(s??'');if(!SEG)return br(t);
+  return t.split('\n').map(line=>{const out=[];
+    for(const {segment:g} of SEG.segment(line)){
+      const p=out.length?out[out.length-1]:null;
+      if(p!==null&&(PUN.test(g)||OPN.test(p)||(HIRA.test(g)&&g.length<=3&&(p+g).length<=12&&!/\s$/.test(p))))out[out.length-1]+=g;else out.push(g);
+    }
+    return '<span class="jp">'+out.map(esc).join('<wbr>')+'</span>';}).join('<br>');
+}
+const honor=n=>{n=String(n||'');return /(さん|くん|君|ちゃん|様|さま)$/.test(n)?n:n+' さん'};
 const initial=s=>esc((String(s||'？').trim()[0]||'？'));
 
 const ICON={
@@ -1707,12 +1725,12 @@ function onData(first){
 }
 
 /* ---------- landing / create / host login ---------- */
-const modeNote=()=>B.mode==='cloud'?'クラウド保存（Firebase）でつながっています':'Firebaseにつながっていないため、この端末だけのお試しモードです。<br>ほかの人のスマホからは見られません。';
+const modeNote=()=>jp(B&&B.mode==='cloud'?'クラウド保存（Firebase）でつながっています':'Firebaseにつながっていないため、この端末だけのお試しモードです。\nほかの人のスマホからは見られません。');
 function renderLanding(){
   const last=store.get('uchimeguri:last');
   app.innerHTML=`<div class="landing"><div class="woodbar"></div><main>
     <p class="eyebrow">a little tour of our home</p>
-    <h1 class="logo">うちめぐり</h1>
+    <h1 class="logo">おうちめぐり</h1>
     <p class="tagline">QRでめぐる、おうちのこと。</p>
     <section class="box"><h2>パーティを作る</h2><p class="hint">ホストの方はこちら。スポットの登録とQRカードの印刷ができます。</p>
       <a class="btn block" href="#new">はじめる</a></section>
@@ -1760,40 +1778,41 @@ function renderGate(){
   if(!gateOpen){modal.innerHTML='';return}
   const isNew=gateTab==='new';
   modal.innerHTML=`<div class="overlay"><div class="sheet" role="dialog" aria-modal="true">
-    <div class="sh"><div><p class="eyebrow">nice to meet you</p><h2>${esc(meta().title)}</h2></div></div>
+    <div class="sh"><div><p class="eyebrow">nice to meet you</p><h2>${jp(meta().title)}</h2></div></div>
     <div class="inner">
       <div class="tabs"><button type="button" class="${isNew?'on':''}" data-act="gtab" data-tab="new">はじめて</button><button type="button" class="${!isNew?'on':''}" data-act="gtab" data-tab="back">前に登録した</button></div>
       <form id="gateform">
         <label class="f">お名前（ニックネーム）<span class="hint">${isNew?'みんなの答えに表示されます':'登録したときの名前'}</span><input type="text" id="g-name" maxlength="16" autocomplete="off" placeholder="例：たなか"></label>
-        <label class="f">暗証番号（4桁）<span class="hint">${isNew?'別のブラウザやシークレットモードで開いたとき、続きから再開するのに使います':'登録したときの4桁'}</span><input type="tel" inputmode="numeric" id="g-pin" class="pin" maxlength="4" placeholder="••••"></label>
+        <label class="f">暗証番号（4桁）<span class="hint">${jp(isNew?'別のブラウザやシークレットモードで開いたとき、続きから再開するのに使います':'登録したときの4桁')}</span><input type="tel" inputmode="numeric" id="g-pin" class="pin" maxlength="4" placeholder="••••"></label>
         ${gateErr?`<p class="err">${esc(gateErr)}</p>`:''}
         <button class="btn block" id="g-go">${isNew?'はじめる':'続きから再開する'}</button>
       </form>
       <p style="text-align:center;margin:18px 0 0"><button class="link" data-act="gskip">登録せずに見る</button></p>
-      <p class="hint" style="text-align:center;margin:4px 0 0">登録しないと、答えを書いたり別の端末で続きを見たりはできません</p>
+      <p class="hint" style="text-align:center;margin:4px 0 0">${jp('登録しないと、答えを書いたり、別の端末で続きを見たりはできません')}</p>
     </div></div></div>`;
 }
 function meChip(){
   const m=me();
-  if(m)return `<button class="me" data-act="me-menu" style="--av:${avColor(m.id)}"><i>${initial(m.name)}</i>${esc(m.name)} さん</button>`;
+  if(m)return `<button class="me" data-act="me-menu" style="--av:${avColor(m.id)}"><i>${initial(m.name)}</i>${esc(honor(m.name))}</button>`;
   return `<button class="me" data-act="gate-open"><i>＋</i>名前を登録</button>`;
 }
 
 /* ---------- guest views ---------- */
 function ownerBar(){return `<button class="fab noprint" data-act="scan">${ICON.qr}QRを読む</button>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'')}
 function closedView(){
-  app.innerHTML=`<div class="woodbar"></div><main class="center"><p class="eyebrow">thank you for coming</p><h1>${esc(meta().title)}</h1><p class="hint">パーティは終了しました。来てくれてありがとう。</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
+  app.innerHTML=`<div class="woodbar"></div><main class="center"><p class="eyebrow">thank you for coming</p><h1>${jp(meta().title)}</h1><p class="hint">${jp('パーティは終了しました。来てくれてありがとう。')}</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
 }
-const completeCard=()=>`<section class="complete"><p class="eyebrow">complete</p><p>${br(meta().complete||'全部見つけてくれてありがとう！')}</p></section>`;
+const completeCard=()=>`<section class="complete"><p class="eyebrow">complete</p><p>${jp(meta().complete||'全部見つけてくれてありがとう！')}</p></section>`;
 function renderHome(){
+  if(fabObs){fabObs.disconnect();fabObs=null}document.body.classList.remove('fab-hide');
   const m=meta();if(m.closed&&!isHost())return closedView();
   const sp=spotsArr(),f=getFound(),n=sp.filter(s=>f.has(s.id)).length;
   app.innerHTML=`<div class="woodbar"></div>
   <header class="hero"><div class="hero-in">
     <div class="lamp" aria-hidden="true"><svg viewBox="0 0 64 124"><rect x="31.2" y="0" width="1.6" height="58" fill="#4e4c49"/><rect x="28" y="54" width="8" height="8" rx="1.5" fill="#8c6845"/><path d="M6 88a26 26 0 0 1 52 0z" fill="#b08559"/><path d="M6 88a26 26 0 0 1 52 0" fill="none" stroke="#8c6845" stroke-width="1"/><path d="M14 74a19 19 0 0 1 16-11" fill="none" stroke="#c9a37c" stroke-width="2" stroke-linecap="round"/><rect x="6" y="87" width="52" height="2.4" fill="#8c6845"/><circle cx="32" cy="94" r="6.5" fill="#f6e7c9"/></svg><i class="glow"></i></div>
     <div class="hero-top">${meChip()}</div>
-    <div class="hero-title"><p class="eyebrow">welcome home</p><h1>${esc(m.title)}</h1></div>
-    ${m.welcome?`<p class="lead">${esc(m.welcome)}</p>`:''}${m.host?`<p class="host">HOST — ${esc(m.host)}</p>`:''}
+    <div class="hero-title"><p class="eyebrow">welcome home</p><h1>${jp(m.title)}</h1></div>
+    ${m.welcome?`<p class="lead">${jp(m.welcome)}</p>`:''}${m.host?`<p class="host">HOST — ${esc(m.host)}</p>`:''}
     <div class="progress"><div class="pnum"><b>${n}</b><span>/ ${sp.length}</span></div>
       <div><span class="cap">Found</span><div class="bar"><i style="width:${sp.length?n/sp.length*100:0}%"></i></div></div></div>
   </div></header>
@@ -1801,10 +1820,10 @@ function renderHome(){
     ${m.sample?'<div class="sample">サンプルの内容を表示しています</div>':''}
     ${sp.length&&n===sp.length?completeCard():''}
     <section class="grid">${sp.map((s,i)=>{const c=cat(s),cc=commentsOf(s.id).length;return f.has(s.id)
-      ?`<a class="tile" href="#${s.id}"><div class="th">${visual(s)}<span class="badge">${ICON.check}</span></div><div class="tb"><div><div class="no">${pad(i+1)}</div><div class="tt">${esc(s.title)}</div></div>${cc?`<span class="cc">${ICON.bubble}${cc}</span>`:''}</div></a>`
+      ?`<a class="tile" href="#${s.id}"><div class="th">${visual(s)}<span class="badge">${ICON.check}</span></div><div class="tb"><div><div class="no">${pad(i+1)}</div><div class="tt">${jp(s.title)}</div></div>${cc?`<span class="cc">${ICON.bubble}${cc}</span>`:''}</div></a>`
       :`<div class="tile hidden" style="--c:${c.color}"><div class="th">${ICON[s.cat]||''}<span class="cap">${c.en}</span></div><div class="tb"><div><div class="no">${pad(i+1)}</div><div class="tt">まだ見つけていません</div></div></div></div>`}).join('')}</section>
   </main>
-  <footer class="foot-band"><p class="howto">家のあちこちにあるカードのQRコードを、<br>スマホのカメラで読み取ってください。<br>順番も時間制限もありません。</p>
+  <footer class="foot-band"><p class="howto">${jp('家のあちこちにあるカードのQRコードを、\n画面下の「QRを読む」か、スマホのカメラで読み取ってください。\n順番も時間制限もありません。')}</p>
     ${isHost()?'<button class="resetlink" data-act="reset-found">（ホスト用）この端末のスタンプをリセット</button>':''}</footer>`+ownerBar();
   if(needGate()&&!gateOpen)openGate('new');
 }
@@ -1821,32 +1840,39 @@ function renderSpot(id){
     <div class="photo-wrap"><figure class="photo">${visual(s)}</figure>${f.has(id)?`<div class="stamp ${anim?'anim':''}"><b>found</b><small>見つけた</small></div>`:''}</div>
     <div class="sbody-wrap">
       <div class="smeta"><span class="no">${pad(idx+1)}</span><span class="tag" style="--c:${c.color}">${c.label}</span></div>
-      <h1 class="stitle">${esc(s.title)}</h1>
-      ${s.body?`<p class="sbody">${br(s.body)}</p>`:''}
-      ${s.question?`<aside class="ask"><span class="cap">話のきっかけ</span><p class="q">${esc(s.question)}</p></aside>`:''}
+      <h1 class="stitle">${jp(s.title)}</h1>
+      ${s.body?`<p class="sbody">${jp(s.body)}</p>`:''}
+      ${s.question?`<aside class="ask"><span class="cap">話のきっかけ</span><p class="q">${jp(s.question)}</p></aside>`:''}
     </div>
     ${isNew&&n===sp.length?`<div style="padding:0 24px">${completeCard()}</div>`:''}
     <section class="comments on-gray">
       <div class="ch"><h2>みんなの答え</h2><span class="n" id="cnum">${commentsOf(id).length}</span></div>
       ${me()?`<form class="cform" id="cform" data-spot="${id}"><input type="text" id="c-text" maxlength="60" placeholder="${s.question?'あなたの答えをひとこと':'ひとことコメント'}" autocomplete="off"><button class="btn">送る</button></form>
-        <p class="cmeta">${esc(me().name)} さんとして書き込みます</p>`
-       :`<div class="gate">名前を登録すると、答えを書き込めます。<br><button class="link" data-act="gate-open">名前を登録する</button></div>`}
+        <p class="cmeta">${esc(honor(me().name))}として書き込みます</p>`
+       :`<div class="gate">${jp('名前を登録すると、答えを書き込めます。')}<br><button class="link" data-act="gate-open">名前を登録する</button></div>`}
       <div class="clist" id="clist"></div>
     </section>
     <a class="plink" href="#"><span>見つけたカードを見る</span><span>→</span></a>
   </main>`+ownerBar();
-  renderComments(id);
+  renderComments(id);watchFab();
   if(needGate()&&!gateOpen){pendingSpot=id;openGate('new')}
 }
-let pendingSpot=null;
+let pendingSpot=null,fabObs=null;
+function watchFab(){
+  if(fabObs){fabObs.disconnect();fabObs=null}document.body.classList.remove('fab-hide');
+  const el=$('#cform')||$('.comments .gate');if(!el||!('IntersectionObserver' in window))return;
+  const top=Math.max(0,window.innerHeight-96);
+  fabObs=new IntersectionObserver(es=>{es.forEach(en=>document.body.classList.toggle('fab-hide',en.isIntersecting))},{rootMargin:`-${top}px 0px 0px 0px`});
+  fabObs.observe(el);
+}
 function renderComments(id){
   const el=$('#clist');if(!el)return;
   const list=commentsOf(id),m=me(),mineTexts=m?list.filter(c=>c.gid===m.id).map(c=>c.text):[];
-  if(!list.length){el.innerHTML='<p class="cempty">まだ答えはありません。最初のひとことをどうぞ。</p>';return}
+  if(!list.length){el.innerHTML='<p class="cempty">'+jp('まだ答えはありません。最初のひとことをどうぞ。')+'</p>';return}
   el.innerHTML=list.map(c=>{
     const mine=m&&c.gid===m.id,same=!mine&&mineTexts.some(t=>similar(t,c.text));
     return `<div class="citem ${mine?'mine':''}" style="--av:${avColor(c.gid)}"><div class="who"><i>${initial(c.name)}</i>${esc(c.name)}${mine?'（あなた）':''}</div>
-      <p class="txt">${esc(c.text)}</p>${same?'<span class="same">あなたと同じ答え</span>':''}
+      <p class="txt">${jp(c.text)}</p>${same?'<span class="same">あなたと同じ答え</span>':''}
       ${mine||isHost()?`<button class="link del" data-act="cdel" data-spot="${id}" data-cid="${c.cid}">削除</button>`:''}</div>`}).join('');
 }
 
@@ -1856,7 +1882,7 @@ function statusHtml(){const s=S.status.text?S.status:{text:B.mode==='cloud'?'ク
 function hostHead(title,sub,nav){return `<div class="woodbar noprint"></div><header class="hosthead noprint"><div class="in"><div><p class="eyebrow">for the host</p><h1 class="edlogo">${title}<small>${sub}</small></h1></div><nav>${nav}</nav></div></header>`}
 function renderEditor(){
   const m=meta();
-  app.innerHTML=`<div class="hostpage">${hostHead('うちめぐり','ホスト用ページ','<a class="btn light" href="#">ゲスト画面</a><a class="btn" href="#cards">QRカードを印刷</a>')}
+  app.innerHTML=`<div class="hostpage">${hostHead('おうちめぐり','ホスト用ページ','<a class="btn light" href="#">ゲスト画面</a><a class="btn" href="#cards">QRカードを印刷</a>')}
   <div class="ed">
     ${statusHtml()}
     ${m.sample?`<div class="note">いま入っているのはサンプルです。そのまま書き換えるか、<button class="link" data-act="clear-sample">${confirmClear?'本当に消す（もう一度押す）':'サンプルを全部消す'}</button>こともできます。</div>`:''}
@@ -1865,24 +1891,24 @@ function renderEditor(){
       <label class="f">ホストの名前<input type="text" id="f-host" value="${esc(m.host)}"></label></div>
       <label class="f">ようこそメッセージ<span class="hint">ゲストが最初に読む文章です</span><textarea id="f-welcome" rows="3">${esc(m.welcome)}</textarea></label>
       <label class="f">全部見つけた人へのメッセージ<textarea id="f-complete" rows="2">${esc(m.complete)}</textarea></label>
-      <label class="check"><input type="checkbox" id="f-closed" ${m.closed?'checked':''}> パーティ終了（ゲストには「終了しました」だけを表示）</label>
+      <label class="check"><input type="checkbox" id="f-closed" ${m.closed?'checked':''}> ${jp('パーティ終了（ゲストには「終了しました」だけを表示）')}</label>
       <div class="row end"><button class="btn" data-act="save-meta">基本情報を保存</button></div>
     </section>
     <section class="panel"><div class="ph2"><h2>スポット<span class="count" id="spcount">${spotsArr().length}</span></h2><button class="btn sm" data-act="new">＋ 追加</button></div>
-      <p class="hint" style="margin:-8px 0 14px">目安は8〜12か所。寝室など、入ってほしくない部屋には置かないでください。</p>
+      <p class="hint" style="margin:-8px 0 14px">${jp('目安は8〜12か所。寝室など、入ってほしくない部屋には置かないでください。')}</p>
       <ol class="slist" id="slist"></ol>
     </section>
     <section class="panel"><div class="ph2"><h2>ゲスト<span class="count" id="gcount">${guests().length}</span></h2></div><div id="gpanel"></div></section>
     <section class="panel"><div class="ph2"><h2>みんなの答え</h2></div><div id="cpanel"></div></section>
     <section class="panel"><div class="ph2"><h2>ゲスト用URL</h2></div>
-      <p class="hint" style="margin:-8px 0 0">QRコードにはこのURLが入ります。パーティコード <b style="font-family:var(--latin);font-size:16px;color:var(--ink)">${esc(S.code)}</b></p>
+      <p class="hint" style="margin:-8px 0 0">${jp('QRコードにはこのURLが入ります。')}パーティコード <b style="font-family:var(--latin);font-size:16px;color:var(--ink)">${esc(S.code)}</b></p>
       <div class="urlbox"><code>${esc(guestUrl())}</code><button class="btn" data-act="copy-url">コピー</button></div>
     </section>
     <section class="panel steps"><div class="ph2"><h2>当日までの流れ</h2></div><ol>
-      <li><span><b>スポットを作る</b>　写真・エピソード・話のきっかけを入れる</span></li>
-      <li><span><b>QRカードを印刷</b>　切り離して、家のあちこちに置く</span></li>
-      <li><span><b>当日</b>　ゲストはQRを読み、名前と4桁の暗証番号を登録するだけ。インストールは不要です</span></li>
-      <li><span><b>終わったら「パーティ終了」にチェック</b>　家の写真や答えが見られる状態を残さないために</span></li>
+      <li><span><b>スポットを作る</b>　${jp('写真・エピソード・話のきっかけを入れる')}</span></li>
+      <li><span><b>QRカードを印刷</b>　${jp('切り離して、家のあちこちに置く')}</span></li>
+      <li><span><b>当日</b>　${jp('ゲストはQRを読み、名前と4桁の暗証番号を登録するだけ。インストールは不要です')}</span></li>
+      <li><span><b>終わったら「パーティ終了」にチェック</b>　${jp('家の写真や答えが見られる状態を残さないために')}</span></li>
     </ol></section>
   </div></div>`;
   renderList();renderGuestsPanel();renderCommentsPanel();
@@ -2003,7 +2029,7 @@ function handleQR(text){
   let u=null;try{u=new URL(text,location.href)}catch(e){}
   const p=u&&u.searchParams.get('p'),h=u?u.hash.slice(1):'';
   if(p&&p.toLowerCase()===S.code&&h.startsWith('s-')){closeScanner();if(location.hash.slice(1)===h)route();else location.hash=h;return true}
-  if(Date.now()-SC.warnAt>2500){SC.warnAt=Date.now();scanMsg(p?'ほかのパーティのQRコードのようです':'うちめぐりのカードではないようです',true);setTimeout(()=>scanMsg('カードのQRコードを枠に合わせてください'),2400)}
+  if(Date.now()-SC.warnAt>2500){SC.warnAt=Date.now();scanMsg(p?'ほかのパーティのQRコードのようです':'おうちめぐりのカードではないようです',true);setTimeout(()=>scanMsg('カードのQRコードを枠に合わせてください'),2400)}
   return false;
 }
 async function openScanner(){
@@ -2116,7 +2142,7 @@ document.addEventListener('click',async e=>{
   if(act==='gtab'){gateTab=t.dataset.tab;gateErr='';renderGate();return}
   if(act==='gskip'){store.set(skipKey(),'1');closeGate();return}
   if(act==='gate-open'){store.del(skipKey());openGate('new');return}
-  if(act==='me-menu'){if(t.dataset.confirm){store.del(meKey());localFound=new Set();store.set(foundKey(),'[]');openGate('back')}else{t.dataset.confirm='1';t.innerHTML='別の人に切り替える？';setTimeout(()=>{if(t.isConnected){delete t.dataset.confirm;route()}},3000)}return}
+  if(act==='me-menu'){if(t.dataset.confirm){store.del(meKey());localFound=new Set();store.set(foundKey(),'[]');openGate('back')}else{t.dataset.confirm='1';t.innerHTML='もう一度押すと別の人に切り替え';setTimeout(()=>{if(t.isConnected){delete t.dataset.confirm;route()}},3000)}return}
   if(act==='reset-found'){localFound=new Set();store.set(foundKey(),'[]');const m=me();if(m)await B.del(S.code,`guests/${m.id}/found`).catch(()=>{});route();return}
   if(act==='print'){try{window.print()}catch(err){setStatus('この画面からは印刷できません。ブラウザで直接開いてください。','warn')}return}
   if(act==='copy-url'){try{await navigator.clipboard.writeText(guestUrl());setStatus('URLをコピーしました','ok')}catch(err){setStatus('コピーできませんでした。URLを長押ししてコピーしてください。','warn')}return}
@@ -2146,20 +2172,20 @@ document.addEventListener('click',async e=>{
     if(!s.title){$('#s-title').focus();return}
     S.party.spots=S.party.spots||{};S.party.spots[s.id]=s;
     S.party.meta.order=spotsArr().map(x=>x.id);S.party.meta.sample=false;
-    form=null;renderForm();renderEditor();
-    await save(async()=>{await B.put(S.code,'spots/'+s.id,s);await putMeta()});return;
+    const mm=clone(meta());form=null;renderForm();renderEditor();
+    await save(async()=>{await B.put(S.code,'spots/'+s.id,s);await B.put(S.code,'meta',mm)});return;
   }
   if(act==='del'){
     if(!confirmDel){confirmDel=true;syncForm();renderForm();return}
     const sid=form.id;delete S.party.spots[sid];S.party.meta.order=(S.party.meta.order||[]).filter(x=>x!==sid);S.party.meta.sample=false;
-    form=null;renderForm();renderEditor();
-    await save(async()=>{await B.del(S.code,'spots/'+sid);await B.del(S.code,'comments/'+sid);await putMeta()});return;
+    const mm=clone(meta());form=null;renderForm();renderEditor();
+    await save(async()=>{await B.del(S.code,'spots/'+sid);await B.del(S.code,'comments/'+sid);await B.put(S.code,'meta',mm)});return;
   }
   if(act==='clear-sample'){
     if(!confirmClear){confirmClear=true;renderEditor();return}
     confirmClear=false;const old=Object.keys(S.party.spots||{});
-    S.party.spots={};S.party.meta.order=[];S.party.meta.sample=false;renderEditor();
-    await save(async()=>{for(const x of old){await B.del(S.code,'spots/'+x);await B.del(S.code,'comments/'+x)}await putMeta()});return;
+    S.party.spots={};S.party.meta.order=[];S.party.meta.sample=false;const mm=clone(meta());renderEditor();
+    await save(async()=>{await B.put(S.code,'meta',mm);for(const x of old){await B.del(S.code,'spots/'+x);await B.del(S.code,'comments/'+x)}});return;
   }
 });
 document.addEventListener('change',async e=>{
@@ -2173,6 +2199,7 @@ document.addEventListener('input',e=>{if(e.target.classList.contains('pin'))e.ta
 
 /* ---------- routing ---------- */
 function route(){
+  if(!B){app.innerHTML='<div class="spin"></div>';return}
   const h=location.hash.slice(1);
   if(!S.code)return h==='new'?renderCreate():renderLanding();
   if(!S.loaded){app.innerHTML='<div class="spin"></div>';return}
