@@ -199,6 +199,49 @@ textarea{resize:vertical}
 .inv-note{font-size:12px;color:var(--sub);line-height:1.9;border-top:1px solid var(--g2);padding-top:16px;margin:0}
 .hostnote{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .ogpbox canvas{width:100%;max-width:600px;height:auto;display:block;border:1px solid var(--g2)}
+/* ---------- venue monitor ---------- */
+.mon{position:fixed;inset:0;background:var(--g1);color:var(--ink);overflow:hidden;cursor:none;--sub:#5f5c58}
+.mon.dark{background:var(--ink);color:#efece7}
+.mon.awake{cursor:default}
+.mon-exit{position:fixed;left:50%;transform:translateX(-50%);top:2.4vh;z-index:5;opacity:0;pointer-events:none;transition:opacity .3s;background:var(--white);color:var(--ink);border:1px solid var(--g3);padding:10px 16px;font-size:13px;letter-spacing:.06em;text-decoration:none;font-family:var(--sans)}
+.mon.awake .mon-exit{opacity:1;pointer-events:auto}
+.mon .lampm{position:absolute;top:0;right:9vw;width:6.4vw;height:11.8vw}
+.mon .lampm{overflow:visible}
+.mon .lampm *{fill:none;stroke:var(--ink);stroke-width:1.05;stroke-dasharray:1 1.01;stroke-dashoffset:0}
+.mon .lampm .oak{stroke:var(--oak);stroke-width:2.1}
+.mon .lampm.erase *{animation:lerase .55s cubic-bezier(.6,0,.4,1) forwards}
+.mon .lampm.draw *{stroke-dashoffset:1.005;opacity:0;animation:draw var(--d,.6s) cubic-bezier(.6,0,.3,1) var(--w,0s) forwards,show .01s linear var(--w,0s) forwards}
+@keyframes lerase{from{stroke-dashoffset:0;opacity:1}80%{opacity:1}to{stroke-dashoffset:-1.005;opacity:0}}
+@media (prefers-reduced-motion:reduce){.mon .lampm.erase *,.mon .lampm.draw *{animation:none;stroke-dashoffset:0;opacity:1}}
+.stage{position:absolute;inset:0;padding:16vh 7vw 18vh;display:flex;flex-direction:column;justify-content:center;opacity:0;transition:opacity 1.4s ease}
+.stage .mcap{position:absolute;top:7vh;left:7vw}
+.stage.on{opacity:1}
+.mcap{font-family:var(--mono);font-size:1.6vw;letter-spacing:.28em;color:var(--sub);margin:0}
+.mon.dark .mcap{color:#a9c6bf}
+.mtitle{font-family:var(--serif);font-weight:600;font-size:6vw;line-height:1.3;letter-spacing:.05em;margin:0 0 1.6vh}
+.men{font-family:var(--latin);font-style:italic;font-size:2.6vw;color:var(--sub);margin:0}
+.mfoot{position:absolute;left:7vw;right:7vw;bottom:6.5vh;display:flex;justify-content:space-between;align-items:flex-end;gap:3vw;font-size:1.8vw;line-height:1.7;color:var(--ink2)}
+.mfoot .mono{font-family:var(--mono);color:var(--sub);letter-spacing:.08em}
+.mqr{display:flex;align-items:center;gap:1.6vw;font-size:1.7vw;letter-spacing:.12em;color:var(--sub)}
+.mqr svg{width:11.5vw;height:11.5vw;background:#fff;padding:.8vw;display:block}
+.mno{font-family:var(--mono);color:var(--oak-d);font-size:1.9vw;letter-spacing:.06em;margin:0 0 1vh}
+.mq{font-family:var(--serif);font-size:2.2vw;color:var(--sub);margin:0;line-height:1.5}
+.mvoice{font-family:var(--serif);font-weight:600;font-size:5vw;line-height:1.4;margin:4.5vh 0 0;max-width:84vw}
+.mwho{font-size:2vw;color:var(--ink2);margin:2.4vh 0 0;letter-spacing:.06em}
+.mrooms{display:grid;gap:5.5vh;max-width:86vw}
+.mroom .rl{display:flex;justify-content:space-between;align-items:baseline;font-size:2.8vw;font-family:var(--serif);font-weight:600;letter-spacing:.05em}
+.mroom .rl .rn{font-family:var(--mono);font-weight:400;font-size:1.6vw;letter-spacing:.2em;color:var(--oak-d);margin-right:1.6vw}
+.mroom .rl .rc{font-family:var(--mono);font-weight:400;font-size:1.9vw;color:var(--sub)}
+.mbar{height:.45vh;background:var(--g3);position:relative;margin-top:1.8vh}
+.mbar i{position:absolute;left:0;top:-.3vh;height:1.05vh;background:var(--oak);transition:width 1.6s ease}
+.mbig{font-family:var(--mono);color:var(--oak-d);font-size:9vw;letter-spacing:.04em;margin:0;line-height:1}
+.mroomhint{font-family:var(--serif);font-weight:600;font-size:3.4vw;margin:3vh 0 0;letter-spacing:.04em}
+.mhint{font-size:2.1vw;color:var(--ink2);margin:2.2vh 0 0}
+.mstat{display:flex;gap:7vw;margin-top:6vh}
+.mstat div{font-size:1.7vw;color:#9b978f;letter-spacing:.14em}
+.mstat b{display:block;font-family:var(--mono);font-weight:400;font-size:5.6vw;color:#efece7;letter-spacing:.02em;margin-top:1vh}
+.mon.dark .mtitle{color:#efece7}
+.mon.dark .men{color:#9b978f}
 /* ---------- motion ---------- */
 @keyframes mfade{from{opacity:0}to{opacity:1}}
 @keyframes mrise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -1822,6 +1865,7 @@ function openCode(code){
 }
 function onData(first){
   const h=location.hash.slice(1);
+  if(!first&&h==='monitor')return monData();
   if(!first){
     if(h==='edit'&&isHost()&&$('#slist')){renderList();renderGuestsPanel();renderCommentsPanel();const c=$('#spcount');if(c)c.textContent=spotsArr().length;return}
     if(h.startsWith('s-')&&$('#clist')){renderComments(h);const n=$('#cnum');if(n)n.textContent=commentsOf(h).length;return}
@@ -2010,6 +2054,93 @@ function renderInvite(preview){
   </div></main></div>`+(isHost()&&!preview?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
   scheduleOpen();
 }
+/* ---------- venue monitor ---------- */
+const MON={timer:null,i:-1,queue:[],seen:null,wake:null,mode:null,hist:[]};
+const LAMPM='<svg class="lampm" id="lampm" viewBox="0 0 64 118" aria-hidden="true"><line pathLength="1" x1="32" y1="0" x2="32" y2="58" style="--d:.55s;--w:.1s"/><rect pathLength="1" x="28.5" y="57" width="7" height="7" style="--d:.35s;--w:.55s"/><path pathLength="1" d="M6 90a26 26 0 0 1 52 0z" style="--d:1s;--w:.8s"/><line class="oak" pathLength="1" x1="10" y1="89" x2="54" y2="89" style="--d:.5s;--w:1.55s"/><circle pathLength="1" cx="32" cy="96" r="5" style="--d:.5s;--w:1.6s"/></svg>';
+const MON_DUR={entrance:26000,voice:13000,rooms:13000,unseen:13000};
+function monLamp(){const l=$('#lampm');if(!l)return;clearTimeout(MON.lt);
+  if(!l.classList.contains('draw')&&!l.dataset.once){l.dataset.once=1;l.classList.add('draw');return}
+  l.classList.remove('draw');l.classList.add('erase');
+  MON.lt=setTimeout(()=>{l.classList.remove('erase');void l.getBoundingClientRect();l.classList.add('draw')},600)}
+function allComments(){const out=[];spotsArr().forEach((s,i)=>commentsOf(s.id).forEach(c=>out.push({...c,spot:s,no:i})));return out.sort((a,b)=>(b.at||0)-(a.at||0))}
+function roomStats(){const gs=guests();return rooms().map(g=>{let v=0;g.items.forEach(({s})=>gs.forEach(x=>{if(x.found&&x.found[s.id])v++}));const cap=Math.max(1,gs.length*g.items.length);return {g,v,r:v/cap}})}
+function unseenSpots(){const gs=guests();return spotsArr().map((s,i)=>({s,i})).filter(({s})=>!gs.some(g=>g.found&&g.found[s.id]))}
+async function wakeLock(){try{if('wakeLock' in navigator&&!MON.wake){MON.wake=await navigator.wakeLock.request('screen');MON.wake.addEventListener('release',()=>{MON.wake=null})}}catch(e){}}
+function monStop(){clearTimeout(MON.timer);clearTimeout(MON.lt);MON.timer=null;MON.mode=null}
+function monMode(){const m=meta();return m.closed?'closed':beforeOpen()?'before':'open'}
+function renderMonitor(){
+  monStop();wakeLock();
+  if(MON.seen===null)MON.seen=new Set(allComments().map(c=>c.cid));
+  MON.mode=monMode();
+  app.innerHTML=`<div class="mon${MON.mode==='closed'?' dark':''}" id="mon">${MON.mode==='closed'?'':LAMPM}<div class="stage" id="stA"></div><div class="stage" id="stB"></div>${isHost()?'<a class="mon-exit" href="#edit">← ホスト用ページへ</a>':''}</div>`;
+  monNext(true);
+}
+function monScenes(){
+  const sc=['entrance'];
+  if(allComments().length)sc.push('voice');
+  if(guests().length&&rooms().filter(g=>g.name).length>=1)sc.push('rooms');
+  if(unseenSpots().length&&guests().length)sc.push('unseen');
+  return sc;
+}
+function monNext(first){
+  clearTimeout(MON.timer);
+  if(MON.mode!=='open'){monShow(MON.mode==='closed'?sceneClosed():sceneBefore());MON.timer=setTimeout(()=>{if(monMode()!==MON.mode)renderMonitor();else monNext()},60000);return}
+  let html,k='voice';
+  if(MON.queue.length){html=sceneVoice(MON.queue.shift())}
+  else{const sc=monScenes();MON.i=first?0:(MON.i+1)%sc.length;k=sc[MON.i];
+    html=k==='voice'?sceneVoice():k==='rooms'?sceneRooms():k==='unseen'?sceneUnseen():sceneEntrance()}
+  monShow(html);monLamp();
+  MON.timer=setTimeout(()=>monNext(),MON_DUR[k]||13000);
+}
+function monShow(html){
+  const a=$('#stA'),b=$('#stB');if(!a||!b)return;
+  const cur=a.classList.contains('on')?a:b.classList.contains('on')?b:null,nxt=cur===a?b:a;
+  nxt.innerHTML=html;void nxt.offsetWidth;nxt.classList.add('on');if(cur)cur.classList.remove('on');
+  const bars=nxt.querySelectorAll('.mbar i[data-w]');setTimeout(()=>bars.forEach(i=>i.style.width=i.dataset.w),400);
+}
+function monHead(cap){const m=meta();return `<p class="mcap">${cap}</p>`}
+function sceneEntrance(){const m=meta();return `${monHead('EXHIBITION — NOW OPEN')}
+  <div><h1 class="mtitle">${jp(m.title)}</h1>${m.titleEn?`<p class="men">${esc(m.titleEn)}</p>`:''}</div>
+  <div class="mfoot"><span>${jp('展示カードは家のあちこちにあります。\nスマホのカメラでQRを読み取ってください。')}</span><span class="mqr">入館はこちら${qrSvg(guestUrl())}</span></div>`}
+function sceneVoice(c){
+  if(!c){const all=allComments();const pool=all.slice(0,12).filter(x=>!MON.hist.includes(x.cid));c=(pool.length?pool:all)[Math.floor(Math.random()*Math.min(4,(pool.length?pool:all).length))]}
+  if(!c)return sceneEntrance();
+  MON.hist=[c.cid,...MON.hist].slice(0,6);
+  return `${monHead('VOICES — 来館者の声')}
+  <p class="mno">No.${pad3(c.no+1)}　${esc(c.spot.title)}</p>${c.spot.question?`<p class="mq">問い：${jp(c.spot.question)}</p>`:''}
+  <p class="mvoice">「${jp(c.text)}」</p><p class="mwho">— ${esc(honor(c.name))}</p>
+  <div class="mfoot"><span class="mono">VOICES ${allComments().length}</span><span>${jp('QRを読むと、あなたも書き込めます')}</span></div>`}
+function sceneRooms(){
+  const st=roomStats(),named=st.filter(x=>x.g.name),total=st.reduce((a,x)=>a+x.v,0),quiet=named.length>1?named.slice().sort((a,b)=>a.r-b.r)[0]:null;
+  return `${monHead('GALLERIES — 展示室の様子')}
+  <div class="mrooms">${st.map(x=>`<div class="mroom"><div class="rl"><span><span class="rn">${x.g.name?'ROOM '+pad(x.g.no):'OTHER'}</span>${esc(x.g.name||'そのほかの展示')}</span><span class="rc">鑑賞 ${x.v}</span></div><div class="mbar"><i style="width:0" data-w="${Math.round(x.r*100)}%"></i></div></div>`).join('')}</div>
+  <div class="mfoot"><span class="mono">来館者 ${guests().length}名　／　のべ鑑賞 ${total}</span><span>${quiet&&quiet.r<.5?esc(quiet.g.name)+'は、まだ静かです。':''}</span></div>`}
+function sceneUnseen(){
+  const u=unseenSpots();if(!u.length)return sceneEntrance();
+  const {s,i}=u[Math.floor(Math.random()*u.length)],rn=roomNo(s);
+  const hint=s.era?`年代：${s.era}`:s.material?`素材：${s.material}`:`カテゴリ：${cat(s).label}`;
+  return `${monHead('UNSEEN — まだ見られていない標本')}
+  <p class="mbig">No.${pad3(i+1)}</p>
+  <p class="mroomhint">${s.room?`${rn?'ROOM '+pad(rn)+'　':''}${esc(s.room)}のどこかに`:'家のどこかに'}</p>
+  <p class="mhint">${esc(hint)}</p>
+  <div class="mfoot"><span>${jp('最初の鑑賞者になってみませんか。')}</span><span class="mono">UNSEEN ${u.length}</span></div>`}
+function sceneBefore(){const m=meta(),d=openTime();return `${monHead('INVITATION — 開館前')}
+  <div><h1 class="mtitle">${jp(m.title)}</h1>${m.titleEn?`<p class="men">${esc(m.titleEn)}</p>`:''}</div>
+  <div class="mfoot"><span>${d?esc(fmtOpen(d))+' 開館':''}</span><span class="mono">${d?esc(countdown(d)):''}</span></div>`}
+function sceneClosed(){const m=meta(),total=roomStats().reduce((a,x)=>a+x.v,0);return `${monHead('THANK YOU FOR COMING')}
+  <div><h1 class="mtitle">${jp(m.title)}</h1>${m.titleEn?`<p class="men">${esc(m.titleEn)}</p>`:''}</div>
+  <div class="mstat"><div>来館者<b>${guests().length}</b></div><div>のべ鑑賞<b>${total}</b></div><div>来館者の声<b>${allComments().length}</b></div></div>
+  <div class="mfoot" style="color:#9b978f"><span>ご来場ありがとうございました。</span></div>`}
+function monData(){
+  if(!$('#mon'))return renderMonitor();
+  if(monMode()!==MON.mode)return renderMonitor();
+  const all=allComments();all.forEach(c=>{if(!MON.seen.has(c.cid)){MON.seen.add(c.cid);MON.queue.push(c)}});
+}
+let monAwakeT=null;
+function monWake(){const m=$('#mon');if(!m||!isHost())return;m.classList.add('awake');clearTimeout(monAwakeT);monAwakeT=setTimeout(()=>{const n=$('#mon');if(n)n.classList.remove('awake')},3000)}
+['mousemove','touchstart','click'].forEach(ev=>document.addEventListener(ev,()=>{if(location.hash==='#monitor')monWake()},{passive:true}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&location.hash==='#monitor'&&isHost())location.hash='edit'});
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&location.hash==='#monitor'){MON.wake=null;wakeLock()}});
 let welcomeBack=false,pendingSpot=null,fabObs=null,introDone=false,lastVisit=null,seenCids={},seenSpot=null;
 function rooms(){
   const g=[],m=new Map();
@@ -2042,7 +2173,7 @@ function statusHtml(){const s=S.status.text?S.status:{text:B.mode==='cloud'?'ク
 function hostHead(title,sub,nav){return `<header class="hosthead noprint"><div class="in"><div><p class="eyebrow">for the host</p><h1 class="edlogo">${title}<small>${sub}</small></h1></div><nav>${nav}</nav></div></header>`}
 function renderEditor(){
   const m=meta();
-  app.innerHTML=`<div class="hostpage">${hostHead('おうちめぐり','ホスト用ページ','<a class="btn light" href="#">ゲスト画面</a><a class="btn" href="#cards">QRカードを印刷</a>')}
+  app.innerHTML=`<div class="hostpage">${hostHead('おうちめぐり','ホスト用ページ','<a class="btn light" href="#">ゲスト画面</a><a class="btn light" href="#monitor">会場モニター</a><a class="btn" href="#cards">QRカードを印刷</a>')}
   <div class="ed">
     ${statusHtml()}
     ${beforeOpen()?`<div class="note hostnote"><span>${jp('開館前です。ゲストには招待状が表示されています（'+fmtOpen(openTime())+' 開館）')}</span><a class="link" href="#invite">招待状を見る</a></div>`:''}
@@ -2072,6 +2203,15 @@ function renderEditor(){
         <li>${jp('保存した ogp.png を、GitHubの index.html と同じ場所に置く')}</li>
         <li>${jp('index.html の冒頭にある og:image と og:url を、自分のGitHub PagesのURLに書き換える')}</li>
         <li>${jp('画像やタイトルを変えたら、送る前に LINE Page Poker（poker.line.naver.jp）で「Clear Cache」をして読み直させる')}</li>
+      </ol>
+    </section>
+    <section class="panel"><div class="ph2"><h2>会場モニター（テレビ）</h2><a class="btn sm ghost" href="#monitor">表示してみる</a></div>
+      <p class="hint" style="margin:-8px 0 0">${jp('リビングのテレビに、入口・来館者の声・展示室の様子・まだ見られていない標本を、13秒ごとに静かに切り替えて表示します。操作は不要です。')}</p>
+      <div class="urlbox"><code>${esc(guestUrl()+'#monitor')}</code><button class="btn" data-act="copy-mon">コピー</button></div>
+      <ol class="hint" style="margin:14px 0 0;padding-left:20px">
+        <li>${jp('PCのChromeで上のURLを開く')}</li>
+        <li>${jp('Chromeのメニュー「保存して共有」→「キャスト」→ Google TV を選ぶ（HDMIでつなぐ場合は F11 で全画面）')}</li>
+        <li>${jp('PCはスリープしない設定にしておく')}</li>
       </ol>
     </section>
     <section class="panel"><div class="ph2"><h2>ゲスト用URL</h2></div>
@@ -2352,6 +2492,7 @@ document.addEventListener('click',async e=>{
   if(act==='reset-found'){localFound=new Set();store.set(foundKey(),'[]');const m=me();if(m)await B.del(S.code,`guests/${m.id}/found`).catch(()=>{});route();return}
   if(act==='ogp-save'){await drawOgp();const c=$('#ogp');try{const a=document.createElement('a');a.download='ogp.png';a.href=c.toDataURL('image/png');document.body.appendChild(a);a.click();a.remove();setStatus('ogp.png を保存しました','ok')}catch(err){setStatus('この画面からは保存できません。GitHub Pagesで開いて保存してください。','warn')}return}
   if(act==='print'){try{window.print()}catch(err){setStatus('この画面からは印刷できません。ブラウザで直接開いてください。','warn')}return}
+  if(act==='copy-mon'){try{await navigator.clipboard.writeText(guestUrl()+'#monitor');setStatus('モニター用のURLをコピーしました','ok')}catch(err){setStatus('コピーできませんでした','warn')}return}
   if(act==='copy-url'){try{await navigator.clipboard.writeText(guestUrl());setStatus('URLをコピーしました','ok')}catch(err){setStatus('コピーできませんでした。URLを長押ししてコピーしてください。','warn')}return}
   if(act==='cdel'){
     const m=me(),c=S.party?.comments?.[t.dataset.spot]?.[t.dataset.cid];if(!c)return;
@@ -2414,6 +2555,8 @@ function route(){
   if(!S.party){app.innerHTML=`<main class="center"><h1>パーティが見つかりません</h1><p class="hint">URLやコードをもう一度確認してください。</p><p><a class="btn ghost" href="${esc(baseUrl())}">トップへ</a></p></main>`;return}
   if(h==='edit')return isHost()?renderEditor():renderHostLogin();
   if(h==='cards')return isHost()?renderCards():renderHostLogin();
+  if(h==='monitor')return renderMonitor();
+  monStop();
   if(h==='invite'&&isHost())return renderInvite(true);
   try{document.title=meta().title||'おうちめぐり'}catch(e){}
   if(beforeOpen()&&!isHost())return renderInvite(false);
