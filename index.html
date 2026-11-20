@@ -317,6 +317,9 @@ textarea{resize:vertical}
 .plink{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;text-decoration:none;padding:22px 24px 110px;color:var(--ink2);letter-spacing:.06em}
 .center{text-align:center;padding:120px 24px}
 .center h1{font-family:var(--serif);font-weight:500;font-size:23px;margin:14px 0}
+.prebar{position:fixed;top:0;left:0;right:0;z-index:6;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 16px;background:var(--oak-d);color:#fff;font-size:12px;line-height:1.6;letter-spacing:.04em}
+.prebar a{color:#fff;white-space:nowrap;text-underline-offset:3px}
+body.has-prebar{padding-top:56px}
 .ownerbar{position:fixed;left:14px;bottom:20px;background:var(--ink);color:#fff;text-decoration:none;font-size:12px;letter-spacing:.08em;padding:11px 16px;box-shadow:0 6px 20px rgba(35,34,33,.18);z-index:5}
 .fab{position:fixed;right:16px;bottom:18px;z-index:6;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);color:var(--ink);border:1px solid var(--g3);padding:11px 18px 11px 15px;font-size:12.5px;letter-spacing:.1em;cursor:pointer;box-shadow:0 6px 18px rgba(35,34,33,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .fab{transition:opacity .2s,transform .2s}
@@ -1960,7 +1963,9 @@ function stubHtml(){
 }
 
 /* ---------- guest views ---------- */
-function ownerBar(){return `<button class="fab noprint" data-act="scan">${ICON.qr}QRを読む</button>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'')}
+function hostPre(){return isHost()&&beforeOpen()}
+function ownerBar(){const pre=hostPre();document.body.classList.toggle('has-prebar',pre);
+  return (pre?`<div class="prebar noprint"><span>${jp('開館前です（'+fmtOpen(openTime())+'）。ゲストには招待状が表示されています。この端末はホストなので入口を表示中')}</span><a href="#invite">招待状を見る</a></div>`:'')+`<button class="fab noprint" data-act="scan">${ICON.qr}QRを読む</button>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'')}
 function closedView(){
   app.innerHTML=`<main class="center"><p class="eyebrow">thank you for coming</p><h1>${jp(meta().title)}</h1><p class="hint">${jp('パーティは終了しました。来てくれてありがとう。')}</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
 }
@@ -1993,7 +1998,7 @@ function renderHome(){
   </main>
   <footer class="foot-band"><p class="howto">${jp('展示カードは家のあちこちにあります。\n画面下の「QRを読む」か、スマホのカメラで読み取ってください。\n順路も時間制限もありません。')}</p>
     ${isHost()?'<button class="resetlink" data-act="reset-found">（ホスト用）この端末の鑑賞記録をリセット</button>':''}</footer>`+ownerBar();
-  if(needGate()&&!gateOpen)openGate('new');
+  if(needGate()&&!gateOpen&&!hostPre())openGate('new');
 }
 function renderSpot(id){
   const s=(S.party.spots||{})[id];
@@ -2026,7 +2031,7 @@ function renderSpot(id){
     <a class="plink" href="#"><span>展示一覧へ</span><span>→</span></a>
   </main>`+ownerBar();
   seenSpot=null;renderComments(id);watchFab();
-  if(needGate()&&!gateOpen){pendingSpot=id;openGate('new')}
+  if(needGate()&&!gateOpen&&!hostPre()){pendingSpot=id;openGate('new')}
 }
 function openTime(){const t=meta().openAt;if(!t)return null;const d=new Date(t);return isNaN(d)?null:d}
 function beforeOpen(){const d=openTime();return !!d&&Date.now()<d.getTime()}
@@ -2547,6 +2552,7 @@ document.addEventListener('input',e=>{if(e.target.classList.contains('pin'))e.ta
 
 /* ---------- routing ---------- */
 function route(){
+  document.body.classList.remove('has-prebar');
   if(!B){app.innerHTML='<div class="spin"></div>';return}
   const h=location.hash.slice(1);
   if(!S.code)return h==='new'?renderCreate():renderLanding();
