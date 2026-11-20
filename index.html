@@ -84,8 +84,6 @@ textarea{resize:vertical}
 .hero{background:var(--g1);padding:30px 24px 0}
 .hero-in{max-width:560px;margin:0 auto;position:relative;z-index:1}
 .hero-top{min-height:40px}
-.me{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);background:var(--white);padding:7px 12px 7px 10px;border:0;cursor:pointer;letter-spacing:.04em}
-.me i{width:20px;height:20px;border-radius:50%;background:var(--av,var(--ink));color:#fff;font-style:normal;font-size:10px;display:flex;align-items:center;justify-content:center}
 .hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,8vw,36px);line-height:1.4;margin:0;letter-spacing:.05em}
 .hero{position:relative;overflow:hidden}
 .hero-title{margin:22px 0 20px;padding-right:84px}
@@ -111,26 +109,6 @@ textarea{resize:vertical}
 .bar i{position:absolute;left:0;top:-1px;height:3px;background:var(--grain);transition:width .6s ease}
 .wrap{max-width:560px;margin:0 auto;padding:28px 24px 0}
 .sample{font-size:11px;color:var(--sub);background:var(--g0);padding:9px 12px;margin-bottom:22px;text-align:center;letter-spacing:.06em}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 14px}
-.tile{display:block;text-decoration:none;color:inherit}
-.tile .th{aspect-ratio:1/1;overflow:hidden;background:var(--g1);position:relative}
-.tile .th img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
-.tile:hover .th img{transform:scale(1.03)}
-.tile .tb{padding:10px 2px 0;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
-.tile .no{font-family:var(--latin);font-size:16px;color:var(--oak-d);line-height:1}
-.tile .tt{font-size:13px;font-weight:500;line-height:1.55;margin-top:5px}
-.tile .cc{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--sub);font-family:var(--latin);flex:none}
-.tile .cc svg{width:13px;height:13px}
-.tile:not(.hidden) .th{box-shadow:inset 0 0 0 1px var(--g2)}
-.tile:not(.hidden) .ph{background:var(--g0)}
-.tile.hidden .th{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;color:var(--c);background:color-mix(in srgb,var(--c) 9%,var(--g1))}
-.tile.hidden .th svg{width:26px;height:26px;opacity:.75}
-.tile.hidden .th .cap{color:var(--c)}
-.tile .badge{position:absolute;left:8px;top:8px;width:26px;height:26px;border-radius:50%;background:var(--white);color:var(--oak-d);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.tile .badge svg{width:13px;height:13px}
-.tile.hidden .th .cap{font-size:9px;letter-spacing:.3em}
-.tile.hidden .no{color:var(--g3)}
-.tile.hidden .tt{color:var(--sub);font-weight:400;font-size:12px}
 .foot-band{background:var(--g1);margin-top:52px;padding:30px 24px 120px;text-align:center}
 .howto{color:var(--sub);font-size:12px;line-height:2;margin:0}
 .complete{position:relative;background:var(--ink);color:#efece7;padding:26px 24px 28px;margin:0 0 30px;overflow:hidden}
@@ -261,12 +239,6 @@ textarea{resize:vertical}
 .photo-wrap{position:relative;background:var(--g1);padding:22px 24px 14px}
 .photo{margin:0;aspect-ratio:4/3.2;overflow:hidden;background:var(--g0);border:10px solid var(--white);box-shadow:0 1px 0 var(--g2),0 10px 24px -14px rgba(35,34,33,.25)}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
-.stamp{position:absolute;right:20px;bottom:-36px;width:84px;height:84px;border-radius:50%;background:var(--white);color:var(--oak-d);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(35,34,33,.12);transform:rotate(-8deg)}
-.stamp::before{content:"";position:absolute;inset:5px;border:1px solid var(--oak);border-radius:50%}
-.stamp b{font-family:var(--latin);font-style:italic;font-weight:500;font-size:18px;letter-spacing:.06em;line-height:1}
-.stamp small{font-size:9px;letter-spacing:.24em;margin-top:5px;color:var(--ink2)}
-.stamp.anim{animation:stamp .6s cubic-bezier(.2,1.5,.4,1) .3s both}
-@keyframes stamp{from{transform:rotate(-8deg) scale(2.2);opacity:0}to{transform:rotate(-8deg) scale(1);opacity:1}}
 .sbody-wrap{padding:32px 24px 36px}
 .smeta{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
 .smeta .no{font-family:var(--mono);font-size:15px;line-height:1;color:var(--oak-d);letter-spacing:.06em}
@@ -1836,7 +1808,7 @@ const normText=s=>String(s||'').normalize('NFKC').toLowerCase().replace(/[\s、�
 function similar(a,b){a=normText(a);b=normText(b);if(!a||!b)return false;if(a===b)return true;const s=a.length<b.length?a:b,l=a.length<b.length?b:a;return s.length>=2&&l.includes(s)}
 function baseUrl(){return location.href.split(/[?#]/)[0]}
 function guestUrl(){return baseUrl()+'?p='+S.code}
-function visual(s){return s.photo?`<img src="${esc(s.photo)}" alt="">`:`<div class="ph">${ICON[s.cat]||ICON.interior}</div>`}
+function visual(s){return s.photo?`<img src="${esc(s.photo)}" alt="${esc(s.title||'')}">`:`<div class="ph">${ICON[s.cat]||ICON.interior}</div>`}
 
 function openCode(code){
   if(S.unsub){try{S.unsub()}catch(e){}}
@@ -2092,7 +2064,7 @@ function renderEditor(){
       <ol class="slist" id="slist"></ol>
     </section>
     <section class="panel"><div class="ph2"><h2>ゲスト<span class="count" id="gcount">${guests().length}</span></h2></div><div id="gpanel"></div></section>
-    <section class="panel"><div class="ph2"><h2>みんなの答え</h2></div><div id="cpanel"></div></section>
+    <section class="panel"><div class="ph2"><h2>来館者の声</h2></div><div id="cpanel"></div></section>
     <section class="panel ogpbox"><div class="ph2"><h2>LINE用のプレビュー画像</h2><button class="btn sm" data-act="ogp-save">画像を保存（ogp.png）</button></div>
       <p class="hint" style="margin:-8px 0 14px">${jp('URLをLINEなどで送ったときに表示される画像です（1200×630）。展覧会タイトルと英語のタイトルから自動で描きます。')}</p>
       <canvas id="ogp" width="1200" height="630"></canvas>
@@ -2107,10 +2079,12 @@ function renderEditor(){
       <div class="urlbox"><code>${esc(guestUrl())}</code><button class="btn" data-act="copy-url">コピー</button></div>
     </section>
     <section class="panel steps"><div class="ph2"><h2>当日までの流れ</h2></div><ol>
-      <li><span><b>スポットを作る</b>　${jp('写真・エピソード・話のきっかけを入れる')}</span></li>
+      <li><span><b>スポットを作る</b>　${jp('作品名・キャプション・解説・来館者への問い・写真を入れる')}</span></li>
+      <li><span><b>開館日時を設定</b>　${jp('それまでにURLを開いた人には招待状が出る')}</span></li>
+      <li><span><b>LINE用の画像を保存</b>　${jp('ogp.png をGitHubに置き、招待URLを送る')}</span></li>
       <li><span><b>QRカードを印刷</b>　${jp('切り離して、家のあちこちに置く')}</span></li>
-      <li><span><b>当日</b>　${jp('ゲストはQRを読み、名前と4桁の暗証番号を登録するだけ。インストールは不要です')}</span></li>
-      <li><span><b>終わったら「パーティ終了」にチェック</b>　${jp('家の写真や答えが見られる状態を残さないために')}</span></li>
+      <li><span><b>当日</b>　${jp('ゲストは最初に読んだQRで入館受付（お名前・控え番号）。インストールは不要')}</span></li>
+      <li><span><b>終了後</b>　${jp('「パーティ終了」にチェック')}</span></li>
     </ol></section>
   </div></div>`;
   renderList();renderGuestsPanel();renderCommentsPanel();drawOgp();
@@ -2147,14 +2121,14 @@ function renderGuestsPanel(){
   const el=$('#gpanel');if(!el)return;const gs=guests().sort((a,b)=>(a.at||0)-(b.at||0)),total=spotsArr().length;
   const gc=$('#gcount');if(gc)gc.textContent=gs.length;
   el.innerHTML=gs.length?`<div class="glist">${gs.map(g=>`<div class="gitem"><b>${esc(g.name)}</b><span>${Object.keys(g.found||{}).length} / ${total}</span></div>`).join('')}</div>
-    <p class="hint" style="margin:12px 0 0">右の数字は見つけたカードの数です。暗証番号を忘れたゲストには、別の名前で登録し直してもらってください。</p>`
+    <p class="hint" style="margin:12px 0 0">右の数字は鑑賞した作品の数です。控え番号を忘れたゲストには、別のお名前で受付し直してもらってください。</p>`
     :'<div class="empty">まだ登録したゲストはいません。</div>';
 }
 function renderCommentsPanel(){
   const el=$('#cpanel');if(!el)return;
   const groups=spotsArr().map((s,i)=>({s,i,list:commentsOf(s.id)})).filter(g=>g.list.length);
   el.innerHTML=groups.length?groups.map(g=>`<div class="cgroup"><h3>${pad3(g.i+1)}　${esc(g.s.title)}</h3>${g.list.map(c=>`<div class="crow"><div><span class="who">${esc(c.name)}</span>${esc(c.text)}</div><button class="link danger" data-act="cdel" data-spot="${g.s.id}" data-cid="${c.cid}">削除</button></div>`).join('')}</div>`).join('')
-    :'<div class="empty">まだ答えはありません。</div>';
+    :'<div class="empty">まだ書き込みはありません。</div>';
 }
 function openForm(s){form=s?{...clone(s),isNew:false}:{id:newId('s'),cat:'interior',title:'',body:'',question:'',photo:'',room:'',en:'',era:'',material:'',origin:'',owner:'',isNew:true};confirmDel=false;renderForm()}
 function renderForm(){
