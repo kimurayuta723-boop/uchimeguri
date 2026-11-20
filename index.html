@@ -11,8 +11,9 @@
 <style>
 :root{
   --white:#ffffff; --g0:#f7f7f6; --g1:#efefed; --g2:#e3e3e0; --g3:#cdccc8;
-  --ink:#232221; --ink2:#4e4c49; --sub:#8b8985;
-  --oak:#b08559; --oak-d:#8c6845; --sage:#8f9d82; --clay:#c48a68; --slate:#6f7f8c;
+  --ink:#232221; --ink2:#4a4845; --sub:#6e6b66; --mute:#9b978f;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+  --oak:#b08559; --oak-d:#8c6845; 
   --serif:'Shippori Mincho B1',serif; --sans:'Zen Kaku Gothic New',system-ui,sans-serif; --latin:'Cormorant Garamond',serif;
   --grain:repeating-linear-gradient(91deg,#bd9168 0 2px,#b08559 2px 6px,#c29a71 6px 8px,#a77b51 8px 13px,#b78b60 13px 17px);
 }
@@ -73,26 +74,32 @@ textarea{resize:vertical}
 /* ---------- guest home ---------- */
 .hero{background:var(--g1);padding:30px 24px 0}
 .hero-in{max-width:560px;margin:0 auto;position:relative;z-index:1}
-.hero-top{display:flex;justify-content:flex-start;align-items:center;min-height:34px}
+.hero-top{min-height:40px}
 .me{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);background:var(--white);padding:7px 12px 7px 10px;border:0;cursor:pointer;letter-spacing:.04em}
 .me i{width:20px;height:20px;border-radius:50%;background:var(--av,var(--ink));color:#fff;font-style:normal;font-size:10px;display:flex;align-items:center;justify-content:center}
-.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(23px,6.8vw,30px);line-height:1.45;margin:0;letter-spacing:.05em}
+.hero h1{font-family:var(--serif);font-weight:600;font-size:clamp(26px,8vw,36px);line-height:1.4;margin:0;letter-spacing:.05em}
 .hero{position:relative;overflow:hidden}
 .hero-title{margin:22px 0 20px;padding-right:84px}
 .hero-title .eyebrow{margin-bottom:10px}
-.lamp{position:absolute;top:-30px;right:6px;width:64px;transform-origin:50% 0;animation:sway 7s ease-in-out infinite;pointer-events:none}
-.lamp svg{display:block;width:64px;height:124px}
-.lamp .glow{position:absolute;left:50%;top:14px;width:200px;height:170px;margin-left:-100px;background:radial-gradient(closest-side,rgba(248,233,203,.9),rgba(248,233,203,.35) 45%,rgba(248,233,203,0));z-index:-1}
-@keyframes sway{0%,100%{transform:rotate(1.6deg)}50%{transform:rotate(-1.6deg)}}
-@media (prefers-reduced-motion:reduce){.lamp{animation:none}}
+.lamp{position:absolute;top:-30px;right:8px;width:64px;pointer-events:none}
+.lamp svg{display:block;width:64px;height:124px;overflow:visible}
+.lamp svg *{fill:none;stroke:var(--ink);stroke-width:1;stroke-linecap:butt}
+.lamp svg .oak{stroke:var(--oak);stroke-width:2.4}
+.intro .lamp svg *{stroke-dasharray:1 1.01;stroke-dashoffset:1.005;opacity:0;animation:draw var(--d,.6s) cubic-bezier(.6,0,.3,1) var(--w,0s) forwards,show .01s linear var(--w,0s) forwards}
+@keyframes show{to{opacity:1}}
+@keyframes draw{to{stroke-dashoffset:0}}
+.intro .lamp svg .oak{stroke-dasharray:1 1.01;stroke-dashoffset:1.005}
+.intro .rise{opacity:0;animation:rise .9s ease var(--w,1.7s) forwards}
+@keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.intro .lamp svg *{animation:none;stroke-dashoffset:0;opacity:1}.intro .rise{animation:none;opacity:1}}
 .hero .lead{line-height:2.05;font-size:14px;color:var(--ink2);margin:0 0 14px;white-space:pre-wrap}
 .hero .host{font-size:11px;color:var(--sub);margin:0;letter-spacing:.14em}
-.progress{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:end;margin-top:34px;padding:22px 0 26px;border-top:1px solid var(--g3)}
-.pnum{font-family:var(--latin);display:flex;align-items:baseline;gap:6px;line-height:.8}
-.pnum b{font-size:60px;font-weight:400;color:var(--oak-d)}
-.pnum span{color:var(--sub);font-size:20px}
-.bar{height:3px;background:var(--g2);margin-top:10px;position:relative}
-.bar i{position:absolute;left:0;top:0;height:3px;background:var(--grain);transition:width .6s ease}
+.progress{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin-top:30px;padding:16px 0 22px;border-top:1px solid var(--g3)}
+.pnum{font-family:var(--mono);display:flex;align-items:baseline;gap:4px;line-height:1;font-size:12px;color:var(--sub);letter-spacing:.04em}
+.pnum b{font-size:12px;font-weight:500;color:var(--ink)}
+.pnum span{color:var(--sub)}
+.bar{height:1px;background:var(--g3);position:relative}
+.bar i{position:absolute;left:0;top:-1px;height:3px;background:var(--grain);transition:width .6s ease}
 .wrap{max-width:560px;margin:0 auto;padding:28px 24px 0}
 .sample{font-size:11px;color:var(--sub);background:var(--g0);padding:9px 12px;margin-bottom:22px;text-align:center;letter-spacing:.06em}
 .grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 14px}
@@ -137,13 +144,13 @@ textarea{resize:vertical}
 .sign::before{content:"— "}
 .room{margin-bottom:38px}
 .rh{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:9px}
-.rn{font-family:var(--latin);font-size:14px;letter-spacing:.14em;color:var(--oak-d)}
+.rn{font-size:10.5px;letter-spacing:.24em;color:var(--oak-d);font-weight:500;font-family:var(--mono)}
 .rt{font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:.06em}
-.rc{font-family:var(--latin);font-size:16px;color:var(--sub)}
+.rc{font-family:var(--mono);font-size:12px;color:var(--sub)}
 .items{list-style:none;margin:0;padding:0}
 .items li{border-bottom:1px solid var(--g2)}
 .items .row{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;padding:15px 2px;text-decoration:none;color:inherit}
-.items .no{font-family:var(--latin);font-size:19px;color:var(--oak-d);line-height:1}
+.items .no{font-family:var(--mono);font-size:13px;color:var(--oak-d);line-height:1;letter-spacing:.04em}
 .items .it{font-size:14px;font-weight:500;line-height:1.6}
 .items .it small{display:block;font-family:var(--latin);font-style:italic;font-weight:400;color:var(--sub);font-size:13.5px;line-height:1.4}
 .items .mk{display:flex;gap:12px;align-items:center;color:var(--oak-d)}
@@ -151,22 +158,86 @@ textarea{resize:vertical}
 .items .cc{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--sub);font-family:var(--latin)}
 .items .cc svg{width:13px;height:13px}
 .items a.row:hover .it{text-decoration:underline;text-underline-offset:4px}
-.items .unseen .no{color:var(--g3)}
-.items .unseen .it{color:var(--g3);font-weight:400;letter-spacing:.2em}
+.items .unseen .no{color:var(--mute)}
+.items .unseen .it{color:var(--sub);font-weight:400;letter-spacing:.2em}
 .items .unseen .it small{font-family:var(--sans);font-style:normal;font-size:10.5px;letter-spacing:.16em;color:var(--sub);margin-top:2px}
 .roomline{font-size:10.5px;letter-spacing:.22em;color:var(--sub);margin:0;padding:0 24px 12px}
-.credit{font-family:var(--latin);font-style:italic;font-size:12.5px;color:var(--sub);margin:10px 24px 0}
+.credit{font-family:var(--latin);font-style:italic;font-size:12.5px;color:var(--sub);margin:8px 0 0;text-align:right}
 .captbl{margin:24px 0 32px;border-top:1px solid var(--g3)}
-.captbl div{display:grid;grid-template-columns:62px 1fr;padding:10px 0;border-bottom:1px solid var(--g2);font-size:13px;line-height:1.7}
+.captbl div{display:grid;grid-template-columns:62px 1fr;padding:10px 0;font-size:13px;line-height:1.7;position:relative}
+.captbl div::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--g2)}
 .captbl dt{color:var(--sub);font-size:10.5px;letter-spacing:.24em;padding-top:2px}
 .captbl dd{margin:0}
 .lbl{display:block;margin:0 0 8px}
+/* ---------- ticket ---------- */
+.tk-lbl{font-family:var(--mono);font-size:9.5px;letter-spacing:.24em;color:var(--sub)}
+.tk-no{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--oak-d)}
+.stub{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;background:var(--white);border:1px solid var(--g3);padding:12px 16px;margin:0 0 30px;position:relative;font:inherit;color:var(--ink);text-align:left}
+.stub::before,.stub::after{content:"";position:absolute;top:50%;width:12px;height:12px;margin-top:-6px;border-radius:50%;background:var(--white);border:1px solid var(--g3)}
+.stub::before{left:-7px;border-left-color:transparent;border-bottom-color:transparent;transform:rotate(45deg)}
+.stub::after{right:-7px;border-right-color:transparent;border-top-color:transparent;transform:rotate(45deg)}
+.stub-l{display:flex;flex-direction:column;gap:3px}
+.stub-l b{font-weight:500;font-size:14px;font-family:var(--serif);letter-spacing:.04em}
+.stub-r{display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.stub-r .link{font-size:11px}
+.stub-empty{cursor:pointer;font-size:13px;letter-spacing:.06em}
+.stub-empty:hover{background:var(--g0)}
+.ticket-ov{align-items:center}
+.tk-wrap{width:100%;max-width:360px;text-align:center;animation:tkin .6s cubic-bezier(.2,1,.3,1) both}
+@keyframes tkin{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+.tk-lead{color:#fff;font-size:13px;letter-spacing:.14em;margin:0 0 16px}
+.ticket{display:flex;background:#fbf8f2;color:var(--ink);text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.tk-main{flex:1;padding:20px 18px 18px;border-right:0}
+.tk-top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:8px}
+.tk-ex{font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.5;margin:14px 0 0;letter-spacing:.04em}
+.tk-en{font-family:var(--latin);font-style:italic;font-size:12.5px;color:var(--sub);margin:2px 0 0}
+.tk-name{font-family:var(--serif);font-size:19px;line-height:1.5;margin:18px 0 0;letter-spacing:.06em}
+.tk-perf{width:0;border-left:1.5px dashed var(--g3);margin:10px 0;position:relative}
+.tk-stub{width:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 6px}
+.tk-stub .tk-lbl{writing-mode:vertical-rl;letter-spacing:.4em;font-family:var(--sans);font-size:10.5px}
+.tk-stub .tk-no{font-size:13px}
+.tk-note{color:rgba(255,255,255,.85);font-size:12px;line-height:1.8;margin:16px 0 14px}
+.tk-wrap .btn{background:#fff;color:var(--ink);border-color:#fff}
+.sh-sub{font-size:12px;color:var(--sub);margin:6px 0 0;letter-spacing:.04em}
+/* ---------- motion ---------- */
+@keyframes mfade{from{opacity:0}to{opacity:1}}
+@keyframes mrise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@keyframes mline{from{width:0}to{width:100%}}
+.enter .photo{animation:phin 1s ease both}
+@keyframes phin{from{opacity:0;transform:scale(1.035)}to{opacity:1;transform:none}}
+.enter .captbl div::after{animation:mline .7s cubic-bezier(.6,0,.3,1) both;animation-delay:var(--d,0s)}
+.enter .captbl dt,.enter .captbl dd{animation:mfade .5s ease both;animation-delay:calc(var(--d,0s) + .2s)}
+.vis.anim{border-color:transparent}
+.vis.anim::before,.vis.anim::after{content:"";position:absolute;inset:-1px;pointer-events:none}
+.vis.anim::before{border-top:1px solid var(--oak);border-bottom:1px solid var(--oak);animation:vtb .6s cubic-bezier(.6,0,.3,1) .35s both}
+.vis.anim::after{border-left:1px solid var(--oak);border-right:1px solid var(--oak);animation:vlr .6s cubic-bezier(.6,0,.3,1) .35s both}
+@keyframes vtb{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes vlr{from{clip-path:inset(100% 0 0 0)}to{clip-path:inset(0 0 0 0)}}
+.vis.anim>*{animation:mfade .5s ease .9s both}
+.vis.anim{color:transparent;animation:vtxt .01s linear .9s forwards}
+@keyframes vtxt{to{color:var(--oak-d)}}
+.items li.hl .row{animation:hl 1.8s ease .25s both}
+@keyframes hl{0%{background:rgba(214,186,148,.42)}100%{background:rgba(214,186,148,0)}}
+.bar i.grow{animation:bgrow 1s cubic-bezier(.4,0,.2,1) .35s both}
+@keyframes bgrow{from{width:var(--from)}}
+.celebrate .items .no{animation:noak .45s ease both;animation-delay:calc(var(--i,0)*.13s + .3s)}
+@keyframes noak{from{color:var(--g3)}to{color:var(--oak-d)}}
+.celebrate-done{animation:mrise .8s ease both;animation-delay:var(--w,1s)}
+.citem.ni{animation:cins .8s cubic-bezier(.4,0,.2,1) both}
+@keyframes cins{0%{max-height:0;opacity:0;padding-top:0;padding-bottom:0;margin-bottom:-6px}60%{opacity:0}100%{max-height:240px;opacity:1}}
+.tk-perf{animation:perf .8s ease .55s both}
+@keyframes perf{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
+.welcome-toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:40;background:var(--white);color:var(--ink);border:1px solid var(--g3);padding:10px 20px;font-size:12.5px;letter-spacing:.14em;pointer-events:none;animation:wtoast 2.6s ease both;box-shadow:0 8px 24px rgba(35,34,33,.1)}
+@keyframes wtoast{0%{opacity:0;transform:translate(-50%,-6px)}18%,78%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-4px)}}
+#app.pg-in{animation:pgin .28s ease both}
+@keyframes pgin{from{opacity:0}to{opacity:1}}
+@media (prefers-reduced-motion:reduce){.enter .photo,.enter .captbl div::after,.enter .captbl dt,.enter .captbl dd,.vis.anim,.vis.anim::before,.vis.anim::after,.vis.anim>*,.items li.hl .row,.bar i.grow,.celebrate .items .no,.celebrate-done,.citem.ni,.tk-perf,#app.pg-in,.welcome-toast{animation:none!important}.vis.anim{color:var(--oak-d);border-color:var(--oak)}}
 /* ---------- spot ---------- */
 .spotpage{max-width:560px;margin:0 auto}
 .spotpage .top{display:flex;justify-content:space-between;align-items:center;padding:16px 22px}
-.spotpage .count{font-family:var(--latin);font-size:17px;color:var(--sub)}
-.photo-wrap{position:relative}
-.photo{margin:0;aspect-ratio:4/3.3;overflow:hidden;background:var(--g1)}
+.spotpage .count{font-family:var(--mono);font-size:12px;color:var(--sub)}
+.photo-wrap{position:relative;background:var(--g1);padding:22px 24px 14px}
+.photo{margin:0;aspect-ratio:4/3.2;overflow:hidden;background:var(--g0);border:10px solid var(--white);box-shadow:0 1px 0 var(--g2),0 10px 24px -14px rgba(35,34,33,.25)}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .stamp{position:absolute;right:20px;bottom:-36px;width:84px;height:84px;border-radius:50%;background:var(--white);color:var(--oak-d);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 6px 22px rgba(35,34,33,.12);transform:rotate(-8deg)}
 .stamp::before{content:"";position:absolute;inset:5px;border:1px solid var(--oak);border-radius:50%}
@@ -175,8 +246,12 @@ textarea{resize:vertical}
 .stamp.anim{animation:stamp .6s cubic-bezier(.2,1.5,.4,1) .3s both}
 @keyframes stamp{from{transform:rotate(-8deg) scale(2.2);opacity:0}to{transform:rotate(-8deg) scale(1);opacity:1}}
 .sbody-wrap{padding:32px 24px 36px}
-.smeta{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
-.smeta .no{font-family:var(--latin);font-size:34px;line-height:1;color:var(--oak-d)}
+.smeta{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
+.smeta .no{font-family:var(--mono);font-size:15px;line-height:1;color:var(--oak-d);letter-spacing:.06em}
+.smeta .vis{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--oak-d);border:1px solid var(--oak);padding:3px 8px 3px 6px}
+.smeta .vis svg{width:12px;height:12px}
+.smeta .vis{position:relative}
+@keyframes vis{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .stitle{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;margin:6px 0 16px;letter-spacing:.04em}
 .sbody{font-size:14.5px;line-height:2.1;margin:0 0 34px;color:var(--ink2)}
 .ask{border-top:1px solid var(--ink);padding:16px 0 2px}
@@ -189,7 +264,8 @@ textarea{resize:vertical}
 .ch .n{font-family:var(--latin);font-size:20px;color:var(--sub)}
 .cform{display:flex;gap:0;margin-bottom:18px}
 .cform input{margin:0;flex:1;min-width:0;background:var(--white)!important}
-.cform .btn{border-left:0}
+.cform .btn{background:var(--white);color:var(--ink);border:1px solid var(--white);border-left:1px solid var(--g2)}
+.cform .btn:hover{background:var(--g0)}
 .cmeta{font-size:11px;color:var(--sub);margin:-10px 0 16px;letter-spacing:.04em}
 .clist{display:flex;flex-direction:column;gap:6px}
 .citem{background:var(--white);padding:14px 16px 13px;position:relative}
@@ -205,12 +281,12 @@ textarea{resize:vertical}
 .center{text-align:center;padding:120px 24px}
 .center h1{font-family:var(--serif);font-weight:500;font-size:23px;margin:14px 0}
 .ownerbar{position:fixed;left:14px;bottom:20px;background:var(--ink);color:#fff;text-decoration:none;font-size:12px;letter-spacing:.08em;padding:11px 16px;box-shadow:0 6px 20px rgba(35,34,33,.18);z-index:5}
-.fab{position:fixed;right:16px;bottom:18px;z-index:6;display:flex;align-items:center;gap:10px;background:var(--ink);color:#fff;border:0;padding:14px 24px 14px 20px;border-radius:999px;font-size:13px;letter-spacing:.1em;cursor:pointer;box-shadow:0 10px 30px rgba(35,34,33,.28)}
+.fab{position:fixed;right:16px;bottom:18px;z-index:6;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);color:var(--ink);border:1px solid var(--g3);padding:11px 18px 11px 15px;font-size:12.5px;letter-spacing:.1em;cursor:pointer;box-shadow:0 6px 18px rgba(35,34,33,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .fab{transition:opacity .2s,transform .2s}
 body.fab-hide .fab{opacity:0;pointer-events:none;transform:translateY(16px)}
-.fab svg{width:20px;height:20px}
+.fab svg{width:18px;height:18px}
 body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
-.fab::after{content:"";position:absolute;left:20px;right:22px;bottom:7px;height:2px;border-radius:2px;background:var(--grain);opacity:.9}
+.fab::after{display:none}
 .scanner{position:fixed;inset:0;z-index:30;background:#161514;color:#fff;display:flex;flex-direction:column}
 .scanner video,.scanner canvas.sv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .scanner .shade{display:none}
@@ -279,7 +355,7 @@ body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
 .slist{list-style:none;padding:0;margin:0}
 .slist li{display:grid;grid-template-columns:42px 76px 1fr auto;gap:16px;align-items:center;padding:12px 0;border-top:1px solid var(--g1)}
 .slist li:last-child{border-bottom:1px solid var(--g1)}
-.slist .num{font-family:var(--latin);color:var(--oak-d);font-size:20px}
+.slist .num{font-family:var(--mono);color:var(--oak-d);font-size:13px}
 .slist .sthumb{width:76px;height:57px;overflow:hidden;background:var(--g1)}
 .slist .sthumb img{width:100%;height:100%;object-fit:cover;display:block}
 .slist .sm{min-width:0;display:flex;flex-direction:column;gap:4px;align-items:flex-start}
@@ -1608,7 +1684,7 @@ const br=s=>esc(s).replace(/\n/g,'<br>');
 const pad=n=>String(n).padStart(2,'0');
 const pad3=n=>String(n).padStart(3,'0');
 const clone=o=>JSON.parse(JSON.stringify(o));
-const AV=['#b08559','#8f9d82','#c48a68','#6f7f8c','#a3927f','#7d8f8a','#b9967a'];
+const AV=['#b08559','#8c6845','#6e6b66','#4a4845','#a39a8f','#7a6a5a'];
 const avColor=id=>{let h=0;for(const ch of String(id||''))h=(h*31+ch.charCodeAt(0))|0;return AV[Math.abs(h)%AV.length]};
 const SEG=(typeof Intl!=='undefined'&&Intl.Segmenter)?new Intl.Segmenter('ja',{granularity:'word'}):null;
 const HIRA=/^[ぁ-ゟー]+$/, PUN=/^[、。，．,.!?！？」』）)\]］・…ー〜~：:；;%％]+$/, OPN=/[「『（(\[［]$/;
@@ -1621,7 +1697,7 @@ function jp(s){
     }
     return '<span class="jp">'+out.map(esc).join('<wbr>')+'</span>';}).join('<br>');
 }
-const honor=n=>{n=String(n||'');return /(さん|くん|君|ちゃん|様|さま)$/.test(n)?n:n+' さん'};
+const honor=n=>{n=String(n||'');return /(さん|くん|君|ちゃん|様|さま)$/.test(n)?n:n+' 様'};
 const initial=s=>esc((String(s||'？').trim()[0]||'？'));
 
 const ICON={
@@ -1636,9 +1712,9 @@ const ICON={
 };
 const CATS={
   interior:{label:'インテリア',en:'Interior',color:'#b08559'},
-  room:{label:'間取り',en:'Room',color:'#8f9d82'},
-  food:{label:'今日の料理',en:'Dish',color:'#c48a68'},
-  memory:{label:'思い出の品',en:'Memories',color:'#6f7f8c'}
+  room:{label:'間取り',en:'Room',color:'#b08559'},
+  food:{label:'今日の料理',en:'Dish',color:'#b08559'},
+  memory:{label:'思い出の品',en:'Memories',color:'#b08559'}
 };
 const cat=s=>CATS[s&&s.cat]||CATS.interior;
 const SAMPLE=[
@@ -1810,27 +1886,39 @@ function renderHostLogin(){
 function needGate(){return !me()&&!store.get(skipKey())}
 function openGate(tab){gateOpen=true;gateTab=tab||gateTab;gateErr='';renderGate()}
 function closeGate(){gateOpen=false;modal.innerHTML='';route()}
+function ticketNo(id){const gs=guests().sort((a,b)=>(a.at||0)-(b.at||0)||String(a.id).localeCompare(String(b.id)));const k=gs.findIndex(g=>g.id===id);return k<0?'---':pad3(k+1)}
 function renderGate(){
   if(!gateOpen){modal.innerHTML='';return}
+  if(gateTab==='ticket'){const m=me();if(!m){gateTab='new';return renderGate()}
+    modal.innerHTML=`<div class="overlay ticket-ov"><div class="tk-wrap" role="dialog" aria-modal="true">
+      <p class="tk-lead">${jp('入館券を発行しました')}</p>
+      <div class="ticket"><div class="tk-main">
+        <div class="tk-top"><span class="tk-lbl">ADMISSION TICKET</span><span class="tk-no">No.${ticketNo(m.id)}</span></div>
+        <p class="tk-ex">${jp(meta().title)}</p>${meta().titleEn?`<p class="tk-en">${esc(meta().titleEn)}</p>`:''}
+        <p class="tk-name">${jp(honor(m.name))}</p>
+      </div><div class="tk-perf"></div><div class="tk-stub"><span class="tk-lbl">入館券</span><span class="tk-no">${ticketNo(m.id)}</span></div></div>
+      <p class="tk-note">${jp('お名前と控え番号は、再入館のときに使います。')}</p>
+      <button class="btn block" data-act="tk-enter">入館する</button>
+    </div></div>`;return}
   const isNew=gateTab==='new';
   modal.innerHTML=`<div class="overlay"><div class="sheet" role="dialog" aria-modal="true">
-    <div class="sh"><div><p class="eyebrow">nice to meet you</p><h2>${jp(meta().title)}</h2></div></div>
+    <div class="sh"><div><p class="eyebrow">admission</p><h2>入館受付</h2><p class="sh-sub">${jp(meta().title)}</p></div></div>
     <div class="inner">
-      <div class="tabs"><button type="button" class="${isNew?'on':''}" data-act="gtab" data-tab="new">はじめて</button><button type="button" class="${!isNew?'on':''}" data-act="gtab" data-tab="back">前に登録した</button></div>
+      <div class="tabs"><button type="button" class="${isNew?'on':''}" data-act="gtab" data-tab="new">はじめての方</button><button type="button" class="${!isNew?'on':''}" data-act="gtab" data-tab="back">再入館の方</button></div>
       <form id="gateform">
-        <label class="f">お名前（ニックネーム）<span class="hint">${isNew?'みんなの答えに表示されます':'登録したときの名前'}</span><input type="text" id="g-name" maxlength="16" autocomplete="off" placeholder="例：たなか"></label>
-        <label class="f">暗証番号（4桁）<span class="hint">${jp(isNew?'別のブラウザやシークレットモードで開いたとき、続きから再開するのに使います':'登録したときの4桁')}</span><input type="tel" inputmode="numeric" id="g-pin" class="pin" maxlength="4" placeholder="••••"></label>
+        <label class="f">お名前<span class="hint">${jp(isNew?'入館券と「来館者の声」に表示されます。ニックネームでも構いません':'受付のときにご記入いただいたお名前')}</span><input type="text" id="g-name" maxlength="16" autocomplete="off" placeholder="例：たなか"></label>
+        <label class="f">控え番号（4桁）<span class="hint">${jp(isNew?'お好きな4桁の数字をお決めください。別のブラウザやシークレットモードで開いたときも、お名前と控え番号で再入館できます':'受付のときにお決めいただいた4桁')}</span><input type="tel" inputmode="numeric" id="g-pin" class="pin" maxlength="4" placeholder="••••"></label>
         ${gateErr?`<p class="err">${esc(gateErr)}</p>`:''}
-        <button class="btn block" id="g-go">${isNew?'はじめる':'続きから再開する'}</button>
+        <button class="btn block" id="g-go">${isNew?'入館する':'再入館する'}</button>
       </form>
-      <p style="text-align:center;margin:18px 0 0"><button class="link" data-act="gskip">登録せずに見る</button></p>
-      <p class="hint" style="text-align:center;margin:4px 0 0">${jp('登録しないと、答えを書いたり、別の端末で続きを見たりはできません')}</p>
+      <p style="text-align:center;margin:20px 0 0"><button class="link" data-act="gskip">受付をせずに見る</button></p>
+      <p class="hint" style="text-align:center;margin:4px 0 0">${jp('受付をしない場合、「来館者の声」への書き込みや、別の端末での続きはご利用いただけません')}</p>
     </div></div></div>`;
 }
-function meChip(){
+function stubHtml(){
   const m=me();
-  if(m)return `<button class="me" data-act="me-menu" style="--av:${avColor(m.id)}"><i>${initial(m.name)}</i>${esc(honor(m.name))}</button>`;
-  return `<button class="me" data-act="gate-open"><i>＋</i>名前を登録</button>`;
+  if(m)return `<div class="stub"><div class="stub-l"><span class="tk-lbl">ADMISSION</span><b>${esc(honor(m.name))}</b></div><div class="stub-r"><span class="tk-no">No.${ticketNo(m.id)}</span><button class="link" data-act="me-menu">切り替え</button></div></div>`;
+  return `<button class="stub stub-empty" data-act="gate-open"><span class="tk-lbl">ADMISSION</span><span>入館受付をする</span><span aria-hidden="true">→</span></button>`;
 }
 
 /* ---------- guest views ---------- */
@@ -1843,23 +1931,26 @@ function renderHome(){
   if(fabObs){fabObs.disconnect();fabObs=null}document.body.classList.remove('fab-hide');
   const m=meta();if(m.closed&&!isHost())return closedView();
   const sp=spotsArr(),f=getFound(),n=sp.filter(s=>f.has(s.id)).length;
+  const lv=lastVisit;lastVisit=null;const allDone=sp.length&&n===sp.length;const ck='uchimeguri:celebrated:'+S.code;const celebrate=allDone&&!store.get(ck);if(celebrate)store.set(ck,'1');
+  const ik='uchimeguri:intro:'+S.code;let intro=false;try{intro=!sessionStorage.getItem(ik);sessionStorage.setItem(ik,'1')}catch(e){intro=!introDone;}introDone=true;
   app.innerHTML=`<div class="woodbar"></div>
-  <header class="hero"><div class="hero-in">
-    <div class="lamp" aria-hidden="true"><svg viewBox="0 0 64 124"><rect x="31.2" y="0" width="1.6" height="58" fill="#4e4c49"/><rect x="28" y="54" width="8" height="8" rx="1.5" fill="#8c6845"/><path d="M6 88a26 26 0 0 1 52 0z" fill="#b08559"/><path d="M6 88a26 26 0 0 1 52 0" fill="none" stroke="#8c6845" stroke-width="1"/><path d="M14 74a19 19 0 0 1 16-11" fill="none" stroke="#c9a37c" stroke-width="2" stroke-linecap="round"/><rect x="6" y="87" width="52" height="2.4" fill="#8c6845"/><circle cx="32" cy="94" r="6.5" fill="#f6e7c9"/></svg><i class="glow"></i></div>
-    <div class="hero-top">${meChip()}</div>
-    <div class="hero-title"><p class="cap">Exhibition</p><h1>${jp(m.title)}</h1>${m.titleEn?`<p class="en">${esc(m.titleEn)}</p>`:''}
-      ${(m.period||m.venue)?`<dl class="exinfo">${m.period?`<div><dt>会期</dt><dd>${jp(m.period)}</dd></div>`:''}${m.venue?`<div><dt>会場</dt><dd>${jp(m.venue)}</dd></div>`:''}</dl>`:''}</div>
-    <div class="progress"><div class="pnum"><b>${n}</b><span>/ ${sp.length}</span></div>
-      <div><span class="cap">Visited — 鑑賞済み</span><div class="bar"><i style="width:${sp.length?n/sp.length*100:0}%"></i></div></div></div>
+  <header class="hero${intro?' intro':''}"><div class="hero-in">
+    <div class="lamp" aria-hidden="true"><svg viewBox="0 0 64 124"><line pathLength="1" x1="32" y1="0" x2="32" y2="58" style="--d:.55s;--w:.1s"/><rect pathLength="1" x="28.5" y="57" width="7" height="7" style="--d:.35s;--w:.55s"/><path pathLength="1" d="M6 90a26 26 0 0 1 52 0z" style="--d:1s;--w:.8s"/><line class="oak" pathLength="1" x1="10" y1="89" x2="54" y2="89" style="--d:.5s;--w:1.55s"/><circle pathLength="1" cx="32" cy="96" r="5" style="--d:.5s;--w:1.6s"/></svg></div>
+    <div class="hero-top"></div>
+    <div class="hero-title"><p class="cap rise" style="--w:1.6s">Exhibition</p><h1 class="rise" style="--w:1.75s">${jp(m.title)}</h1>${m.titleEn?`<p class="en rise" style="--w:2s">${esc(m.titleEn)}</p>`:''}
+      ${(m.period||m.venue)?`<dl class="exinfo rise" style="--w:2.15s">${m.period?`<div><dt>会期</dt><dd>${jp(m.period)}</dd></div>`:''}${m.venue?`<div><dt>会場</dt><dd>${jp(m.venue)}</dd></div>`:''}</dl>`:''}</div>
+    <div class="progress"><div class="pnum"><span>鑑賞</span><b>${n}</b><span>/ ${sp.length}</span></div>
+      <div><div class="bar"><i class="${lv&&sp.length?'grow':''}" style="width:${sp.length?n/sp.length*100:0}%;--from:${lv&&sp.length?(lv.prev/sp.length*100):0}%"></i></div></div></div>
   </div></header>
   <main class="wrap">
     ${m.sample?'<div class="sample">サンプルの内容を表示しています</div>':''}
-    ${sp.length&&n===sp.length?completeCard():''}
+    ${allDone?(celebrate?completeCard().replace('class="complete"','class="complete celebrate-done" style="--w:'+(sp.length*.13+.6).toFixed(2)+'s"'):completeCard()):''}
+    ${stubHtml()}
     ${m.welcome?`<section class="greet"><p class="cap">ごあいさつ</p><p class="glead">${jp(m.welcome)}</p>${m.host?`<p class="sign">${esc(m.host)}</p>`:''}</section>`:''}
-    <section class="floor">${rooms().map(g=>{const seen=g.items.filter(x=>f.has(x.s.id)).length;return `<div class="room">
-      <div class="rh">${g.name?`<span class="rn">Room ${pad(g.no)}</span><span class="rt">${jp(g.name)}</span>`:`<span class="rn">Other</span><span class="rt">そのほかの展示</span>`}<span class="rc">${seen} / ${g.items.length}</span></div>
+    <section class="floor${celebrate?' celebrate':''}">${rooms().map(g=>{const seen=g.items.filter(x=>f.has(x.s.id)).length;return `<div class="room">
+      <div class="rh">${g.name?`<span class="rn">ROOM ${pad(g.no)}</span><span class="rt">${jp(g.name)}</span>`:`<span class="rn">OTHER</span><span class="rt">そのほかの展示</span>`}<span class="rc">${seen} / ${g.items.length}</span></div>
       <ol class="items">${g.items.map(({s:x,i})=>{const cc=commentsOf(x.id).length;return f.has(x.id)
-        ?`<li><a class="row" href="#${x.id}"><span class="no">${pad3(i+1)}</span><span class="it">${jp(x.title)}${x.en?`<small>${esc(x.en)}</small>`:''}</span><span class="mk">${cc?`<span class="cc">${ICON.bubble}${cc}</span>`:''}${ICON.check}</span></a></li>`
+        ?`<li class="${lv&&lv.id===x.id?'hl':''}"><a class="row" href="#${x.id}"><span class="no" style="--i:${i}">${pad3(i+1)}</span><span class="it">${jp(x.title)}${x.en?`<small>${esc(x.en)}</small>`:''}</span><span class="mk">${cc?`<span class="cc">${ICON.bubble}${cc}</span>`:''}${ICON.check}</span></a></li>`
         :`<li class="unseen"><div class="row"><span class="no">${pad3(i+1)}</span><span class="it">未見<small>${cat(x).label}</small></span><span class="mk"></span></div></li>`}).join('')}</ol></div>`}).join('')}</section>
   </main>
   <footer class="foot-band"><p class="howto">${jp('展示カードは家のあちこちにあります。\n画面下の「QRを読む」か、スマホのカメラで読み取ってください。\n順路も時間制限もありません。')}</p>
@@ -1871,36 +1962,35 @@ function renderSpot(id){
   if(!s){app.innerHTML=`<div class="woodbar"></div><main class="center"><h1>カードが見つかりません</h1><p class="hint">QRコードをもう一度読み取ってみてください。</p><p><a class="btn ghost" href="#">一覧へ</a></p></main>`;return}
   if(meta().closed&&!isHost())return closedView();
   let isNew=false;
-  if(!needGate()){isNew=addFound(id);if(isNew)justFound=id}
+  if(!needGate()){const before=spotsArr().filter(x=>getFound().has(x.id)).length;isNew=addFound(id);if(isNew){justFound=id;lastVisit={id,prev:before}}}
   const anim=justFound===id;justFound=null;
   const sp=spotsArr(),idx=sp.findIndex(x=>x.id===id),f=getFound(),n=sp.filter(x=>f.has(x.id)).length,c=cat(s);
   const rn=roomNo(s),rows=[['年代',s.era],['素材',s.material],['入手',s.origin],['所蔵',s.owner]].filter(r=>r[1]&&String(r[1]).trim());
-  app.innerHTML=`<main class="spotpage">
+  app.innerHTML=`<main class="spotpage enter">
     <div class="top"><a class="back" href="#">← 展示一覧</a><span class="count">${n} / ${sp.length}</span></div>
-    ${s.room?`<p class="roomline">${rn?`Room ${pad(rn)} — `:''}${esc(s.room)}</p>`:''}
-    <div class="photo-wrap"><figure class="photo">${visual(s)}</figure>${f.has(id)?`<div class="stamp ${anim?'anim':''}"><b>visited</b><small>鑑賞済み</small></div>`:''}</div>
-    ${s.photo&&meta().host?`<p class="credit">Photo: ${esc(meta().host)}</p>`:''}
+    ${s.room?`<p class="roomline">${rn?`ROOM ${pad(rn)} — `:''}${esc(s.room)}</p>`:''}
+    <div class="photo-wrap"><figure class="photo">${visual(s)}</figure>${s.photo&&meta().host?`<p class="credit">Photo: ${esc(meta().host)}</p>`:''}</div>
     <div class="sbody-wrap">
-      <div class="smeta"><span class="no">${pad3(idx+1)}</span><span class="tag" style="--c:${c.color}">${c.label}</span></div>
+      <div class="smeta"><span class="no">No.${pad3(idx+1)}</span><span class="tag" style="--c:${c.color}">${c.label}</span>${f.has(id)?`<span class="vis ${anim?'anim':''}">${ICON.check}VISITED</span>`:''}</div>
       <h1 class="stitle">${jp(s.title)}</h1>${s.en?`<p class="en">${esc(s.en)}</p>`:''}
-      ${rows.length?`<dl class="captbl">${rows.map(r=>`<div><dt>${r[0]}</dt><dd>${jp(r[1])}</dd></div>`).join('')}</dl>`:'<div style="height:22px"></div>'}
+      ${rows.length?`<dl class="captbl">${rows.map((r,k)=>`<div style="--d:${(.45+k*.14).toFixed(2)}s"><dt>${r[0]}</dt><dd>${jp(r[1])}</dd></div>`).join('')}</dl>`:'<div style="height:22px"></div>'}
       ${s.body?`<p class="cap lbl">解説</p><p class="sbody">${jp(s.body)}</p>`:''}
       ${s.question?`<aside class="ask"><span class="cap">来館者への問い</span><p class="q">${jp(s.question)}</p></aside>`:''}
     </div>
     ${isNew&&n===sp.length?`<div style="padding:0 24px">${completeCard()}</div>`:''}
     <section class="comments on-gray">
       <div class="ch"><h2>来館者の声</h2><span class="n" id="cnum">${commentsOf(id).length}</span></div>
-      ${me()?`<form class="cform" id="cform" data-spot="${id}"><input type="text" id="c-text" maxlength="60" placeholder="${s.question?'問いへの答えをひとこと':'ひとことどうぞ'}" autocomplete="off"><button class="btn">送る</button></form>
+      ${me()?`<form class="cform" id="cform" data-spot="${id}"><input type="text" id="c-text" maxlength="60" placeholder="${s.question?'問いへの答えをひとこと':'ひとことどうぞ'}" autocomplete="off"><button class="btn">書き込む</button></form>
         <p class="cmeta">${esc(honor(me().name))}として書き込みます</p>`
-       :`<div class="gate">${jp('名前を登録すると、書き込めます。')}<br><button class="link" data-act="gate-open">名前を登録する</button></div>`}
+       :`<div class="gate">${jp('入館受付をお済ませいただくと、書き込めます。')}<br><button class="link" data-act="gate-open">入館受付をする</button></div>`}
       <div class="clist" id="clist"></div>
     </section>
     <a class="plink" href="#"><span>展示一覧へ</span><span>→</span></a>
   </main>`+ownerBar();
-  renderComments(id);watchFab();
+  seenSpot=null;renderComments(id);watchFab();
   if(needGate()&&!gateOpen){pendingSpot=id;openGate('new')}
 }
-let pendingSpot=null,fabObs=null;
+let welcomeBack=false,pendingSpot=null,fabObs=null,introDone=false,lastVisit=null,seenCids={},seenSpot=null;
 function rooms(){
   const g=[],m=new Map();
   spotsArr().forEach((s,i)=>{const r=String(s.room||'').trim(),k=r||'_none_';if(!m.has(k)){const o={name:r,items:[]};m.set(k,o);g.push(o)}m.get(k).items.push({s,i})});
@@ -1917,10 +2007,11 @@ function watchFab(){
 function renderComments(id){
   const el=$('#clist');if(!el)return;
   const list=commentsOf(id),m=me(),mineTexts=m?list.filter(c=>c.gid===m.id).map(c=>c.text):[];
-  if(!list.length){el.innerHTML='<p class="cempty">'+jp('まだ書き込みはありません。最初のひとことをどうぞ。')+'</p>';return}
+  if(!list.length){seenSpot=id;seenCids=new Set();el.innerHTML='<p class="cempty">'+jp('まだ書き込みはありません。最初のひとことをどうぞ。')+'</p>';return}
+  const prev=seenSpot===id?seenCids:null;seenSpot=id;seenCids=new Set(list.map(c=>c.cid));
   el.innerHTML=list.map(c=>{
-    const mine=m&&c.gid===m.id,same=!mine&&mineTexts.some(t=>similar(t,c.text));
-    return `<div class="citem ${mine?'mine':''}" style="--av:${avColor(c.gid)}"><div class="who"><i>${initial(c.name)}</i>${esc(c.name)}${mine?'（あなた）':''}</div>
+    const mine=m&&c.gid===m.id,same=!mine&&mineTexts.some(t=>similar(t,c.text)),fresh=prev&&!prev.has(c.cid);
+    return `<div class="citem ${mine?'mine':''} ${fresh?'ni':''}" style="--av:${avColor(c.gid)}"><div class="who"><i>${initial(c.name)}</i>${esc(c.name)}${mine?'（あなた）':''}</div>
       <p class="txt">${jp(c.text)}</p>${same?'<span class="same">あなたと同じ答え</span>':''}
       ${mine||isHost()?`<button class="link del" data-act="cdel" data-spot="${id}" data-cid="${c.cid}">削除</button>`:''}</div>`}).join('');
 }
@@ -2160,25 +2251,27 @@ document.addEventListener('submit',async e=>{
   }
   if(id==='gateform'){
     const name=$('#g-name').value.trim(),pin=$('#g-pin').value.trim(),n=normName(name);
-    if(!name){gateErr='お名前を入れてください';return renderGate()}
-    if(!/^\d{4}$/.test(pin)){gateErr='暗証番号は4桁の数字で入れてください';return renderGate()}
+    if(!name){gateErr='お名前をご記入ください';return renderGate()}
+    if(!/^\d{4}$/.test(pin)){gateErr='控え番号は4桁の数字でご記入ください';return renderGate()}
     const exist=guests().find(g=>normName(g.name)===n);
     const btn=$('#g-go');btn.disabled=true;
     try{
       if(gateTab==='new'){
-        if(exist){gateErr='その名前はもう使われています。前に登録した方は「前に登録した」から再開してください';return renderGate()}
+        if(exist){gateErr='そのお名前はすでに受付済みです。以前に受付をした方は「再入館の方」からどうぞ';return renderGate()}
         const gid=newId('g'),found={};getLocalFound().forEach(k=>found[k]=true);
         await B.put(S.code,'guests/'+gid,{name,pinHash:await hashOf(`guest|${S.code}|${gid}|${pin}`),found,at:Date.now()});
         store.set(meKey(),gid);
       }else{
-        if(!exist||await hashOf(`guest|${S.code}|${exist.id}|${pin}`)!==exist.pinHash){gateErr='名前か暗証番号がちがいます';return renderGate()}
-        store.set(meKey(),exist.id);
+        if(!exist||await hashOf(`guest|${S.code}|${exist.id}|${pin}`)!==exist.pinHash){gateErr='お名前か控え番号が違います';return renderGate()}
+        store.set(meKey(),exist.id);welcomeBack=true;
         const add={};getLocalFound().forEach(k=>{if(!(exist.found&&exist.found[k]))add[k]=true});
         for(const k of Object.keys(add))await B.put(S.code,`guests/${exist.id}/found/${k}`,true);
       }
       store.del(skipKey());
       const h=location.hash.slice(1);if(h.startsWith('s-')&&!getFound().has(h))justFound=h;
+      if(gateTab==='new'){gateTab='ticket';renderGate();return}
       gateOpen=false;modal.innerHTML='';route();
+      if(welcomeBack){welcomeBack=false;const t=document.createElement('div');t.className='welcome-toast';t.textContent='おかえりなさいませ';document.body.appendChild(t);setTimeout(()=>t.remove(),2800)}
     }catch(err){console.warn(err);gateErr=errText(err);renderGate()}
     return;
   }
@@ -2199,9 +2292,10 @@ document.addEventListener('click',async e=>{
   if(act==='scan'){openScanner();return}
   if(act==='scan-close'){closeScanner();return}
   if(act==='gtab'){gateTab=t.dataset.tab;gateErr='';renderGate();return}
+  if(act==='tk-enter'){gateTab='new';gateOpen=false;modal.innerHTML='';route();return}
   if(act==='gskip'){store.set(skipKey(),'1');closeGate();return}
   if(act==='gate-open'){store.del(skipKey());openGate('new');return}
-  if(act==='me-menu'){if(t.dataset.confirm){store.del(meKey());localFound=new Set();store.set(foundKey(),'[]');openGate('back')}else{t.dataset.confirm='1';t.innerHTML='もう一度押すと別の人に切り替え';setTimeout(()=>{if(t.isConnected){delete t.dataset.confirm;route()}},3000)}return}
+  if(act==='me-menu'){if(t.dataset.confirm){store.del(meKey());localFound=new Set();store.set(foundKey(),'[]');openGate('back')}else{t.dataset.confirm='1';t.textContent='もう一度押すと別の方に切り替え';setTimeout(()=>{if(t.isConnected){delete t.dataset.confirm;route()}},3000)}return}
   if(act==='reset-found'){localFound=new Set();store.set(foundKey(),'[]');const m=me();if(m)await B.del(S.code,`guests/${m.id}/found`).catch(()=>{});route();return}
   if(act==='print'){try{window.print()}catch(err){setStatus('この画面からは印刷できません。ブラウザで直接開いてください。','warn')}return}
   if(act==='copy-url'){try{await navigator.clipboard.writeText(guestUrl());setStatus('URLをコピーしました','ok')}catch(err){setStatus('コピーできませんでした。URLを長押ししてコピーしてください。','warn')}return}
@@ -2269,7 +2363,7 @@ function route(){
   if(h.startsWith('s-'))return renderSpot(h);
   renderHome();
 }
-window.addEventListener('hashchange',()=>{closeScanner();form=null;if(!gateOpen)modal.innerHTML='';route();window.scrollTo(0,0)});
+window.addEventListener('hashchange',()=>{closeScanner();form=null;if(!gateOpen)modal.innerHTML='';route();window.scrollTo(0,0);app.classList.remove('pg-in');void app.offsetWidth;app.classList.add('pg-in')});
 
 (async function init(){
   B=await makeBackend();
