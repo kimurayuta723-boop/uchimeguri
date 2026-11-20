@@ -5,6 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#efefed">
 <title>おうちめぐり</title>
+<!-- ② LINEなどで送ったときのプレビュー（GitHub Pagesに置いたURLに合わせて og:image と og:url を書き換えてください） -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="きむら家　暮らしの標本展">
+<meta property="og:description" content="一夜限りの公開。家のあちこちに、展示カードを置いています。">
+<meta property="og:image" content="https://kimurayuta723-boop.github.io/uchimeguri/ogp.png">
+<meta property="og:url" content="https://kimurayuta723-boop.github.io/uchimeguri/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="description" content="一夜限りの公開。家のあちこちに、展示カードを置いています。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23efefed'/%3E%3Cline x1='32' y1='6' x2='32' y2='24' stroke='%23232221' stroke-width='2.4'/%3E%3Cpath d='M12 44a20 20 0 0 1 40 0z' fill='none' stroke='%23232221' stroke-width='2.4'/%3E%3Cline x1='15' y1='43' x2='49' y2='43' stroke='%235e8c84' stroke-width='3'/%3E%3Ccircle cx='32' cy='50' r='4' fill='none' stroke='%23232221' stroke-width='2.4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
@@ -13,15 +22,15 @@
   --white:#ffffff; --g0:#f7f7f6; --g1:#efefed; --g2:#e3e3e0; --g3:#cdccc8;
   --ink:#232221; --ink2:#4a4845; --sub:#6e6b66; --mute:#9b978f;
   --mono:'IBM Plex Mono',ui-monospace,monospace;
-  --oak:#b08559; --oak-d:#8c6845; 
+  --oak:#5e8c84; --oak-d:#44716a; --oak-l:#e3ecea; 
   --serif:'Shippori Mincho B1',serif; --sans:'Zen Kaku Gothic New',system-ui,sans-serif; --latin:'Cormorant Garamond',serif;
-  --grain:repeating-linear-gradient(91deg,#bd9168 0 2px,#b08559 2px 6px,#c29a71 6px 8px,#a77b51 8px 13px,#b78b60 13px 17px);
+  --grain:var(--oak);
 }
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;font-feature-settings:"palt"}
 a{color:inherit}
 button{font-family:inherit}
-.woodbar{height:3px;background:var(--grain)}
+.woodbar{display:none}
 .eyebrow{margin:0;font-family:var(--latin);font-style:italic;font-size:15px;letter-spacing:.12em;color:var(--oak-d)}
 .cap{font-size:10px;letter-spacing:.28em;color:var(--sub);font-weight:500;text-transform:uppercase}
 .hint{color:var(--sub);font-size:12px;line-height:1.8;font-weight:400}
@@ -47,7 +56,7 @@ p,.tt,.txt{text-wrap:pretty}
 .link.danger{color:#9b4b36}
 label.f{display:block;font-size:11px;font-weight:500;letter-spacing:.18em;margin-bottom:20px;color:var(--sub)}
 label.f .hint{display:block;margin-top:2px;letter-spacing:.02em}
-input[type=text],input[type=tel],textarea{display:block;width:100%;margin-top:8px;font:inherit;font-size:15px;font-weight:400;color:var(--ink);background:var(--g1);border:1px solid transparent;border-radius:0;padding:12px 14px;line-height:1.7;letter-spacing:0;transition:border-color .15s,background .15s}
+input[type=text],input[type=tel],input[type=datetime-local],textarea{display:block;width:100%;margin-top:8px;font:inherit;font-size:15px;font-weight:400;color:var(--ink);background:var(--g1);border:1px solid transparent;border-radius:0;padding:12px 14px;line-height:1.7;letter-spacing:0;transition:border-color .15s,background .15s}
 input:focus,textarea:focus{outline:none;background:var(--white);border-color:var(--ink)}
 .on-gray input[type=text],.on-gray input[type=tel],.on-gray textarea{background:var(--white)}
 textarea{resize:vertical}
@@ -126,7 +135,7 @@ textarea{resize:vertical}
 .howto{color:var(--sub);font-size:12px;line-height:2;margin:0}
 .complete{position:relative;background:var(--ink);color:#efece7;padding:26px 24px 28px;margin:0 0 30px;overflow:hidden}
 .complete::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--grain)}
-.complete .eyebrow{color:#cfb08c}
+.complete .eyebrow{color:#a9c6bf}
 .complete p{margin:10px 0 0;line-height:2;font-size:14px;white-space:pre-wrap}
 .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--ink2);background:var(--g1)}
 .ph svg{width:28%;max-width:80px;opacity:.4}
@@ -186,7 +195,7 @@ textarea{resize:vertical}
 .tk-wrap{width:100%;max-width:360px;text-align:center;animation:tkin .6s cubic-bezier(.2,1,.3,1) both}
 @keyframes tkin{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 .tk-lead{color:#fff;font-size:13px;letter-spacing:.14em;margin:0 0 16px}
-.ticket{display:flex;background:#fbf8f2;color:var(--ink);text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.ticket{display:flex;background:#fafaf8;color:var(--ink);text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.3)}
 .tk-main{flex:1;padding:20px 18px 18px;border-right:0}
 .tk-top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:8px}
 .tk-ex{font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.5;margin:14px 0 0;letter-spacing:.04em}
@@ -199,6 +208,19 @@ textarea{resize:vertical}
 .tk-note{color:rgba(255,255,255,.85);font-size:12px;line-height:1.8;margin:16px 0 14px}
 .tk-wrap .btn{background:#fff;color:var(--ink);border-color:#fff}
 .sh-sub{font-size:12px;color:var(--sub);margin:6px 0 0;letter-spacing:.04em}
+/* ---------- invitation ---------- */
+.invite{min-height:100vh;display:flex;flex-direction:column;background:var(--g1)}
+.invite .hero{flex:none;padding-bottom:30px}
+.inv-body{flex:1;background:var(--white);padding:34px 24px 60px}
+.inv-in{max-width:560px;margin:0 auto}
+.inv-open{display:flex;align-items:baseline;gap:14px;border-top:1px solid var(--ink);border-bottom:1px solid var(--g2);padding:16px 0;margin:0 0 28px}
+.inv-open .cap{flex:none}
+.inv-open b{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.04em}
+.inv-open .cd{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--oak-d);white-space:nowrap}
+.inv-msg{font-size:14px;line-height:2.1;color:var(--ink2);margin:0 0 26px}
+.inv-note{font-size:12px;color:var(--sub);line-height:1.9;border-top:1px solid var(--g2);padding-top:16px;margin:0}
+.hostnote{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.ogpbox canvas{width:100%;max-width:600px;height:auto;display:block;border:1px solid var(--g2)}
 /* ---------- motion ---------- */
 @keyframes mfade{from{opacity:0}to{opacity:1}}
 @keyframes mrise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
@@ -217,7 +239,7 @@ textarea{resize:vertical}
 .vis.anim{color:transparent;animation:vtxt .01s linear .9s forwards}
 @keyframes vtxt{to{color:var(--oak-d)}}
 .items li.hl .row{animation:hl 1.8s ease .25s both}
-@keyframes hl{0%{background:rgba(214,186,148,.42)}100%{background:rgba(214,186,148,0)}}
+@keyframes hl{0%{background:rgba(94,140,132,.18)}100%{background:rgba(94,140,132,0)}}
 .bar i.grow{animation:bgrow 1s cubic-bezier(.4,0,.2,1) .35s both}
 @keyframes bgrow{from{width:var(--from)}}
 .celebrate .items .no{animation:noak .45s ease both;animation-delay:calc(var(--i,0)*.13s + .3s)}
@@ -299,7 +321,7 @@ body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
 .scanner .frame .line{position:absolute;left:14px;right:14px;height:2px;background:var(--grain);top:50%;animation:scanline 2.2s ease-in-out infinite;border:0;width:auto}
 @keyframes scanline{0%,100%{transform:translateY(-90px)}50%{transform:translateY(90px)}}
 .scanner .stop{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:18px 20px}
-.scanner .stop .eyebrow{color:#d8b994}
+.scanner .stop .eyebrow{color:#a9c6bf}
 .scanner .xbtn{border:0;background:rgba(255,255,255,.14);color:#fff;width:40px;height:40px;border-radius:50%;font-size:22px;cursor:pointer;line-height:1}
 .scanner .sbot{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px 24px 34px;text-align:center}
 .scanner .smsg{font-size:14px;line-height:1.8;margin:0 0 16px;letter-spacing:.04em}
@@ -1684,7 +1706,7 @@ const br=s=>esc(s).replace(/\n/g,'<br>');
 const pad=n=>String(n).padStart(2,'0');
 const pad3=n=>String(n).padStart(3,'0');
 const clone=o=>JSON.parse(JSON.stringify(o));
-const AV=['#b08559','#8c6845','#6e6b66','#4a4845','#a39a8f','#7a6a5a'];
+const AV=['#44716a','#5e8c84','#6e6b66','#4a4845','#7f9d97','#36574f'];
 const avColor=id=>{let h=0;for(const ch of String(id||''))h=(h*31+ch.charCodeAt(0))|0;return AV[Math.abs(h)%AV.length]};
 const SEG=(typeof Intl!=='undefined'&&Intl.Segmenter)?new Intl.Segmenter('ja',{granularity:'word'}):null;
 const HIRA=/^[ぁ-ゟー]+$/, PUN=/^[、。，．,.!?！？」』）)\]］・…ー〜~：:；;%％]+$/, OPN=/[「『（(\[［]$/;
@@ -1711,10 +1733,10 @@ const ICON={
   bubble:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"><path d="M4 5h16v11H10l-4 3v-3H4z"/></svg>'
 };
 const CATS={
-  interior:{label:'インテリア',en:'Interior',color:'#b08559'},
-  room:{label:'間取り',en:'Room',color:'#b08559'},
-  food:{label:'今日の料理',en:'Dish',color:'#b08559'},
-  memory:{label:'思い出の品',en:'Memories',color:'#b08559'}
+  interior:{label:'インテリア',en:'Interior',color:'#5e8c84'},
+  room:{label:'間取り',en:'Room',color:'#5e8c84'},
+  food:{label:'今日の料理',en:'Dish',color:'#5e8c84'},
+  memory:{label:'思い出の品',en:'Memories',color:'#5e8c84'}
 };
 const cat=s=>CATS[s&&s.cat]||CATS.interior;
 const SAMPLE=[
@@ -1740,7 +1762,7 @@ document.getElementById('cardcss').textContent=`
 .qc-frame{box-sizing:border-box;height:100%;border:.35mm solid #2a2622;padding:3.2mm 3.4mm 3mm;display:flex;flex-direction:column}
 .qc-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:.35mm solid #2a2622;padding-bottom:1.8mm}
 .qc-lbl{font-size:5.6pt;letter-spacing:.3em;color:#8a7f70}
-.qc-no{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13pt;letter-spacing:.06em;color:#8c6845;line-height:1}
+.qc-no{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13pt;letter-spacing:.06em;color:#44716a;line-height:1}
 .qc-qr{flex:1;display:flex;align-items:center;justify-content:center}
 .qc-qr svg{width:33mm;height:33mm;display:block}
 .qc-foot{border-top:.2mm solid #d6d1c7;padding-top:2mm;text-align:center}
@@ -1840,7 +1862,7 @@ function onData(first){
 const modeNote=()=>jp(B&&B.mode==='cloud'?'クラウド保存（Firebase）でつながっています':'Firebaseにつながっていないため、この端末だけのお試しモードです。\nほかの人のスマホからは見られません。');
 function renderLanding(){
   const last=store.get('uchimeguri:last');
-  app.innerHTML=`<div class="landing"><div class="woodbar"></div><main>
+  app.innerHTML=`<div class="landing"><main>
     <p class="eyebrow">a little tour of our home</p>
     <h1 class="logo">おうちめぐり</h1>
     <p class="tagline">QRでめぐる、おうちのこと。</p>
@@ -1852,7 +1874,7 @@ function renderLanding(){
   </main></div>`;
 }
 function renderCreate(){
-  app.innerHTML=`<div class="landing"><div class="woodbar"></div><main>
+  app.innerHTML=`<div class="landing"><main>
     <a class="back" href="#">← もどる</a>
     <h1 class="logo" style="font-size:28px;margin-top:24px">パーティを作る</h1>
     <p class="tagline">あとからすべて変更できます。</p>
@@ -1869,7 +1891,7 @@ function renderCreate(){
   S.err='';
 }
 function renderHostLogin(){
-  app.innerHTML=`<div class="landing"><div class="woodbar"></div><main>
+  app.innerHTML=`<div class="landing"><main>
     <a class="back" href="#">← ゲスト画面へ</a>
     <h1 class="logo" style="font-size:26px;margin-top:24px">ホスト用ページ</h1>
     <p class="tagline">${esc(meta().title)}</p>
@@ -1924,7 +1946,7 @@ function stubHtml(){
 /* ---------- guest views ---------- */
 function ownerBar(){return `<button class="fab noprint" data-act="scan">${ICON.qr}QRを読む</button>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'')}
 function closedView(){
-  app.innerHTML=`<div class="woodbar"></div><main class="center"><p class="eyebrow">thank you for coming</p><h1>${jp(meta().title)}</h1><p class="hint">${jp('パーティは終了しました。来てくれてありがとう。')}</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
+  app.innerHTML=`<main class="center"><p class="eyebrow">thank you for coming</p><h1>${jp(meta().title)}</h1><p class="hint">${jp('パーティは終了しました。来てくれてありがとう。')}</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
 }
 const completeCard=()=>`<section class="complete"><p class="eyebrow">all works visited</p><p>${jp(meta().complete||'全部見つけてくれてありがとう！')}</p></section>`;
 function renderHome(){
@@ -1933,7 +1955,7 @@ function renderHome(){
   const sp=spotsArr(),f=getFound(),n=sp.filter(s=>f.has(s.id)).length;
   const lv=lastVisit;lastVisit=null;const allDone=sp.length&&n===sp.length;const ck='uchimeguri:celebrated:'+S.code;const celebrate=allDone&&!store.get(ck);if(celebrate)store.set(ck,'1');
   const ik='uchimeguri:intro:'+S.code;let intro=false;try{intro=!sessionStorage.getItem(ik);sessionStorage.setItem(ik,'1')}catch(e){intro=!introDone;}introDone=true;
-  app.innerHTML=`<div class="woodbar"></div>
+  app.innerHTML=`
   <header class="hero${intro?' intro':''}"><div class="hero-in">
     <div class="lamp" aria-hidden="true"><svg viewBox="0 0 64 124"><line pathLength="1" x1="32" y1="0" x2="32" y2="58" style="--d:.55s;--w:.1s"/><rect pathLength="1" x="28.5" y="57" width="7" height="7" style="--d:.35s;--w:.55s"/><path pathLength="1" d="M6 90a26 26 0 0 1 52 0z" style="--d:1s;--w:.8s"/><line class="oak" pathLength="1" x1="10" y1="89" x2="54" y2="89" style="--d:.5s;--w:1.55s"/><circle pathLength="1" cx="32" cy="96" r="5" style="--d:.5s;--w:1.6s"/></svg></div>
     <div class="hero-top"></div>
@@ -1959,7 +1981,7 @@ function renderHome(){
 }
 function renderSpot(id){
   const s=(S.party.spots||{})[id];
-  if(!s){app.innerHTML=`<div class="woodbar"></div><main class="center"><h1>カードが見つかりません</h1><p class="hint">QRコードをもう一度読み取ってみてください。</p><p><a class="btn ghost" href="#">一覧へ</a></p></main>`;return}
+  if(!s){app.innerHTML=`<main class="center"><h1>カードが見つかりません</h1><p class="hint">QRコードをもう一度読み取ってみてください。</p><p><a class="btn ghost" href="#">一覧へ</a></p></main>`;return}
   if(meta().closed&&!isHost())return closedView();
   let isNew=false;
   if(!needGate()){const before=spotsArr().filter(x=>getFound().has(x.id)).length;isNew=addFound(id);if(isNew){justFound=id;lastVisit={id,prev:before}}}
@@ -1990,6 +2012,32 @@ function renderSpot(id){
   seenSpot=null;renderComments(id);watchFab();
   if(needGate()&&!gateOpen){pendingSpot=id;openGate('new')}
 }
+function openTime(){const t=meta().openAt;if(!t)return null;const d=new Date(t);return isNaN(d)?null:d}
+function beforeOpen(){const d=openTime();return !!d&&Date.now()<d.getTime()}
+const WD='日月火水木金土';
+function fmtOpen(d){return `${d.getMonth()+1}月${d.getDate()}日（${WD[d.getDay()]}）${d.getHours()}:${String(d.getMinutes()).padStart(2,'0')}`}
+function countdown(d){const ms=d-Date.now();if(ms<=0)return '';const day=new Date(d.getFullYear(),d.getMonth(),d.getDate())-new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());const days=Math.round(day/864e5);if(days>=1)return `開館まで あと${days}日`;const h=Math.floor(ms/36e5),mi=Math.ceil(ms%36e5/6e4);return h?`本日 開館まで ${h}時間${mi}分`:`開館まで ${mi}分`}
+let openTimer=null;
+function scheduleOpen(){clearTimeout(openTimer);const d=openTime();if(!d)return;const ms=d-Date.now();if(ms>0&&ms<864e5*2)openTimer=setTimeout(()=>{if(!form&&!gateOpen)route()},ms+500)}
+function renderInvite(preview){
+  const m=meta(),d=openTime();
+  const ik='uchimeguri:intro:'+S.code;let intro=false;try{intro=!sessionStorage.getItem(ik);sessionStorage.setItem(ik,'1')}catch(e){intro=!introDone}introDone=true;
+  app.innerHTML=`<div class="invite">
+  <header class="hero${intro?' intro':''}"><div class="hero-in">
+    <div class="lamp" aria-hidden="true"><svg viewBox="0 0 64 124"><line pathLength="1" x1="32" y1="0" x2="32" y2="58" style="--d:.55s;--w:.1s"/><rect pathLength="1" x="28.5" y="57" width="7" height="7" style="--d:.35s;--w:.55s"/><path pathLength="1" d="M6 90a26 26 0 0 1 52 0z" style="--d:1s;--w:.8s"/><line class="oak" pathLength="1" x1="10" y1="89" x2="54" y2="89" style="--d:.5s;--w:1.55s"/><circle pathLength="1" cx="32" cy="96" r="5" style="--d:.5s;--w:1.6s"/></svg></div>
+    <div class="hero-top"></div>
+    <div class="hero-title"><p class="cap rise" style="--w:1.6s">Invitation</p><h1 class="rise" style="--w:1.75s">${jp(m.title)}</h1>${m.titleEn?`<p class="en rise" style="--w:2s">${esc(m.titleEn)}</p>`:''}
+      ${(m.period||m.venue)?`<dl class="exinfo rise" style="--w:2.15s">${m.period?`<div><dt>会期</dt><dd>${jp(m.period)}</dd></div>`:''}${m.venue?`<div><dt>会場</dt><dd>${jp(m.venue)}</dd></div>`:''}</dl>`:''}</div>
+  </div></header>
+  <main class="inv-body"><div class="inv-in">
+    ${d?`<div class="inv-open"><span class="cap">開館</span><b>${esc(fmtOpen(d))}</b><span class="cd">${esc(countdown(d))}</span></div>`:''}
+    <p class="inv-msg">${jp('このたびは、ささやかな展覧会にご招待いたします。\n当日は、家のあちこちに置いた展示カードのQRを読み取って、ご覧ください。')}</p>
+    ${m.host?`<p class="sign" style="margin:-8px 0 30px">${esc(m.host)}</p>`:''}
+    <p class="inv-note">${jp('開館の時刻になると、このページは展覧会の入口に切り替わります。入館受付は当日、会場で行います。')}</p>
+    ${preview?'<p style="margin:26px 0 0"><a class="btn ghost" href="#edit">← ホスト用ページへもどる</a></p>':''}
+  </div></main></div>`+(isHost()&&!preview?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
+  scheduleOpen();
+}
 let welcomeBack=false,pendingSpot=null,fabObs=null,introDone=false,lastVisit=null,seenCids={},seenSpot=null;
 function rooms(){
   const g=[],m=new Map();
@@ -2019,18 +2067,20 @@ function renderComments(id){
 /* ---------- host: editor ---------- */
 function setStatus(text,kind){S.status={text,kind};const el=$('#status');if(el){el.textContent=text;el.className='status noprint '+(kind||'')}}
 function statusHtml(){const s=S.status.text?S.status:{text:B.mode==='cloud'?'クラウドに保存されます':'この端末だけに保存されるお試しモードです',kind:B.mode==='cloud'?'ok':'warn'};return `<div id="status" class="status noprint ${s.kind}">${esc(s.text)}</div>`}
-function hostHead(title,sub,nav){return `<div class="woodbar noprint"></div><header class="hosthead noprint"><div class="in"><div><p class="eyebrow">for the host</p><h1 class="edlogo">${title}<small>${sub}</small></h1></div><nav>${nav}</nav></div></header>`}
+function hostHead(title,sub,nav){return `<header class="hosthead noprint"><div class="in"><div><p class="eyebrow">for the host</p><h1 class="edlogo">${title}<small>${sub}</small></h1></div><nav>${nav}</nav></div></header>`}
 function renderEditor(){
   const m=meta();
   app.innerHTML=`<div class="hostpage">${hostHead('おうちめぐり','ホスト用ページ','<a class="btn light" href="#">ゲスト画面</a><a class="btn" href="#cards">QRカードを印刷</a>')}
   <div class="ed">
     ${statusHtml()}
+    ${beforeOpen()?`<div class="note hostnote"><span>${jp('開館前です。ゲストには招待状が表示されています（'+fmtOpen(openTime())+' 開館）')}</span><a class="link" href="#invite">招待状を見る</a></div>`:''}
     ${m.sample?`<div class="note">いま入っているのはサンプルです。そのまま書き換えるか、<button class="link" data-act="clear-sample">${confirmClear?'本当に消す（もう一度押す）':'サンプルを全部消す'}</button>こともできます。</div>`:''}
     <section class="panel"><div class="ph2"><h2>基本情報</h2></div>
       <label class="f">展覧会タイトル<input type="text" id="f-title" value="${esc(m.title)}"></label>
       <div class="two"><label class="f">英語のタイトル<span class="hint">任意。タイトルの下に斜体で入ります</span><input type="text" id="f-en" placeholder="The Kimura Collection" value="${esc(m.titleEn)}"></label>
       <label class="f">会期<span class="hint">任意</span><input type="text" id="f-period" placeholder="2026年12月20日　一夜限り" value="${esc(m.period)}"></label>
       <label class="f">会場<span class="hint">任意</span><input type="text" id="f-venue" placeholder="きむら家" value="${esc(m.venue)}"></label>
+      <label class="f">開館日時<span class="hint">${jp('この日時より前にURLを開いた人には、招待状が表示されます。空欄なら常に入口を表示')}</span><input type="datetime-local" id="f-open" value="${esc(m.openAt||'')}"></label>
       <label class="f">ホストの名前<input type="text" id="f-host" value="${esc(m.host)}"></label></div>
       <label class="f">ごあいさつ<span class="hint">一覧の上に、ホスト名の署名つきで表示されます</span><textarea id="f-welcome" rows="3">${esc(m.welcome)}</textarea></label>
       <label class="f">すべて鑑賞した人へのメッセージ<textarea id="f-complete" rows="2">${esc(m.complete)}</textarea></label>
@@ -2043,6 +2093,15 @@ function renderEditor(){
     </section>
     <section class="panel"><div class="ph2"><h2>ゲスト<span class="count" id="gcount">${guests().length}</span></h2></div><div id="gpanel"></div></section>
     <section class="panel"><div class="ph2"><h2>みんなの答え</h2></div><div id="cpanel"></div></section>
+    <section class="panel ogpbox"><div class="ph2"><h2>LINE用のプレビュー画像</h2><button class="btn sm" data-act="ogp-save">画像を保存（ogp.png）</button></div>
+      <p class="hint" style="margin:-8px 0 14px">${jp('URLをLINEなどで送ったときに表示される画像です（1200×630）。展覧会タイトルと英語のタイトルから自動で描きます。')}</p>
+      <canvas id="ogp" width="1200" height="630"></canvas>
+      <ol class="hint" style="margin:14px 0 0;padding-left:20px">
+        <li>${jp('保存した ogp.png を、GitHubの index.html と同じ場所に置く')}</li>
+        <li>${jp('index.html の冒頭にある og:image と og:url を、自分のGitHub PagesのURLに書き換える')}</li>
+        <li>${jp('画像やタイトルを変えたら、送る前に LINE Page Poker（poker.line.naver.jp）で「Clear Cache」をして読み直させる')}</li>
+      </ol>
+    </section>
     <section class="panel"><div class="ph2"><h2>ゲスト用URL</h2></div>
       <p class="hint" style="margin:-8px 0 0">${jp('QRコードにはこのURLが入ります。')}パーティコード <b style="font-family:var(--latin);font-size:16px;color:var(--ink)">${esc(S.code)}</b></p>
       <div class="urlbox"><code>${esc(guestUrl())}</code><button class="btn" data-act="copy-url">コピー</button></div>
@@ -2054,7 +2113,27 @@ function renderEditor(){
       <li><span><b>終わったら「パーティ終了」にチェック</b>　${jp('家の写真や答えが見られる状態を残さないために')}</span></li>
     </ol></section>
   </div></div>`;
-  renderList();renderGuestsPanel();renderCommentsPanel();
+  renderList();renderGuestsPanel();renderCommentsPanel();drawOgp();
+}
+async function drawOgp(){
+  const c=$('#ogp');if(!c)return;const x=c.getContext('2d'),m=meta();
+  try{await Promise.all(["600 64px 'Shippori Mincho B1'","italic 400 30px 'Cormorant Garamond'","500 18px 'Zen Kaku Gothic New'"].map(f=>document.fonts.load(f,'暮らしの標本展A')))}catch(e){}
+  x.fillStyle='#efefed';x.fillRect(0,0,1200,630);
+  
+  x.strokeStyle='#232221';x.lineWidth=2.4;x.lineCap='butt';
+  const L=(a,b,c2,d)=>{x.beginPath();x.moveTo(a,b);x.lineTo(c2,d);x.stroke()};
+  const cx=930,s=2.6;
+  L(cx,8,cx,8+58*s);x.strokeRect(cx-3.5*s,8+57*s,7*s,7*s);
+  x.beginPath();x.arc(cx,8+90*s,26*s,Math.PI,0);x.closePath();x.stroke();
+  x.save();x.strokeStyle='#5e8c84';x.lineWidth=6;L(cx-22*s,8+89*s,cx+22*s,8+89*s);x.restore();
+  x.beginPath();x.arc(cx,8+96*s,5*s,0,Math.PI*2);x.stroke();
+  const lx=150;let y=330;
+  x.fillStyle='#6e6b66';x.font="500 18px 'Zen Kaku Gothic New',sans-serif";
+  const cap='EXHIBITION';let px=lx;for(const ch of cap){x.fillText(ch,px,y);px+=x.measureText(ch).width+7}
+  const parts=String(m.title||'').split(/[　 ]+/).filter(Boolean);
+  x.fillStyle='#232221';x.font="600 64px 'Shippori Mincho B1',serif";y+=34;
+  for(const p of parts.length?parts:['']){y+=84;let fs=64;while(x.measureText(p).width>720&&fs>36){fs-=2;x.font=`600 ${fs}px 'Shippori Mincho B1',serif`}x.fillText(p,lx,y)}
+  if(m.titleEn){x.fillStyle='#6e6b66';x.font="italic 400 30px 'Cormorant Garamond',serif";x.fillText(m.titleEn,lx,y+52)}
 }
 function renderList(){
   const el=$('#slist');if(!el)return;const sp=spotsArr();
@@ -2297,6 +2376,7 @@ document.addEventListener('click',async e=>{
   if(act==='gate-open'){store.del(skipKey());openGate('new');return}
   if(act==='me-menu'){if(t.dataset.confirm){store.del(meKey());localFound=new Set();store.set(foundKey(),'[]');openGate('back')}else{t.dataset.confirm='1';t.textContent='もう一度押すと別の方に切り替え';setTimeout(()=>{if(t.isConnected){delete t.dataset.confirm;route()}},3000)}return}
   if(act==='reset-found'){localFound=new Set();store.set(foundKey(),'[]');const m=me();if(m)await B.del(S.code,`guests/${m.id}/found`).catch(()=>{});route();return}
+  if(act==='ogp-save'){await drawOgp();const c=$('#ogp');try{const a=document.createElement('a');a.download='ogp.png';a.href=c.toDataURL('image/png');document.body.appendChild(a);a.click();a.remove();setStatus('ogp.png を保存しました','ok')}catch(err){setStatus('この画面からは保存できません。GitHub Pagesで開いて保存してください。','warn')}return}
   if(act==='print'){try{window.print()}catch(err){setStatus('この画面からは印刷できません。ブラウザで直接開いてください。','warn')}return}
   if(act==='copy-url'){try{await navigator.clipboard.writeText(guestUrl());setStatus('URLをコピーしました','ok')}catch(err){setStatus('コピーできませんでした。URLを長押ししてコピーしてください。','warn')}return}
   if(act==='cdel'){
@@ -2316,7 +2396,7 @@ document.addEventListener('click',async e=>{
     [ids[i],ids[j]]=[ids[j],ids[i]];S.party.meta.order=ids;renderList();await save(putMeta);return;
   }
   if(act==='save-meta'){
-    const m=S.party.meta;m.title=$('#f-title').value.trim()||'ようこそ';m.host=$('#f-host').value.trim();m.titleEn=$('#f-en').value.trim();m.period=$('#f-period').value.trim();m.venue=$('#f-venue').value.trim();
+    const m=S.party.meta;m.title=$('#f-title').value.trim()||'ようこそ';m.host=$('#f-host').value.trim();m.titleEn=$('#f-en').value.trim();m.period=$('#f-period').value.trim();m.venue=$('#f-venue').value.trim();m.openAt=$('#f-open').value;
     m.welcome=$('#f-welcome').value;m.complete=$('#f-complete').value;m.closed=$('#f-closed').checked;
     await save(putMeta);return;
   }
@@ -2356,15 +2436,20 @@ function route(){
   const h=location.hash.slice(1);
   if(!S.code)return h==='new'?renderCreate():renderLanding();
   if(!S.loaded){app.innerHTML='<div class="spin"></div>';return}
-  if(S.err&&!S.party){app.innerHTML=`<div class="woodbar"></div><main class="center"><h1>読み込めませんでした</h1><p class="hint">${esc(S.err)}</p></main>`;return}
-  if(!S.party){app.innerHTML=`<div class="woodbar"></div><main class="center"><h1>パーティが見つかりません</h1><p class="hint">URLやコードをもう一度確認してください。</p><p><a class="btn ghost" href="${esc(baseUrl())}">トップへ</a></p></main>`;return}
+  if(S.err&&!S.party){app.innerHTML=`<main class="center"><h1>読み込めませんでした</h1><p class="hint">${esc(S.err)}</p></main>`;return}
+  if(!S.party){app.innerHTML=`<main class="center"><h1>パーティが見つかりません</h1><p class="hint">URLやコードをもう一度確認してください。</p><p><a class="btn ghost" href="${esc(baseUrl())}">トップへ</a></p></main>`;return}
   if(h==='edit')return isHost()?renderEditor():renderHostLogin();
   if(h==='cards')return isHost()?renderCards():renderHostLogin();
+  if(h==='invite'&&isHost())return renderInvite(true);
+  try{document.title=meta().title||'おうちめぐり'}catch(e){}
+  if(beforeOpen()&&!isHost())return renderInvite(false);
+  scheduleOpen();
   if(h.startsWith('s-'))return renderSpot(h);
   renderHome();
 }
 window.addEventListener('hashchange',()=>{closeScanner();form=null;if(!gateOpen)modal.innerHTML='';route();window.scrollTo(0,0);app.classList.remove('pg-in');void app.offsetWidth;app.classList.add('pg-in')});
 
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&S.party&&!form&&!gateOpen&&!$('#scanner')){const h=location.hash.slice(1);if(h!=='edit'&&h!=='cards')route()}});
 (async function init(){
   B=await makeBackend();
   const p=new URLSearchParams(location.search).get('p');
