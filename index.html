@@ -7,7 +7,7 @@
 <title>おうちめぐり</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --white:#ffffff; --g0:#f7f7f6; --g1:#efefed; --g2:#e3e3e0; --g3:#cdccc8;
@@ -124,6 +124,43 @@ textarea{resize:vertical}
 .ph{width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--ink2);background:var(--g1)}
 .ph svg{width:28%;max-width:80px;opacity:.4}
 
+/* ---------- museum ---------- */
+.en{font-family:var(--latin);font-style:italic;color:var(--sub);font-size:16px;margin:6px 0 0;letter-spacing:.02em}
+.hero-title .cap{display:block;margin-bottom:12px}
+.exinfo{display:grid;gap:5px;margin:20px 0 0}
+.exinfo div{display:grid;grid-template-columns:48px 1fr;font-size:12.5px;color:var(--ink2);line-height:1.7}
+.exinfo dt{color:var(--sub);font-size:10.5px;letter-spacing:.24em;padding-top:2px}
+.exinfo dd{margin:0}
+.greet{padding:2px 0 40px}
+.glead{font-size:14px;line-height:2.15;color:var(--ink2);margin:12px 0 0}
+.sign{text-align:right;font-family:var(--serif);font-size:13px;margin:14px 0 0;color:var(--ink2)}
+.sign::before{content:"— "}
+.room{margin-bottom:38px}
+.rh{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:9px}
+.rn{font-family:var(--latin);font-size:14px;letter-spacing:.14em;color:var(--oak-d)}
+.rt{font-family:var(--serif);font-size:16px;font-weight:600;letter-spacing:.06em}
+.rc{font-family:var(--latin);font-size:16px;color:var(--sub)}
+.items{list-style:none;margin:0;padding:0}
+.items li{border-bottom:1px solid var(--g2)}
+.items .row{display:grid;grid-template-columns:48px 1fr auto;gap:10px;align-items:center;padding:15px 2px;text-decoration:none;color:inherit}
+.items .no{font-family:var(--latin);font-size:19px;color:var(--oak-d);line-height:1}
+.items .it{font-size:14px;font-weight:500;line-height:1.6}
+.items .it small{display:block;font-family:var(--latin);font-style:italic;font-weight:400;color:var(--sub);font-size:13.5px;line-height:1.4}
+.items .mk{display:flex;gap:12px;align-items:center;color:var(--oak-d)}
+.items .mk>svg{width:16px;height:16px}
+.items .cc{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--sub);font-family:var(--latin)}
+.items .cc svg{width:13px;height:13px}
+.items a.row:hover .it{text-decoration:underline;text-underline-offset:4px}
+.items .unseen .no{color:var(--g3)}
+.items .unseen .it{color:var(--g3);font-weight:400;letter-spacing:.2em}
+.items .unseen .it small{font-family:var(--sans);font-style:normal;font-size:10.5px;letter-spacing:.16em;color:var(--sub);margin-top:2px}
+.roomline{font-size:10.5px;letter-spacing:.22em;color:var(--sub);margin:0;padding:0 24px 12px}
+.credit{font-family:var(--latin);font-style:italic;font-size:12.5px;color:var(--sub);margin:10px 24px 0}
+.captbl{margin:24px 0 32px;border-top:1px solid var(--g3)}
+.captbl div{display:grid;grid-template-columns:62px 1fr;padding:10px 0;border-bottom:1px solid var(--g2);font-size:13px;line-height:1.7}
+.captbl dt{color:var(--sub);font-size:10.5px;letter-spacing:.24em;padding-top:2px}
+.captbl dd{margin:0}
+.lbl{display:block;margin:0 0 8px}
 /* ---------- spot ---------- */
 .spotpage{max-width:560px;margin:0 auto}
 .spotpage .top{display:flex;justify-content:space-between;align-items:center;padding:16px 22px}
@@ -141,8 +178,8 @@ textarea{resize:vertical}
 .smeta{display:flex;align-items:baseline;gap:16px;margin-bottom:6px}
 .smeta .no{font-family:var(--latin);font-size:34px;line-height:1;color:var(--oak-d)}
 .stitle{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;margin:6px 0 16px;letter-spacing:.04em}
-.sbody{font-size:14.5px;line-height:2.1;margin:0 0 28px;color:var(--ink2)}
-.ask{background:var(--g1);padding:22px 22px 20px}
+.sbody{font-size:14.5px;line-height:2.1;margin:0 0 34px;color:var(--ink2)}
+.ask{border-top:1px solid var(--ink);padding:16px 0 2px}
 .ask .cap{color:var(--oak-d);display:flex;align-items:center;gap:10px}
 .ask .cap::before{content:"";width:18px;height:2px;background:var(--grain)}
 .ask .q{margin:10px 0 0;font-family:var(--serif);font-weight:500;font-size:18px;line-height:1.75}
@@ -240,7 +277,7 @@ body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
 .urlbox{display:flex;gap:0;align-items:stretch;margin-top:12px}
 .urlbox code{flex:1;min-width:0;font-size:12px;background:var(--g1);padding:12px 14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--ink2)}
 .slist{list-style:none;padding:0;margin:0}
-.slist li{display:grid;grid-template-columns:36px 76px 1fr auto;gap:16px;align-items:center;padding:12px 0;border-top:1px solid var(--g1)}
+.slist li{display:grid;grid-template-columns:42px 76px 1fr auto;gap:16px;align-items:center;padding:12px 0;border-top:1px solid var(--g1)}
 .slist li:last-child{border-bottom:1px solid var(--g1)}
 .slist .num{font-family:var(--latin);color:var(--oak-d);font-size:20px}
 .slist .sthumb{width:76px;height:57px;overflow:hidden;background:var(--g1)}
@@ -1569,6 +1606,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const br=s=>esc(s).replace(/\n/g,'<br>');
 const pad=n=>String(n).padStart(2,'0');
+const pad3=n=>String(n).padStart(3,'0');
 const clone=o=>JSON.parse(JSON.stringify(o));
 const AV=['#b08559','#8f9d82','#c48a68','#6f7f8c','#a3927f','#7d8f8a','#b9967a'];
 const avColor=id=>{let h=0;for(const ch of String(id||''))h=(h*31+ch.charCodeAt(0))|0;return AV[Math.abs(h)%AV.length]};
@@ -1579,7 +1617,7 @@ function jp(s){
   return t.split('\n').map(line=>{const out=[];
     for(const {segment:g} of SEG.segment(line)){
       const p=out.length?out[out.length-1]:null;
-      if(p!==null&&(PUN.test(g)||OPN.test(p)||(HIRA.test(g)&&g.length<=3&&(p+g).length<=12&&!/\s$/.test(p))))out[out.length-1]+=g;else out.push(g);
+      if(p!==null&&(PUN.test(g)||OPN.test(p)||((HIRA.test(g)&&g.length<=3)||(g.length===1&&!/\s/.test(g)))&&(p+g).length<=12&&!/\s$/.test(p)))out[out.length-1]+=g;else out.push(g);
     }
     return '<span class="jp">'+out.map(esc).join('<wbr>')+'</span>';}).join('<br>');
 }
@@ -1604,12 +1642,12 @@ const CATS={
 };
 const cat=s=>CATS[s&&s.cat]||CATS.interior;
 const SAMPLE=[
- {cat:'interior',title:'リビングのランプ',body:'古道具屋で一目惚れして、電車で抱えて帰ってきたランプです。夜はこれだけ点けて過ごすのが好きです。',question:'一目惚れで買ったもの、ありますか？'},
- {cat:'room',title:'窓ぎわの席',body:'この家に決めた理由はこの窓。夕方5時ごろ、向かいの建物に西日が当たって、部屋がやわらかい色になります。',question:'住む家を決めた決め手は何でしたか？'},
- {cat:'food',title:'本日のメイン：ローストポーク',body:'前日から仕込みました。実は2回失敗していて、今日が3回目。ソースはりんごで作っています。',question:'あなたの得意料理をひとつ教えてください。'},
- {cat:'memory',title:'本棚の3段目',body:'何度も読み返している本だけを並べた段です。気になる本があれば、貸し出しOKです。',question:'何度も読み返している本や漫画は？'},
- {cat:'food',title:'乾杯のお酒',body:'旅行先の酒蔵で買ってきた日本酒です。甘口なので、お酒が苦手な人も少しだけどうぞ。',question:'旅先で買ってよかったもの、ありますか？'},
- {cat:'room',title:'キッチンの小窓',body:'料理をしながら空が見えるのが、この家で一番気に入っているところです。',question:'家の中で一番好きな場所はどこですか？'}
+ {cat:'interior',room:'リビング',title:'古道具のランプ',en:'Table lamp, maker unknown',era:'1960年代ごろ',material:'真鍮、乳白ガラス',origin:'福岡・古道具店（2023年）',body:'店の奥で埃をかぶっていたところを見つけ、電車で抱えて持ち帰った。夜はこの灯りだけで過ごすことが多い。',question:'一目惚れで手に入れたもの、ありますか。'},
+ {cat:'room',room:'リビング',title:'窓ぎわの席',en:'The west window',era:'',material:'',origin:'',body:'この家に決めた理由は、この窓。夕方5時ごろ、向かいの建物に西日が当たり、部屋がやわらかい色に染まる。',question:'住む家を決めた、決め手は何でしたか。'},
+ {cat:'memory',room:'リビング',title:'本棚の三段目',en:'The third shelf',era:'1998年〜',material:'紙、インク',origin:'少しずつ',body:'何度も読み返している本だけを並べた段。気になる一冊があれば、貸し出しも受け付けている。',question:'何度も読み返している本や漫画はありますか。'},
+ {cat:'food',room:'キッチン',title:'本日のメイン：ローストポーク',en:'Roast pork with apple sauce',era:'本日',material:'豚肩ロース、りんご、ローズマリー',origin:'前日から仕込み',body:'今回が三度目の挑戦。過去二回の失敗を踏まえ、焼き時間を短くした。ソースはりんごから作っている。',question:'あなたの得意料理をひとつ教えてください。'},
+ {cat:'food',room:'キッチン',title:'乾杯のお酒',en:'Sake from a small brewery',era:'',material:'日本酒（甘口）',origin:'旅先の小さな酒蔵',body:'旅行の帰りに立ち寄った酒蔵で購入。甘口なので、お酒が得意でない方も少しだけどうぞ。',question:'旅先で買ってよかったもの、ありますか。'},
+ {cat:'room',room:'キッチン',title:'キッチンの小窓',en:'A small kitchen window',era:'',material:'',origin:'',body:'料理をしながら空が見える。この家でいちばん気に入っている場所。',question:'家の中で、いちばん好きな場所はどこですか。'}
 ];
 
 /* ---------- storage ---------- */
@@ -1622,19 +1660,17 @@ const store={
 
 /* ---------- card css (shared with print) ---------- */
 document.getElementById('cardcss').textContent=`
-.qc{box-sizing:border-box;width:63mm;height:88mm;background:#fff;border:.25mm solid #dcdcd8;display:flex;flex-direction:column;font-family:'Zen Kaku Gothic New',sans-serif;color:#232221;position:relative;overflow:hidden;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.qc-head{background:#efefed;padding:5mm 5.5mm 4mm}
-.qc-top{display:flex;justify-content:space-between;align-items:baseline}
-.qc-no{font-family:'Cormorant Garamond',serif;font-size:22pt;line-height:1;color:#8c6845}
-.qc-cat{font-size:5.6pt;letter-spacing:.26em;color:#8b8985;display:flex;align-items:center;gap:1.5mm;text-transform:uppercase}
-.qc-cat::before{content:"";width:3.5mm;height:.25mm;background:var(--c)}
-.qc-title{font-family:'Shippori Mincho B1',serif;font-weight:500;font-size:9.6pt;line-height:1.5;margin:2.2mm 0 0;height:3em;overflow:hidden}
+.qc{box-sizing:border-box;width:63mm;height:88mm;background:#fff;border:.25mm solid #d6d1c7;padding:3.2mm;font-family:'Zen Kaku Gothic New',sans-serif;color:#2a2622;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.qc-frame{box-sizing:border-box;height:100%;border:.35mm solid #2a2622;padding:3.2mm 3.4mm 3mm;display:flex;flex-direction:column}
+.qc-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:.35mm solid #2a2622;padding-bottom:1.8mm}
+.qc-lbl{font-size:5.6pt;letter-spacing:.3em;color:#8a7f70}
+.qc-no{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13pt;letter-spacing:.06em;color:#8c6845;line-height:1}
 .qc-qr{flex:1;display:flex;align-items:center;justify-content:center}
-.qc-qr svg{width:30mm;height:30mm;display:block}
-.qc-foot{font-size:5.8pt;color:#8b8985;text-align:center;line-height:1.6;padding:0 4mm 3mm;letter-spacing:.04em}
-.qc-foot b{display:block;color:#4e4c49;font-weight:500;font-size:6.4pt;letter-spacing:.08em}
-.qc-wood{height:1.6mm;background:repeating-linear-gradient(91deg,#bd9168 0 .5mm,#b08559 .5mm 1.5mm,#c29a71 1.5mm 2mm,#a77b51 2mm 3.2mm,#b78b60 3.2mm 4.2mm)}
-.qc-none{font-size:7pt;color:#8b8985;text-align:center}`;
+.qc-qr svg{width:33mm;height:33mm;display:block}
+.qc-foot{border-top:.2mm solid #d6d1c7;padding-top:2mm;text-align:center}
+.qc-ttl{font-family:'Shippori Mincho B1',serif;font-weight:500;font-size:8pt;line-height:1.5;letter-spacing:.04em;margin:0}
+.qc-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:7pt;color:#8a7f70;margin:.4mm 0 0;line-height:1.3}
+.qc-none{font-size:7pt;color:#8a7f70;text-align:center}`;
 
 /* ---------- backend ---------- */
 let B=null;
@@ -1745,7 +1781,7 @@ function renderCreate(){
     <h1 class="logo" style="font-size:28px;margin-top:24px">パーティを作る</h1>
     <p class="tagline">あとからすべて変更できます。</p>
     <form id="createform" class="box">
-      <label class="f">タイトル<input type="text" id="c-title" placeholder="例：きむら家へようこそ"></label>
+      <label class="f">展覧会タイトル<input type="text" id="c-title" placeholder="例：きむら家 所蔵品展"></label>
       <label class="f">ホストの名前<input type="text" id="c-host" placeholder="例：きむら"></label>
       <label class="f">ホスト用の暗証番号<span class="hint">4〜6桁の数字。編集するときに使います</span><input type="tel" inputmode="numeric" id="c-pin" class="pin" maxlength="6" placeholder="••••"></label>
       <label class="check"><input type="checkbox" id="c-sample" checked> サンプルのスポットを入れて始める</label>
@@ -1802,7 +1838,7 @@ function ownerBar(){return `<button class="fab noprint" data-act="scan">${ICON.q
 function closedView(){
   app.innerHTML=`<div class="woodbar"></div><main class="center"><p class="eyebrow">thank you for coming</p><h1>${jp(meta().title)}</h1><p class="hint">${jp('パーティは終了しました。来てくれてありがとう。')}</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
 }
-const completeCard=()=>`<section class="complete"><p class="eyebrow">complete</p><p>${jp(meta().complete||'全部見つけてくれてありがとう！')}</p></section>`;
+const completeCard=()=>`<section class="complete"><p class="eyebrow">all works visited</p><p>${jp(meta().complete||'全部見つけてくれてありがとう！')}</p></section>`;
 function renderHome(){
   if(fabObs){fabObs.disconnect();fabObs=null}document.body.classList.remove('fab-hide');
   const m=meta();if(m.closed&&!isHost())return closedView();
@@ -1811,20 +1847,23 @@ function renderHome(){
   <header class="hero"><div class="hero-in">
     <div class="lamp" aria-hidden="true"><svg viewBox="0 0 64 124"><rect x="31.2" y="0" width="1.6" height="58" fill="#4e4c49"/><rect x="28" y="54" width="8" height="8" rx="1.5" fill="#8c6845"/><path d="M6 88a26 26 0 0 1 52 0z" fill="#b08559"/><path d="M6 88a26 26 0 0 1 52 0" fill="none" stroke="#8c6845" stroke-width="1"/><path d="M14 74a19 19 0 0 1 16-11" fill="none" stroke="#c9a37c" stroke-width="2" stroke-linecap="round"/><rect x="6" y="87" width="52" height="2.4" fill="#8c6845"/><circle cx="32" cy="94" r="6.5" fill="#f6e7c9"/></svg><i class="glow"></i></div>
     <div class="hero-top">${meChip()}</div>
-    <div class="hero-title"><p class="eyebrow">welcome home</p><h1>${jp(m.title)}</h1></div>
-    ${m.welcome?`<p class="lead">${jp(m.welcome)}</p>`:''}${m.host?`<p class="host">HOST — ${esc(m.host)}</p>`:''}
+    <div class="hero-title"><p class="cap">Exhibition</p><h1>${jp(m.title)}</h1>${m.titleEn?`<p class="en">${esc(m.titleEn)}</p>`:''}
+      ${(m.period||m.venue)?`<dl class="exinfo">${m.period?`<div><dt>会期</dt><dd>${jp(m.period)}</dd></div>`:''}${m.venue?`<div><dt>会場</dt><dd>${jp(m.venue)}</dd></div>`:''}</dl>`:''}</div>
     <div class="progress"><div class="pnum"><b>${n}</b><span>/ ${sp.length}</span></div>
-      <div><span class="cap">Found</span><div class="bar"><i style="width:${sp.length?n/sp.length*100:0}%"></i></div></div></div>
+      <div><span class="cap">Visited — 鑑賞済み</span><div class="bar"><i style="width:${sp.length?n/sp.length*100:0}%"></i></div></div></div>
   </div></header>
   <main class="wrap">
     ${m.sample?'<div class="sample">サンプルの内容を表示しています</div>':''}
     ${sp.length&&n===sp.length?completeCard():''}
-    <section class="grid">${sp.map((s,i)=>{const c=cat(s),cc=commentsOf(s.id).length;return f.has(s.id)
-      ?`<a class="tile" href="#${s.id}"><div class="th">${visual(s)}<span class="badge">${ICON.check}</span></div><div class="tb"><div><div class="no">${pad(i+1)}</div><div class="tt">${jp(s.title)}</div></div>${cc?`<span class="cc">${ICON.bubble}${cc}</span>`:''}</div></a>`
-      :`<div class="tile hidden" style="--c:${c.color}"><div class="th">${ICON[s.cat]||''}<span class="cap">${c.en}</span></div><div class="tb"><div><div class="no">${pad(i+1)}</div><div class="tt">まだ見つけていません</div></div></div></div>`}).join('')}</section>
+    ${m.welcome?`<section class="greet"><p class="cap">ごあいさつ</p><p class="glead">${jp(m.welcome)}</p>${m.host?`<p class="sign">${esc(m.host)}</p>`:''}</section>`:''}
+    <section class="floor">${rooms().map(g=>{const seen=g.items.filter(x=>f.has(x.s.id)).length;return `<div class="room">
+      <div class="rh">${g.name?`<span class="rn">Room ${pad(g.no)}</span><span class="rt">${jp(g.name)}</span>`:`<span class="rn">Other</span><span class="rt">そのほかの展示</span>`}<span class="rc">${seen} / ${g.items.length}</span></div>
+      <ol class="items">${g.items.map(({s:x,i})=>{const cc=commentsOf(x.id).length;return f.has(x.id)
+        ?`<li><a class="row" href="#${x.id}"><span class="no">${pad3(i+1)}</span><span class="it">${jp(x.title)}${x.en?`<small>${esc(x.en)}</small>`:''}</span><span class="mk">${cc?`<span class="cc">${ICON.bubble}${cc}</span>`:''}${ICON.check}</span></a></li>`
+        :`<li class="unseen"><div class="row"><span class="no">${pad3(i+1)}</span><span class="it">未見<small>${cat(x).label}</small></span><span class="mk"></span></div></li>`}).join('')}</ol></div>`}).join('')}</section>
   </main>
-  <footer class="foot-band"><p class="howto">${jp('家のあちこちにあるカードのQRコードを、\n画面下の「QRを読む」か、スマホのカメラで読み取ってください。\n順番も時間制限もありません。')}</p>
-    ${isHost()?'<button class="resetlink" data-act="reset-found">（ホスト用）この端末のスタンプをリセット</button>':''}</footer>`+ownerBar();
+  <footer class="foot-band"><p class="howto">${jp('展示カードは家のあちこちにあります。\n画面下の「QRを読む」か、スマホのカメラで読み取ってください。\n順路も時間制限もありません。')}</p>
+    ${isHost()?'<button class="resetlink" data-act="reset-found">（ホスト用）この端末の鑑賞記録をリセット</button>':''}</footer>`+ownerBar();
   if(needGate()&&!gateOpen)openGate('new');
 }
 function renderSpot(id){
@@ -1835,29 +1874,39 @@ function renderSpot(id){
   if(!needGate()){isNew=addFound(id);if(isNew)justFound=id}
   const anim=justFound===id;justFound=null;
   const sp=spotsArr(),idx=sp.findIndex(x=>x.id===id),f=getFound(),n=sp.filter(x=>f.has(x.id)).length,c=cat(s);
+  const rn=roomNo(s),rows=[['年代',s.era],['素材',s.material],['入手',s.origin],['所蔵',s.owner]].filter(r=>r[1]&&String(r[1]).trim());
   app.innerHTML=`<main class="spotpage">
-    <div class="top"><a class="back" href="#">← ${esc(meta().title)}</a><span class="count">${n} / ${sp.length}</span></div>
-    <div class="photo-wrap"><figure class="photo">${visual(s)}</figure>${f.has(id)?`<div class="stamp ${anim?'anim':''}"><b>found</b><small>見つけた</small></div>`:''}</div>
+    <div class="top"><a class="back" href="#">← 展示一覧</a><span class="count">${n} / ${sp.length}</span></div>
+    ${s.room?`<p class="roomline">${rn?`Room ${pad(rn)} — `:''}${esc(s.room)}</p>`:''}
+    <div class="photo-wrap"><figure class="photo">${visual(s)}</figure>${f.has(id)?`<div class="stamp ${anim?'anim':''}"><b>visited</b><small>鑑賞済み</small></div>`:''}</div>
+    ${s.photo&&meta().host?`<p class="credit">Photo: ${esc(meta().host)}</p>`:''}
     <div class="sbody-wrap">
-      <div class="smeta"><span class="no">${pad(idx+1)}</span><span class="tag" style="--c:${c.color}">${c.label}</span></div>
-      <h1 class="stitle">${jp(s.title)}</h1>
-      ${s.body?`<p class="sbody">${jp(s.body)}</p>`:''}
-      ${s.question?`<aside class="ask"><span class="cap">話のきっかけ</span><p class="q">${jp(s.question)}</p></aside>`:''}
+      <div class="smeta"><span class="no">${pad3(idx+1)}</span><span class="tag" style="--c:${c.color}">${c.label}</span></div>
+      <h1 class="stitle">${jp(s.title)}</h1>${s.en?`<p class="en">${esc(s.en)}</p>`:''}
+      ${rows.length?`<dl class="captbl">${rows.map(r=>`<div><dt>${r[0]}</dt><dd>${jp(r[1])}</dd></div>`).join('')}</dl>`:'<div style="height:22px"></div>'}
+      ${s.body?`<p class="cap lbl">解説</p><p class="sbody">${jp(s.body)}</p>`:''}
+      ${s.question?`<aside class="ask"><span class="cap">来館者への問い</span><p class="q">${jp(s.question)}</p></aside>`:''}
     </div>
     ${isNew&&n===sp.length?`<div style="padding:0 24px">${completeCard()}</div>`:''}
     <section class="comments on-gray">
-      <div class="ch"><h2>みんなの答え</h2><span class="n" id="cnum">${commentsOf(id).length}</span></div>
-      ${me()?`<form class="cform" id="cform" data-spot="${id}"><input type="text" id="c-text" maxlength="60" placeholder="${s.question?'あなたの答えをひとこと':'ひとことコメント'}" autocomplete="off"><button class="btn">送る</button></form>
+      <div class="ch"><h2>来館者の声</h2><span class="n" id="cnum">${commentsOf(id).length}</span></div>
+      ${me()?`<form class="cform" id="cform" data-spot="${id}"><input type="text" id="c-text" maxlength="60" placeholder="${s.question?'問いへの答えをひとこと':'ひとことどうぞ'}" autocomplete="off"><button class="btn">送る</button></form>
         <p class="cmeta">${esc(honor(me().name))}として書き込みます</p>`
-       :`<div class="gate">${jp('名前を登録すると、答えを書き込めます。')}<br><button class="link" data-act="gate-open">名前を登録する</button></div>`}
+       :`<div class="gate">${jp('名前を登録すると、書き込めます。')}<br><button class="link" data-act="gate-open">名前を登録する</button></div>`}
       <div class="clist" id="clist"></div>
     </section>
-    <a class="plink" href="#"><span>見つけたカードを見る</span><span>→</span></a>
+    <a class="plink" href="#"><span>展示一覧へ</span><span>→</span></a>
   </main>`+ownerBar();
   renderComments(id);watchFab();
   if(needGate()&&!gateOpen){pendingSpot=id;openGate('new')}
 }
 let pendingSpot=null,fabObs=null;
+function rooms(){
+  const g=[],m=new Map();
+  spotsArr().forEach((s,i)=>{const r=String(s.room||'').trim(),k=r||'_none_';if(!m.has(k)){const o={name:r,items:[]};m.set(k,o);g.push(o)}m.get(k).items.push({s,i})});
+  const named=g.filter(x=>x.name),other=g.filter(x=>!x.name);named.forEach((x,k)=>x.no=k+1);return named.concat(other);
+}
+function roomNo(s){const r=String(s.room||'').trim();if(!r)return null;const g=rooms().find(x=>x.name===r);return g?g.no:null}
 function watchFab(){
   if(fabObs){fabObs.disconnect();fabObs=null}document.body.classList.remove('fab-hide');
   const el=$('#cform')||$('.comments .gate');if(!el||!('IntersectionObserver' in window))return;
@@ -1868,7 +1917,7 @@ function watchFab(){
 function renderComments(id){
   const el=$('#clist');if(!el)return;
   const list=commentsOf(id),m=me(),mineTexts=m?list.filter(c=>c.gid===m.id).map(c=>c.text):[];
-  if(!list.length){el.innerHTML='<p class="cempty">'+jp('まだ答えはありません。最初のひとことをどうぞ。')+'</p>';return}
+  if(!list.length){el.innerHTML='<p class="cempty">'+jp('まだ書き込みはありません。最初のひとことをどうぞ。')+'</p>';return}
   el.innerHTML=list.map(c=>{
     const mine=m&&c.gid===m.id,same=!mine&&mineTexts.some(t=>similar(t,c.text));
     return `<div class="citem ${mine?'mine':''}" style="--av:${avColor(c.gid)}"><div class="who"><i>${initial(c.name)}</i>${esc(c.name)}${mine?'（あなた）':''}</div>
@@ -1887,10 +1936,13 @@ function renderEditor(){
     ${statusHtml()}
     ${m.sample?`<div class="note">いま入っているのはサンプルです。そのまま書き換えるか、<button class="link" data-act="clear-sample">${confirmClear?'本当に消す（もう一度押す）':'サンプルを全部消す'}</button>こともできます。</div>`:''}
     <section class="panel"><div class="ph2"><h2>基本情報</h2></div>
-      <div class="two"><label class="f">タイトル<input type="text" id="f-title" value="${esc(m.title)}"></label>
+      <label class="f">展覧会タイトル<input type="text" id="f-title" value="${esc(m.title)}"></label>
+      <div class="two"><label class="f">英語のタイトル<span class="hint">任意。タイトルの下に斜体で入ります</span><input type="text" id="f-en" placeholder="The Kimura Collection" value="${esc(m.titleEn)}"></label>
+      <label class="f">会期<span class="hint">任意</span><input type="text" id="f-period" placeholder="2026年12月20日　一夜限り" value="${esc(m.period)}"></label>
+      <label class="f">会場<span class="hint">任意</span><input type="text" id="f-venue" placeholder="きむら家" value="${esc(m.venue)}"></label>
       <label class="f">ホストの名前<input type="text" id="f-host" value="${esc(m.host)}"></label></div>
-      <label class="f">ようこそメッセージ<span class="hint">ゲストが最初に読む文章です</span><textarea id="f-welcome" rows="3">${esc(m.welcome)}</textarea></label>
-      <label class="f">全部見つけた人へのメッセージ<textarea id="f-complete" rows="2">${esc(m.complete)}</textarea></label>
+      <label class="f">ごあいさつ<span class="hint">一覧の上に、ホスト名の署名つきで表示されます</span><textarea id="f-welcome" rows="3">${esc(m.welcome)}</textarea></label>
+      <label class="f">すべて鑑賞した人へのメッセージ<textarea id="f-complete" rows="2">${esc(m.complete)}</textarea></label>
       <label class="check"><input type="checkbox" id="f-closed" ${m.closed?'checked':''}> ${jp('パーティ終了（ゲストには「終了しました」だけを表示）')}</label>
       <div class="row end"><button class="btn" data-act="save-meta">基本情報を保存</button></div>
     </section>
@@ -1917,8 +1969,8 @@ function renderList(){
   const el=$('#slist');if(!el)return;const sp=spotsArr();
   if(!sp.length){el.innerHTML='<li class="empty" style="display:block">まだスポットがありません。「＋ 追加」から作りましょう。</li>';return}
   el.innerHTML=sp.map((s,i)=>{const c=cat(s);return `<li>
-    <span class="num">${pad(i+1)}</span><div class="sthumb">${visual(s)}</div>
-    <div class="sm"><span class="tag" style="--c:${c.color}">${c.label}</span><b>${esc(s.title)||'（無題）'}</b>${s.question?`<span class="hint">${esc(s.question)}</span>`:''}</div>
+    <span class="num">${pad3(i+1)}</span><div class="sthumb">${visual(s)}</div>
+    <div class="sm"><span class="tag" style="--c:${c.color}">${s.room?esc(s.room)+" / ":""}${c.label}</span><b>${esc(s.title)||'（無題）'}</b>${s.question?`<span class="hint">${esc(s.question)}</span>`:''}</div>
     <div class="sact"><button class="ib" data-act="up" data-id="${s.id}" ${i===0?'disabled':''} aria-label="上へ">↑</button><button class="ib" data-act="down" data-id="${s.id}" ${i===sp.length-1?'disabled':''} aria-label="下へ">↓</button><button class="ib" data-act="edit" data-id="${s.id}">編集</button></div></li>`}).join('');
 }
 function renderGuestsPanel(){
@@ -1931,10 +1983,10 @@ function renderGuestsPanel(){
 function renderCommentsPanel(){
   const el=$('#cpanel');if(!el)return;
   const groups=spotsArr().map((s,i)=>({s,i,list:commentsOf(s.id)})).filter(g=>g.list.length);
-  el.innerHTML=groups.length?groups.map(g=>`<div class="cgroup"><h3>${pad(g.i+1)}　${esc(g.s.title)}</h3>${g.list.map(c=>`<div class="crow"><div><span class="who">${esc(c.name)}</span>${esc(c.text)}</div><button class="link danger" data-act="cdel" data-spot="${g.s.id}" data-cid="${c.cid}">削除</button></div>`).join('')}</div>`).join('')
+  el.innerHTML=groups.length?groups.map(g=>`<div class="cgroup"><h3>${pad3(g.i+1)}　${esc(g.s.title)}</h3>${g.list.map(c=>`<div class="crow"><div><span class="who">${esc(c.name)}</span>${esc(c.text)}</div><button class="link danger" data-act="cdel" data-spot="${g.s.id}" data-cid="${c.cid}">削除</button></div>`).join('')}</div>`).join('')
     :'<div class="empty">まだ答えはありません。</div>';
 }
-function openForm(s){form=s?{...clone(s),isNew:false}:{id:newId('s'),cat:'interior',title:'',body:'',question:'',photo:'',isNew:true};confirmDel=false;renderForm()}
+function openForm(s){form=s?{...clone(s),isNew:false}:{id:newId('s'),cat:'interior',title:'',body:'',question:'',photo:'',room:'',en:'',era:'',material:'',origin:'',owner:'',isNew:true};confirmDel=false;renderForm()}
 function renderForm(){
   if(!form){if(!gateOpen)modal.innerHTML='';return}
   const f=form;
@@ -1942,9 +1994,16 @@ function renderForm(){
     <div class="sh"><div><p class="eyebrow">${f.isNew?'new spot':'edit spot'}</p><h2>${f.isNew?'スポットを追加':'スポットを編集'}</h2></div><button class="x" data-act="close" aria-label="閉じる">×</button></div>
     <div class="inner">
     <div class="cats">${Object.entries(CATS).map(([k,c])=>`<button type="button" class="catbtn ${f.cat===k?'on':''}" data-act="cat" data-cat="${k}" style="--c:${c.color}">${ICON[k]}<span>${c.label}</span></button>`).join('')}</div>
-    <label class="f">タイトル<input type="text" id="s-title" placeholder="例：リビングのランプ" value="${esc(f.title)}"></label>
-    <label class="f">エピソード<span class="hint">由来、こだわり、失敗談など。短くてOKです</span><textarea id="s-body" rows="5">${esc(f.body)}</textarea></label>
-    <label class="f">話のきっかけ<span class="hint">ゲスト同士で話したくなる、軽い問いかけを1つ。ゲストはこれに答えを書き込めます</span><input type="text" id="s-q" placeholder="例：一目惚れで買ったもの、ありますか？" value="${esc(f.question)}"></label>
+    <div class="two"><label class="f">展示室（部屋）<span class="hint">同じ名前のスポットがひとまとめになります</span><input type="text" id="s-room" list="roomlist" placeholder="例：リビング" value="${esc(f.room)}"><datalist id="roomlist">${rooms().filter(g=>g.name).map(g=>`<option value="${esc(g.name)}">`).join('')}</datalist></label>
+    <label class="f">英語の副題<span class="hint">任意</span><input type="text" id="s-en" placeholder="例：Table lamp, maker unknown" value="${esc(f.en)}"></label></div>
+    <label class="f">作品名（タイトル）<input type="text" id="s-title" placeholder="例：古道具のランプ" value="${esc(f.title)}"></label>
+    <p class="cap" style="margin:4px 0 10px">キャプション（任意・空欄は表示されません）</p>
+    <div class="two"><label class="f">年代<input type="text" id="s-era" placeholder="例：1960年代ごろ" value="${esc(f.era)}"></label>
+    <label class="f">素材<input type="text" id="s-material" placeholder="例：真鍮、乳白ガラス" value="${esc(f.material)}"></label>
+    <label class="f">入手<input type="text" id="s-origin" placeholder="例：福岡・古道具店（2023年）" value="${esc(f.origin)}"></label>
+    <label class="f">所蔵<input type="text" id="s-owner" placeholder="例：${esc((meta().host||'きむら')+'家')}" value="${esc(f.owner)}"></label></div>
+    <label class="f">解説<span class="hint">由来、こだわり、失敗談など。「〜した」「〜である」調にすると博物館らしくなります</span><textarea id="s-body" rows="5">${esc(f.body)}</textarea></label>
+    <label class="f">来館者への問い<span class="hint">ゲスト同士で話したくなる、軽い問いかけを1つ。ゲストはこれに答えを書き込めます</span><input type="text" id="s-q" placeholder="例：一目惚れで買ったもの、ありますか？" value="${esc(f.question)}"></label>
     <div class="photo-field"><div class="pv">${visual(f)}</div>
       <div><label class="btn ghost sm file">写真を選ぶ<input type="file" accept="image/*" id="s-photo"></label>
       ${f.photo?'　<button class="link" data-act="rm-photo">写真を外す</button>':''}
@@ -1953,7 +2012,8 @@ function renderForm(){
       <div class="row"><button class="btn ghost" data-act="close">キャンセル</button><button class="btn" data-act="save-spot">保存</button></div></div>
   </div></div></div>`;
 }
-function syncForm(){if(!form)return;const t=$('#s-title'),b=$('#s-body'),q=$('#s-q');if(t)form.title=t.value;if(b)form.body=b.value;if(q)form.question=q.value}
+const FX={title:'s-title',body:'s-body',question:'s-q',room:'s-room',en:'s-en',era:'s-era',material:'s-material',origin:'s-origin',owner:'s-owner'};
+function syncForm(){if(!form)return;for(const k in FX){const el=document.getElementById(FX[k]);if(el)form[k]=el.value}}
 function resizeImage(file){
   return new Promise((res,rej)=>{
     const img=new Image(),url=URL.createObjectURL(file);
@@ -1978,25 +2038,24 @@ const putMeta=()=>B.put(S.code,'meta',clone(meta()));
 function qrSvg(text){
   try{const q=new QRLib.QRCode(-1,QRLib.L.M);q.addData(text);q.make();const n=q.getModuleCount();let d='';
     for(let r=0;r<n;r++)for(let c=0;c<n;c++)if(q.isDark(r,c))d+=`M${c} ${r}h1v1h-1z`;
-    return `<svg viewBox="0 0 ${n} ${n}" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="${d}" fill="#232221"/></svg>`}
+    return `<svg viewBox="0 0 ${n} ${n}" xmlns="http://www.w3.org/2000/svg" shape-rendering="crispEdges"><path d="${d}" fill="#2a2622"/></svg>`}
   catch(e){return '<div class="qc-none">QRを作れませんでした</div>'}
 }
-function cardHtml(s,i){const c=cat(s);return `<div class="qc" style="--c:${c.color}">
-  <div class="qc-head"><div class="qc-top"><span class="qc-no">${pad(i+1)}</span><span class="qc-cat">${c.en}</span></div>
-  <div class="qc-title">${esc(s.title)}</div></div>
+function cardHtml(s,i){return `<div class="qc"><div class="qc-frame">
+  <div class="qc-head"><span class="qc-lbl">SPECIMEN</span><span class="qc-no">${String(i+1).padStart(3,'0')}</span></div>
   <div class="qc-qr">${qrSvg(guestUrl()+'#'+s.id)}</div>
-  <div class="qc-foot"><b>${esc(meta().title)}</b>スマホのカメラで読み取ってね</div><div class="qc-wood"></div></div>`}
+  <div class="qc-foot"><p class="qc-ttl">${jp(meta().title)}</p>${meta().titleEn?`<p class="qc-en">${esc(meta().titleEn)}</p>`:''}</div>
+</div></div>`}
 function renderCards(){
   const sp=spotsArr();
   app.innerHTML=`<div class="hostpage">${hostHead('QRカード',sp.length+'枚','<a class="btn light" href="#edit">← 編集にもどる</a><button class="btn" data-act="print">印刷する</button>')}
   <div class="ed">
     ${statusHtml()}
-    <p class="hint noprint" style="margin:0">トランプくらいの大きさ（63×88mm）で、A4に9枚並びます。印刷のときは倍率を「100%」、「背景のグラフィック」をオンにしてください。</p>
+    <p class="hint noprint" style="margin:0">${jp('トランプくらいの大きさ（63×88mm）で、A4に9枚並びます。印刷のときは倍率を「100%」、「背景のグラフィック」をオンにしてください。カードには番号と展覧会名だけが入り、作品名はQRを読み取るまで分かりません。')}</p>
     ${B.mode==='local'?'<div class="note noprint" style="margin-top:12px">お試しモードのため、QRコードはこの端末でしか開けません。本番はFirebaseにつないだ状態で印刷してください。</div>':''}
     <div class="cardgrid">${sp.map(cardHtml).join('')}</div>
   </div></div>`;
 }
-
 
 /* ---------- QR scanner ---------- */
 const SC={stream:null,raf:0,det:null,busy:false,last:0,warnAt:0,canvas:null};
@@ -2084,9 +2143,9 @@ document.addEventListener('submit',async e=>{
     try{
       let code=genCode();for(let i=0;i<5&&await B.exists(code);i++)code=genCode();
       const spots={},order=[];
-      if(sample)SAMPLE.forEach(s=>{const sid=newId('s');spots[sid]={...s,id:sid,photo:''};order.push(sid)});
+      if(sample)SAMPLE.forEach(s=>{const sid=newId('s');spots[sid]={...s,owner:s.origin&&host?host+'家':'',id:sid,photo:''};order.push(sid)});
       const h=await hashOf(`host|${code}|${pin}`);
-      await B.create(code,{meta:{title,host,welcome:'今日は来てくれてありがとう。\n家のあちこちに小さなカードを置いています。気が向いたときに、QRを読み取ってみてください。',complete:'全部見つけてくれてありがとう！',closed:false,sample,order,pinHash:h,createdAt:Date.now()},spots});
+      await B.create(code,{meta:{title,host,titleEn:'',period:'',venue:host?host+'家':'',welcome:'本日はご来場いただき、ありがとうございます。\n家のあちこちに展示カードを置いています。気の向くままに、QRを読み取ってご覧ください。',complete:'すべての展示をご覧いただきました。ありがとうございます。',closed:false,sample,order,pinHash:h,createdAt:Date.now()},spots});
       store.set('uchimeguri:host:'+code,h);
       location.hash='edit';openCode(code);
     }catch(err){console.warn(err);S.err='作成できませんでした。通信状況やFirebaseのルールを確認してください。';renderCreate()}
@@ -2163,12 +2222,12 @@ document.addEventListener('click',async e=>{
     [ids[i],ids[j]]=[ids[j],ids[i]];S.party.meta.order=ids;renderList();await save(putMeta);return;
   }
   if(act==='save-meta'){
-    const m=S.party.meta;m.title=$('#f-title').value.trim()||'ようこそ';m.host=$('#f-host').value.trim();
+    const m=S.party.meta;m.title=$('#f-title').value.trim()||'ようこそ';m.host=$('#f-host').value.trim();m.titleEn=$('#f-en').value.trim();m.period=$('#f-period').value.trim();m.venue=$('#f-venue').value.trim();
     m.welcome=$('#f-welcome').value;m.complete=$('#f-complete').value;m.closed=$('#f-closed').checked;
     await save(putMeta);return;
   }
   if(act==='save-spot'){
-    syncForm();const f=form,s={id:f.id,cat:f.cat,title:f.title.trim(),body:f.body.trim(),question:f.question.trim(),photo:f.photo||''};
+    syncForm();const f=form,s={id:f.id,cat:f.cat,photo:f.photo||''};for(const k in FX)s[k]=String(f[k]||'').trim();
     if(!s.title){$('#s-title').focus();return}
     S.party.spots=S.party.spots||{};S.party.spots[s.id]=s;
     S.party.meta.order=spotsArr().map(x=>x.id);S.party.meta.sample=false;
