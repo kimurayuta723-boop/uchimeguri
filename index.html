@@ -203,8 +203,11 @@ textarea{resize:vertical}
 .mon{position:fixed;inset:0;background:var(--g1);color:var(--ink);overflow:hidden;cursor:none;--sub:#5f5c58}
 .mon.dark{background:var(--ink);color:#efece7}
 .mon.awake{cursor:default}
-.mon-exit{position:fixed;left:50%;transform:translateX(-50%);top:2.4vh;z-index:5;opacity:0;pointer-events:none;transition:opacity .3s;background:var(--white);color:var(--ink);border:1px solid var(--g3);padding:10px 16px;font-size:13px;letter-spacing:.06em;text-decoration:none;font-family:var(--sans)}
-.mon.awake .mon-exit{opacity:1;pointer-events:auto}
+.mon-ctl{position:fixed;left:50%;transform:translateX(-50%);top:2.4vh;z-index:5;display:flex;gap:8px;opacity:0;pointer-events:none;transition:opacity .3s}
+.mon.awake .mon-ctl{opacity:1;pointer-events:auto}
+.mon-ctl a,.mon-ctl button{background:var(--white);color:var(--ink);border:1px solid var(--g3);padding:10px 16px;font-size:13px;letter-spacing:.06em;text-decoration:none;font-family:var(--sans);cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.mon-ctl button svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:1.5}
+.mon.awake{cursor:default}
 .mon .lampm{position:absolute;top:0;right:9vw;width:6.4vw;height:11.8vw}
 .mon .lampm{overflow:visible}
 .mon .lampm *{fill:none;stroke:var(--ink);stroke-width:1.05;stroke-dasharray:1 1.01;stroke-dashoffset:0}
@@ -2077,7 +2080,7 @@ function renderMonitor(){
   monStop();wakeLock();
   if(MON.seen===null)MON.seen=new Set(allComments().map(c=>c.cid));
   MON.mode=monMode();
-  app.innerHTML=`<div class="mon${MON.mode==='closed'?' dark':''}" id="mon">${MON.mode==='closed'?'':LAMPM}<div class="stage" id="stA"></div><div class="stage" id="stB"></div>${isHost()?'<a class="mon-exit" href="#edit">← ホスト用ページへ</a>':''}</div>`;
+  app.innerHTML=`<div class="mon${MON.mode==='closed'?' dark':''}" id="mon">${MON.mode==='closed'?'':LAMPM}<div class="stage" id="stA"></div><div class="stage" id="stB"></div><div class="mon-ctl">${isHost()?'<a href="#edit">← ホスト用ページへ</a>':''}${fsOK()?`<button data-act="mon-fs" id="mon-fs">${fsLabel()}</button>`:''}</div></div>`;
   monNext(true);
 }
 function monScenes(){
@@ -2142,7 +2145,15 @@ function monData(){
   const all=allComments();all.forEach(c=>{if(!MON.seen.has(c.cid)){MON.seen.add(c.cid);MON.queue.push(c)}});
 }
 let monAwakeT=null;
-function monWake(){const m=$('#mon');if(!m||!isHost())return;m.classList.add('awake');clearTimeout(monAwakeT);monAwakeT=setTimeout(()=>{const n=$('#mon');if(n)n.classList.remove('awake')},3000)}
+const fsOK=()=>!!(document.fullscreenEnabled||document.webkitFullscreenEnabled);
+const fsEl=()=>document.fullscreenElement||document.webkitFullscreenElement;
+const FS_ICON='<svg viewBox="0 0 14 14"><path d="M1 5V1h4M9 1h4v4M13 9v4H9M5 13H1V9"/></svg>';
+function fsLabel(){return fsEl()?FS_ICON+'全画面を終了':FS_ICON+'全画面で表示'}
+async function fsToggle(){try{if(fsEl()){await (document.exitFullscreen||document.webkitExitFullscreen).call(document)}else{const d=document.documentElement;await (d.requestFullscreen||d.webkitRequestFullscreen).call(d)}}catch(e){}}
+['fullscreenchange','webkitfullscreenchange'].forEach(ev=>document.addEventListener(ev,()=>{const b=$('#mon-fs');if(b)b.innerHTML=fsLabel()}));
+document.addEventListener('dblclick',()=>{if(location.hash==='#monitor'&&fsOK())fsToggle()});
+document.addEventListener('keydown',e=>{if((e.key==='f'||e.key==='F')&&!e.metaKey&&!e.ctrlKey&&location.hash==='#monitor'&&fsOK())fsToggle()});
+function monWake(){const m=$('#mon');if(!m)return;m.classList.add('awake');clearTimeout(monAwakeT);monAwakeT=setTimeout(()=>{const n=$('#mon');if(n)n.classList.remove('awake')},3000)}
 ['mousemove','touchstart','click'].forEach(ev=>document.addEventListener(ev,()=>{if(location.hash==='#monitor')monWake()},{passive:true}));
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&location.hash==='#monitor'&&isHost())location.hash='edit'});
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&location.hash==='#monitor'){MON.wake=null;wakeLock()}});
@@ -2210,12 +2221,13 @@ function renderEditor(){
         <li>${jp('画像やタイトルを変えたら、送る前に LINE Page Poker（poker.line.naver.jp）で「Clear Cache」をして読み直させる')}</li>
       </ol>
     </section>
-    <section class="panel"><div class="ph2"><h2>会場モニター（テレビ）</h2><a class="btn sm ghost" href="#monitor">表示してみる</a></div>
-      <p class="hint" style="margin:-8px 0 0">${jp('リビングのテレビに、入口・来館者の声・展示室の様子・まだ見られていない標本を、13秒ごとに静かに切り替えて表示します。操作は不要です。')}</p>
+    <section class="panel"><div class="ph2"><h2>会場モニター（テレビ）</h2><span style="display:flex;gap:8px"><a class="btn sm ghost" href="#monitor">表示してみる</a>${fsOK()?'<button class="btn sm" data-act="mon-full">全画面で表示</button>':''}</span></div>
+      <p class="hint" style="margin:-8px 0 0">${jp('リビングのテレビに、入口・来館者の声・展示室の様子・まだ見られていない標本を、静かに切り替えて表示します（入口は26秒、ほかは13秒）。操作は不要です。')}</p>
       <div class="urlbox"><code>${esc(guestUrl()+'#monitor')}</code><button class="btn" data-act="copy-mon">コピー</button></div>
       <ol class="hint" style="margin:14px 0 0;padding-left:20px">
         <li>${jp('PCのChromeで上のURLを開く')}</li>
-        <li>${jp('Chromeのメニュー「保存して共有」→「キャスト」→ Google TV を選ぶ（HDMIでつなぐ場合は F11 で全画面）')}</li>
+        <li>${jp('HDMIでつなぐ場合：このページの「全画面で表示」を押す。モニター画面ではマウスを動かすと出るボタン、ダブルクリック、Fキーでも全画面にできます（Escで解除）')}</li>
+        <li>${jp('Google TVにキャストする場合：Chromeのメニュー「保存して共有」→「キャスト」→ ソースを「画面」にして Google TV を選び、PC側を全画面にする')}</li>
         <li>${jp('PCはスリープしない設定にしておく')}</li>
       </ol>
     </section>
@@ -2497,6 +2509,8 @@ document.addEventListener('click',async e=>{
   if(act==='reset-found'){localFound=new Set();store.set(foundKey(),'[]');const m=me();if(m)await B.del(S.code,`guests/${m.id}/found`).catch(()=>{});route();return}
   if(act==='ogp-save'){await drawOgp();const c=$('#ogp');try{const a=document.createElement('a');a.download='ogp.png';a.href=c.toDataURL('image/png');document.body.appendChild(a);a.click();a.remove();setStatus('ogp.png を保存しました','ok')}catch(err){setStatus('この画面からは保存できません。GitHub Pagesで開いて保存してください。','warn')}return}
   if(act==='print'){try{window.print()}catch(err){setStatus('この画面からは印刷できません。ブラウザで直接開いてください。','warn')}return}
+  if(act==='mon-fs'){fsToggle();return}
+  if(act==='mon-full'){await fsToggle();location.hash='monitor';return}
   if(act==='copy-mon'){try{await navigator.clipboard.writeText(guestUrl()+'#monitor');setStatus('モニター用のURLをコピーしました','ok')}catch(err){setStatus('コピーできませんでした','warn')}return}
   if(act==='copy-url'){try{await navigator.clipboard.writeText(guestUrl());setStatus('URLをコピーしました','ok')}catch(err){setStatus('コピーできませんでした。URLを長押ししてコピーしてください。','warn')}return}
   if(act==='cdel'){
