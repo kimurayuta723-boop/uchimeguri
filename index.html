@@ -16,7 +16,7 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23efefed'/%3E%3Cline x1='32' y1='6' x2='32' y2='24' stroke='%23232221' stroke-width='2.4'/%3E%3Cpath d='M12 44a20 20 0 0 1 40 0z' fill='none' stroke='%23232221' stroke-width='2.4'/%3E%3Cline x1='15' y1='43' x2='49' y2='43' stroke='%235e8c84' stroke-width='3'/%3E%3Ccircle cx='32' cy='50' r='4' fill='none' stroke='%23232221' stroke-width='2.4'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Shippori+Mincho+B1:wght@500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --white:#ffffff; --g0:#f7f7f6; --g1:#efefed; --g2:#e3e3e0; --g3:#cdccc8;
@@ -152,7 +152,7 @@ textarea{resize:vertical}
 .items .unseen .it{color:var(--sub);font-weight:400;letter-spacing:.2em}
 .items .unseen .it small{font-family:var(--sans);font-style:normal;font-size:10.5px;letter-spacing:.16em;color:var(--sub);margin-top:2px}
 .roomline{font-size:10.5px;letter-spacing:.22em;color:var(--sub);margin:0;padding:0 24px 12px}
-.credit{font-family:var(--latin);font-style:italic;font-size:12.5px;color:var(--sub);margin:8px 0 0;text-align:right}
+.credit{font-family:var(--sans);font-size:11px;letter-spacing:.12em;color:var(--sub);margin:8px 0 0;text-align:right}
 .captbl{margin:24px 0 32px;border-top:1px solid var(--g3)}
 .captbl div{display:grid;grid-template-columns:62px 1fr;padding:10px 0;font-size:13px;line-height:1.7;position:relative}
 .captbl div::after{content:"";position:absolute;left:0;bottom:0;height:1px;width:100%;background:var(--g2)}
@@ -176,7 +176,7 @@ textarea{resize:vertical}
 .tk-wrap{width:100%;max-width:360px;text-align:center;animation:tkin .6s cubic-bezier(.2,1,.3,1) both}
 @keyframes tkin{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
 .tk-lead{color:#fff;font-size:13px;letter-spacing:.14em;margin:0 0 16px}
-.ticket{display:flex;background:#fafaf8;color:var(--ink);text-align:left;box-shadow:0 24px 60px rgba(0,0,0,.3)}
+.ticket{display:flex;background:#fafaf8;color:var(--ink);text-align:left}
 .tk-main{flex:1;padding:20px 18px 18px;border-right:0}
 .tk-top{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--ink);padding-bottom:8px}
 .tk-ex{font-family:var(--serif);font-weight:600;font-size:16px;line-height:1.5;margin:14px 0 0;letter-spacing:.04em}
@@ -276,7 +276,7 @@ textarea{resize:vertical}
 @keyframes cins{0%{max-height:0;opacity:0;padding-top:0;padding-bottom:0;margin-bottom:-6px}60%{opacity:0}100%{max-height:240px;opacity:1}}
 .tk-perf{animation:perf .8s ease .55s both}
 @keyframes perf{from{clip-path:inset(0 0 100% 0)}to{clip-path:inset(0 0 0 0)}}
-.welcome-toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:40;background:var(--white);color:var(--ink);border:1px solid var(--g3);padding:10px 20px;font-size:12.5px;letter-spacing:.14em;pointer-events:none;animation:wtoast 2.6s ease both;box-shadow:0 8px 24px rgba(35,34,33,.1)}
+.welcome-toast{position:fixed;left:50%;top:22px;transform:translateX(-50%);z-index:40;background:var(--white);color:var(--ink);border:1px solid var(--g3);padding:10px 20px;font-size:12.5px;letter-spacing:.14em;pointer-events:none;animation:wtoast 2.6s ease both}
 @keyframes wtoast{0%{opacity:0;transform:translate(-50%,-6px)}18%,78%{opacity:1;transform:translate(-50%,0)}100%{opacity:0;transform:translate(-50%,-4px)}}
 #app.pg-in{animation:pgin .28s ease both}
 @keyframes pgin{from{opacity:0}to{opacity:1}}
@@ -286,16 +286,18 @@ textarea{resize:vertical}
 .spotpage .top{display:flex;justify-content:space-between;align-items:center;padding:16px 22px}
 .spotpage .count{font-family:var(--mono);font-size:12px;color:var(--sub)}
 .photo-wrap{position:relative;background:var(--g1);padding:22px 24px 14px}
-.photo{margin:0;aspect-ratio:4/3.2;overflow:hidden;background:var(--g0);border:10px solid var(--white);box-shadow:0 1px 0 var(--g2),0 10px 24px -14px rgba(35,34,33,.25)}
+.photo{margin:0;aspect-ratio:4/3.2;overflow:hidden;background:var(--g0);border:10px solid var(--white);outline:1px solid var(--g2)}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .sbody-wrap{padding:32px 24px 36px}
-.smeta{display:flex;align-items:center;gap:14px;margin-bottom:10px;flex-wrap:wrap}
-.smeta .no{font-family:var(--mono);font-size:15px;line-height:1;color:var(--oak-d);letter-spacing:.06em}
+.smeta{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--g2)}
+.smeta .mside{display:flex;align-items:center;gap:12px;padding-bottom:4px;flex-wrap:wrap;justify-content:flex-end}
+.smeta .no{font-family:var(--mono);font-weight:300;font-size:52px;line-height:.82;color:var(--oak-d);letter-spacing:.02em}
+.smeta .no small{font-size:11px;font-weight:400;letter-spacing:.14em;color:var(--sub);margin-right:2px;vertical-align:top}
 .smeta .vis{display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;color:var(--oak-d);border:1px solid var(--oak);padding:3px 8px 3px 6px}
 .smeta .vis svg{width:12px;height:12px}
 .smeta .vis{position:relative}
 @keyframes vis{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
-.stitle{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;margin:6px 0 16px;letter-spacing:.04em}
+.stitle{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;margin:0 0 16px;letter-spacing:.04em}
 .sbody{font-size:14.5px;line-height:1.95;margin:0 0 34px;color:var(--ink2)}
 .ask{border-top:1px solid var(--ink);padding:16px 0 2px}
 .ask .cap{color:var(--oak-d);display:flex;align-items:center;gap:10px}
@@ -326,8 +328,8 @@ textarea{resize:vertical}
 .prebar{position:fixed;top:0;left:0;right:0;z-index:6;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:9px 16px;background:var(--oak-d);color:#fff;font-size:12px;line-height:1.6;letter-spacing:.04em}
 .prebar a{color:#fff;white-space:nowrap;text-underline-offset:3px}
 body.has-prebar{padding-top:56px}
-.ownerbar{position:fixed;left:14px;bottom:20px;background:var(--ink);color:#fff;text-decoration:none;font-size:12px;letter-spacing:.08em;padding:11px 16px;box-shadow:0 6px 20px rgba(35,34,33,.18);z-index:5}
-.fab{position:fixed;right:16px;bottom:18px;z-index:6;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);color:var(--ink);border:1px solid var(--g3);padding:11px 18px 11px 15px;font-size:12.5px;letter-spacing:.1em;cursor:pointer;box-shadow:0 6px 18px rgba(35,34,33,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.ownerbar{position:fixed;left:14px;bottom:20px;background:var(--ink);color:#fff;text-decoration:none;font-size:12px;letter-spacing:.08em;padding:11px 16px;z-index:5}
+.fab{position:fixed;right:16px;bottom:18px;z-index:6;display:flex;align-items:center;gap:9px;background:var(--white);color:var(--ink);border:1px solid var(--ink2);padding:11px 18px 11px 15px;font-size:12.5px;letter-spacing:.1em;cursor:pointer}
 .fab{transition:opacity .2s,transform .2s}
 body.fab-hide .fab,body.fab-scroll .fab{opacity:0;pointer-events:none;transform:translateY(16px)}
 .fab svg{width:18px;height:18px}
@@ -357,7 +359,7 @@ body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
 
 /* ---------- sheet (modal) ---------- */
 .overlay{position:fixed;inset:0;background:rgba(35,34,33,.42);display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:28px 14px;z-index:20;backdrop-filter:blur(3px)}
-.sheet{background:var(--white);width:100%;max-width:560px;box-shadow:0 24px 70px rgba(0,0,0,.2)}
+.sheet{background:var(--white);width:100%;max-width:560px;border:1px solid var(--g3)}
 .sheet .sh{background:var(--g1);padding:22px 24px 20px;display:flex;justify-content:space-between;align-items:flex-start}
 .sheet h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:6px 0 0;letter-spacing:.05em}
 .sheet .inner{padding:24px 24px 22px}
@@ -1948,7 +1950,7 @@ function renderGate(){
     </div></div>`;return}
   const isNew=gateTab==='new';
   modal.innerHTML=`<div class="overlay"><div class="sheet" role="dialog" aria-modal="true">
-    <div class="sh"><div><p class="eyebrow">admission</p><h2>入館受付</h2><p class="sh-sub">${jp(meta().title)}</p></div></div>
+    <div class="sh"><div><h2>入館受付</h2><p class="sh-sub">${jp(meta().title)}</p></div></div>
     <div class="inner">
       <div class="tabs"><button type="button" class="${isNew?'on':''}" data-act="gtab" data-tab="new">はじめての方</button><button type="button" class="${!isNew?'on':''}" data-act="gtab" data-tab="back">再入館の方</button></div>
       <form id="gateform">
@@ -1957,7 +1959,7 @@ function renderGate(){
         ${gateErr?`<p class="err">${esc(gateErr)}</p>`:''}
         <button class="btn block" id="g-go">${isNew?'入館する':'再入館する'}</button>
       </form>
-      <p style="text-align:center;margin:20px 0 0"><button class="link" data-act="gskip">受付をせずに見る</button></p>
+      <p style="text-align:center;margin:20px 0 0"><button class="link" data-act="gskip">受付をせずに観覧する</button></p>
       <p class="hint" style="text-align:center;margin:4px 0 0">${jp('受付をしない場合、「来館者の声」への書き込みや、別の端末での続きはご利用いただけません')}</p>
     </div></div></div>`;
 }
@@ -1972,9 +1974,9 @@ function hostPre(){return isHost()&&beforeOpen()}
 function ownerBar(){const pre=hostPre();document.body.classList.toggle('has-prebar',pre);
   return (pre?`<div class="prebar noprint"><span>${jp('開館前です（'+fmtOpen(openTime())+'）。ゲストには招待状が表示されています。この端末はホストなので入口を表示中')}</span><a href="#invite">招待状を見る</a></div>`:'')+`<button class="fab noprint" data-act="scan">${ICON.qr}QRを読む</button>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'')}
 function closedView(){
-  app.innerHTML=`<main class="center"><p class="eyebrow">thank you for coming</p><h1>${jp(meta().title)}</h1><p class="hint">${jp('パーティは終了しました。来てくれてありがとう。')}</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
+  app.innerHTML=`<main class="center"><p class="eyebrow">閉館</p><h1>${jp(meta().title)}</h1><p class="hint">${jp('本展は閉館いたしました。ご来館ありがとうございました。')}</p></main>`+(isHost()?'<a class="ownerbar noprint" href="#edit">ホスト用</a>':'');
 }
-const completeCard=()=>`<section class="complete"><p class="eyebrow">all works visited</p><p>${jp(meta().complete||'全部見つけてくれてありがとう！')}</p></section>`;
+const completeCard=()=>`<section class="complete"><p class="eyebrow">鑑賞完了</p><p>${jp(meta().complete||'すべての標本をご覧いただきました。ありがとうございました。')}</p></section>`;
 function renderHome(){
   if(fabObs){fabObs.disconnect();fabObs=null}document.body.classList.remove('fab-hide');
   const m=meta();if(m.closed&&!isHost())return closedView();
@@ -2017,9 +2019,9 @@ function renderSpot(id){
   app.innerHTML=`<main class="spotpage enter">
     <div class="top"><a class="back" href="#">← 展示一覧</a><span class="count">${n} / ${sp.length}</span></div>
     ${s.room?`<p class="roomline">${rn?`ROOM ${pad(rn)} — `:''}${esc(s.room)}</p>`:''}
-    <div class="photo-wrap"><figure class="photo">${visual(s)}</figure>${s.photo&&meta().host?`<p class="credit">Photo: ${esc(meta().host)}</p>`:''}</div>
+    <div class="photo-wrap"><figure class="photo">${visual(s)}</figure>${s.photo&&meta().host?`<p class="credit">撮影　${esc(meta().host)}</p>`:''}</div>
     <div class="sbody-wrap">
-      <div class="smeta"><span class="no">No.${pad3(idx+1)}</span><span class="tag" style="--c:${c.color}">${c.label}</span>${f.has(id)?`<span class="vis ${anim?'anim':''}">${ICON.check}VISITED</span>`:''}</div>
+      <div class="smeta"><span class="no"><small>No.</small>${pad3(idx+1)}</span><span class="mside"><span class="tag" style="--c:${c.color}">${c.label}</span>${f.has(id)?`<span class="vis ${anim?'anim':''}">${ICON.check}VISITED</span>`:''}</span></div>
       <h1 class="stitle">${jp(s.title)}</h1>${s.en?`<p class="en">${esc(s.en)}</p>`:''}
       ${rows.length?`<dl class="captbl">${rows.map((r,k)=>`<div style="--d:${(.45+k*.14).toFixed(2)}s"><dt>${r[0]}</dt><dd>${jp(r[1])}</dd></div>`).join('')}</dl>`:'<div style="height:22px"></div>'}
       ${s.body?`<p class="cap lbl">解説</p><p class="sbody">${jp(s.body)}</p>`:''}
@@ -2184,14 +2186,14 @@ function renderComments(id){
   el.innerHTML=list.map(c=>{
     const mine=m&&c.gid===m.id,same=!mine&&mineTexts.some(t=>similar(t,c.text)),fresh=prev&&!prev.has(c.cid);
     return `<div class="citem ${mine?'mine':''} ${fresh?'ni':''}" style="--av:${avColor(c.gid)}"><div class="who"><i>${initial(c.name)}</i>${esc(c.name)}${mine?'（あなた）':''}</div>
-      <p class="txt">${jp(c.text)}</p>${same?'<span class="same">あなたと同じ答え</span>':''}
+      <p class="txt">${jp(c.text)}</p>${same?'<span class="same">あなたと同じ答えでした</span>':''}
       ${mine||isHost()?`<button class="link del" data-act="cdel" data-spot="${id}" data-cid="${c.cid}">削除</button>`:''}</div>`}).join('');
 }
 
 /* ---------- host: editor ---------- */
 function setStatus(text,kind){S.status={text,kind};const el=$('#status');if(el){el.textContent=text;el.className='status noprint '+(kind||'')}}
 function statusHtml(){const s=S.status.text?S.status:{text:B.mode==='cloud'?'クラウドに保存されます':'この端末だけに保存されるお試しモードです',kind:B.mode==='cloud'?'ok':'warn'};return `<div id="status" class="status noprint ${s.kind}">${esc(s.text)}</div>`}
-function hostHead(title,sub,nav){return `<header class="hosthead noprint"><div class="in"><div><p class="eyebrow">for the host</p><h1 class="edlogo">${title}<small>${sub}</small></h1></div><nav>${nav}</nav></div></header>`}
+function hostHead(title,sub,nav){return `<header class="hosthead noprint"><div class="in"><div><h1 class="edlogo">${title}<small>${sub}</small></h1></div><nav>${nav}</nav></div></header>`}
 function renderEditor(){
   const m=meta();
   app.innerHTML=`<div class="hostpage">${hostHead('おうちめぐり','ホスト用ページ','<a class="btn light" href="#">ゲスト画面</a><a class="btn light" href="#monitor">会場モニター</a><a class="btn" href="#cards">QRカードを印刷</a>')}
@@ -2297,7 +2299,7 @@ function renderForm(){
   if(!form){if(!gateOpen)modal.innerHTML='';return}
   const f=form;
   modal.innerHTML=`<div class="overlay" data-act="close-bg"><div class="sheet" role="dialog" aria-modal="true">
-    <div class="sh"><div><p class="eyebrow">${f.isNew?'new spot':'edit spot'}</p><h2>${f.isNew?'スポットを追加':'スポットを編集'}</h2></div><button class="x" data-act="close" aria-label="閉じる">×</button></div>
+    <div class="sh"><div><h2>${f.isNew?'スポットを追加':'スポットを編集'}</h2></div><button class="x" data-act="close" aria-label="閉じる">×</button></div>
     <div class="inner">
     <div class="cats">${Object.entries(CATS).map(([k,c])=>`<button type="button" class="catbtn ${f.cat===k?'on':''}" data-act="cat" data-cat="${k}" style="--c:${c.color}">${ICON[k]}<span>${c.label}</span></button>`).join('')}</div>
     <div class="two"><label class="f">展示室（部屋）<span class="hint">同じ名前のスポットがひとまとめになります</span><input type="text" id="s-room" list="roomlist" placeholder="例：リビング" value="${esc(f.room)}"><datalist id="roomlist">${rooms().filter(g=>g.name).map(g=>`<option value="${esc(g.name)}">`).join('')}</datalist></label>
@@ -2401,7 +2403,7 @@ async function openScanner(){
   const el=document.createElement('div');el.className='scanner';el.id='scanner';
   el.innerHTML=`<video playsinline muted autoplay></video><div class="shade"></div>
     <div class="frame"><i></i><i></i><i></i><i></i><i class="line"></i></div>
-    <div class="stop"><p class="eyebrow">scan the card</p><button class="xbtn" data-act="scan-close" aria-label="閉じる">×</button></div>
+    <div class="stop"><p class="eyebrow">QRを読み取る</p><button class="xbtn" data-act="scan-close" aria-label="閉じる">×</button></div>
     <div class="sbot"><p class="smsg" id="smsg">カメラを起動しています…</p>
       <label class="photo-btn">${ICON.camera}写真を撮って読み取る<input type="file" accept="image/*" capture="environment" id="scan-photo"></label></div>`;
   document.body.appendChild(el);document.body.style.overflow='hidden';
