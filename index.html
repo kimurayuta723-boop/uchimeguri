@@ -31,7 +31,7 @@ html,body{margin:0;background:var(--white);color:var(--ink);font-family:var(--sa
 a{color:inherit}
 button{font-family:inherit}
 .woodbar{display:none}
-.eyebrow{margin:0;font-family:var(--latin);font-style:italic;font-size:15px;letter-spacing:.12em;color:var(--oak-d)}
+.eyebrow{margin:0;font-family:var(--mono);font-style:normal;font-size:10px;font-weight:500;letter-spacing:.26em;text-transform:uppercase;color:var(--oak-d)}
 .cap{font-size:10px;letter-spacing:.28em;color:var(--sub);font-weight:500;text-transform:uppercase}
 .hint{color:var(--sub);font-size:12px;line-height:1.8;font-weight:400}
 .jp{word-break:keep-all;overflow-wrap:anywhere;line-break:strict}
@@ -58,6 +58,9 @@ label.f{display:block;font-size:11px;font-weight:500;letter-spacing:.18em;margin
 label.f .hint{display:block;margin-top:2px;letter-spacing:.02em}
 input[type=text],input[type=tel],input[type=datetime-local],textarea{display:block;width:100%;margin-top:8px;font:inherit;font-size:15px;font-weight:400;color:var(--ink);background:var(--g1);border:1px solid transparent;border-radius:0;padding:12px 14px;line-height:1.7;letter-spacing:0;transition:border-color .15s,background .15s}
 input:focus,textarea:focus{outline:none;background:var(--white);border-color:var(--ink)}
+input[type=datetime-local]{-webkit-appearance:none;appearance:none;text-align:left;min-height:52px;box-sizing:border-box}
+input[type=datetime-local]::-webkit-date-and-time-value{text-align:left;margin:0}
+input[type=datetime-local]::-webkit-datetime-edit{padding:0}
 .on-gray input[type=text],.on-gray input[type=tel],.on-gray textarea{background:var(--white)}
 textarea{resize:vertical}
 .pin{letter-spacing:.6em;text-align:center;font-family:var(--latin);font-size:24px!important;padding-left:calc(14px + .6em)!important}
@@ -99,7 +102,7 @@ textarea{resize:vertical}
 .intro .rise{opacity:0;animation:rise .9s ease var(--w,1.7s) forwards}
 @keyframes rise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @media (prefers-reduced-motion:reduce){.intro .lamp svg *{animation:none;stroke-dashoffset:0;opacity:1}.intro .rise{animation:none;opacity:1}}
-.hero .lead{line-height:2.05;font-size:14px;color:var(--ink2);margin:0 0 14px;white-space:pre-wrap}
+.hero .lead{line-height:1.9;font-size:14px;color:var(--ink2);margin:0 0 14px;white-space:pre-wrap}
 .hero .host{font-size:11px;color:var(--sub);margin:0;letter-spacing:.14em}
 .progress{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:center;margin-top:30px;padding:16px 0 22px;border-top:1px solid var(--g3)}
 .pnum{font-family:var(--mono);display:flex;align-items:baseline;gap:4px;line-height:1;font-size:12px;color:var(--sub);letter-spacing:.04em}
@@ -109,7 +112,7 @@ textarea{resize:vertical}
 .bar i{position:absolute;left:0;top:-1px;height:3px;background:var(--grain);transition:width .6s ease}
 .wrap{max-width:560px;margin:0 auto;padding:28px 24px 0}
 .sample{font-size:11px;color:var(--sub);background:var(--g0);padding:9px 12px;margin-bottom:22px;text-align:center;letter-spacing:.06em}
-.foot-band{background:var(--g1);margin-top:52px;padding:30px 24px 120px;text-align:center}
+.foot-band{background:var(--g1);margin-top:52px;padding:30px 24px 120px;text-align:left}
 .howto{color:var(--sub);font-size:12px;line-height:2;margin:0}
 .complete{position:relative;background:var(--ink);color:#efece7;padding:26px 24px 28px;margin:0 0 30px;overflow:hidden}
 .complete::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--grain)}
@@ -126,7 +129,7 @@ textarea{resize:vertical}
 .exinfo dt{color:var(--sub);font-size:10.5px;letter-spacing:.24em;padding-top:2px}
 .exinfo dd{margin:0}
 .greet{padding:2px 0 40px}
-.glead{font-size:14px;line-height:2.15;color:var(--ink2);margin:12px 0 0}
+.glead{font-size:14px;line-height:1.9;color:var(--ink2);margin:12px 0 0}
 .sign{text-align:right;font-family:var(--serif);font-size:13px;margin:14px 0 0;color:var(--ink2)}
 .sign::before{content:"— "}
 .room{margin-bottom:38px}
@@ -183,7 +186,7 @@ textarea{resize:vertical}
 .tk-stub{width:62px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:14px 6px}
 .tk-stub .tk-lbl{writing-mode:vertical-rl;letter-spacing:.4em;font-family:var(--sans);font-size:10.5px}
 .tk-stub .tk-no{font-size:13px}
-.tk-note{color:rgba(255,255,255,.85);font-size:12px;line-height:1.8;margin:16px 0 14px}
+.tk-note{display:none}
 .tk-wrap .btn{background:#fff;color:var(--ink);border-color:#fff}
 .sh-sub{font-size:12px;color:var(--sub);margin:6px 0 0;letter-spacing:.04em}
 /* ---------- invitation ---------- */
@@ -195,7 +198,7 @@ textarea{resize:vertical}
 .inv-open .cap{flex:none}
 .inv-open b{font-family:var(--serif);font-weight:600;font-size:19px;letter-spacing:.04em}
 .inv-open .cd{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--oak-d);white-space:nowrap}
-.inv-msg{font-size:14px;line-height:2.1;color:var(--ink2);margin:0 0 26px}
+.inv-msg{font-size:14px;line-height:1.9;color:var(--ink2);margin:0 0 26px}
 .inv-note{font-size:12px;color:var(--sub);line-height:1.9;border-top:1px solid var(--g2);padding-top:16px;margin:0}
 .hostnote{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .ogpbox canvas{width:100%;max-width:600px;height:auto;display:block;border:1px solid var(--g2)}
@@ -293,7 +296,7 @@ textarea{resize:vertical}
 .smeta .vis{position:relative}
 @keyframes vis{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
 .stitle{font-family:var(--serif);font-weight:600;font-size:25px;line-height:1.5;margin:6px 0 16px;letter-spacing:.04em}
-.sbody{font-size:14.5px;line-height:2.1;margin:0 0 34px;color:var(--ink2)}
+.sbody{font-size:14.5px;line-height:1.95;margin:0 0 34px;color:var(--ink2)}
 .ask{border-top:1px solid var(--ink);padding:16px 0 2px}
 .ask .cap{color:var(--oak-d);display:flex;align-items:center;gap:10px}
 .ask .cap::before{content:"";width:18px;height:2px;background:var(--grain)}
@@ -326,7 +329,7 @@ body.has-prebar{padding-top:56px}
 .ownerbar{position:fixed;left:14px;bottom:20px;background:var(--ink);color:#fff;text-decoration:none;font-size:12px;letter-spacing:.08em;padding:11px 16px;box-shadow:0 6px 20px rgba(35,34,33,.18);z-index:5}
 .fab{position:fixed;right:16px;bottom:18px;z-index:6;display:flex;align-items:center;gap:9px;background:rgba(255,255,255,.94);color:var(--ink);border:1px solid var(--g3);padding:11px 18px 11px 15px;font-size:12.5px;letter-spacing:.1em;cursor:pointer;box-shadow:0 6px 18px rgba(35,34,33,.12);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 .fab{transition:opacity .2s,transform .2s}
-body.fab-hide .fab{opacity:0;pointer-events:none;transform:translateY(16px)}
+body.fab-hide .fab,body.fab-scroll .fab{opacity:0;pointer-events:none;transform:translateY(16px)}
 .fab svg{width:18px;height:18px}
 body:has(#c-text:focus) .fab,body:has(.overlay) .fab{display:none}
 .fab::after{display:none}
@@ -1782,10 +1785,10 @@ document.getElementById('cardcss').textContent=`
 .qc{box-sizing:border-box;width:63mm;height:88mm;background:#fff;border:.25mm solid #d6d1c7;padding:3.2mm;font-family:'Zen Kaku Gothic New',sans-serif;color:#2a2622;break-inside:avoid;-webkit-print-color-adjust:exact;print-color-adjust:exact}
 .qc-frame{box-sizing:border-box;height:100%;border:.35mm solid #2a2622;padding:3.2mm 3.4mm 3mm;display:flex;flex-direction:column}
 .qc-head{display:flex;justify-content:space-between;align-items:baseline;border-bottom:.35mm solid #2a2622;padding-bottom:1.8mm}
-.qc-lbl{font-size:5.6pt;letter-spacing:.3em;color:#8a7f70}
-.qc-no{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:13pt;letter-spacing:.06em;color:#44716a;line-height:1}
+.qc-lbl{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:7pt;letter-spacing:.28em;color:#6e6b66}
+.qc-no{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:16pt;letter-spacing:.06em;color:#44716a;line-height:1}
 .qc-qr{flex:1;display:flex;align-items:center;justify-content:center}
-.qc-qr svg{width:33mm;height:33mm;display:block}
+.qc-qr svg{width:40mm;height:40mm;display:block}
 .qc-foot{border-top:.2mm solid #d6d1c7;padding-top:2mm;text-align:center}
 .qc-ttl{font-family:'Shippori Mincho B1',serif;font-weight:500;font-size:8pt;line-height:1.5;letter-spacing:.04em;margin:0}
 .qc-en{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:7pt;color:#8a7f70;margin:.4mm 0 0;line-height:1.3}
@@ -1941,7 +1944,6 @@ function renderGate(){
         <p class="tk-ex">${jp(meta().title)}</p>${meta().titleEn?`<p class="tk-en">${esc(meta().titleEn)}</p>`:''}
         <p class="tk-name">${jp(honor(m.name))}</p>
       </div><div class="tk-perf"></div><div class="tk-stub"><span class="tk-lbl">入館券</span><span class="tk-no">${ticketNo(m.id)}</span></div></div>
-      <p class="tk-note">${jp('お名前と控え番号は、再入館のときに使います。')}</p>
       <button class="btn block" data-act="tk-enter">入館する</button>
     </div></div>`;return}
   const isNew=gateTab==='new';
@@ -1951,7 +1953,7 @@ function renderGate(){
       <div class="tabs"><button type="button" class="${isNew?'on':''}" data-act="gtab" data-tab="new">はじめての方</button><button type="button" class="${!isNew?'on':''}" data-act="gtab" data-tab="back">再入館の方</button></div>
       <form id="gateform">
         <label class="f">お名前<span class="hint">${jp(isNew?'入館券と「来館者の声」に表示されます。ニックネームでも構いません':'受付のときにご記入いただいたお名前')}</span><input type="text" id="g-name" maxlength="16" autocomplete="off" placeholder="例：たなか"></label>
-        <label class="f">控え番号（4桁）<span class="hint">${jp(isNew?'お好きな4桁の数字をお決めください。別のブラウザやシークレットモードで開いたときも、お名前と控え番号で再入館できます':'受付のときにお決めいただいた4桁')}</span><input type="tel" inputmode="numeric" id="g-pin" class="pin" maxlength="4" placeholder="••••"></label>
+        <label class="f">控え番号（4桁）<span class="hint">${jp(isNew?'お好きな4桁の数字をお決めください。別の端末から入るときに使います':'受付のときにお決めいただいた4桁')}</span><input type="tel" inputmode="numeric" id="g-pin" class="pin" maxlength="4" placeholder="••••"></label>
         ${gateErr?`<p class="err">${esc(gateErr)}</p>`:''}
         <button class="btn block" id="g-go">${isNew?'入館する':'再入館する'}</button>
       </form>
@@ -2164,6 +2166,9 @@ function rooms(){
   const named=g.filter(x=>x.name),other=g.filter(x=>!x.name);named.forEach((x,k)=>x.no=k+1);return named.concat(other);
 }
 function roomNo(s){const r=String(s.room||'').trim();if(!r)return null;const g=rooms().find(x=>x.name===r);return g?g.no:null}
+let fabY=0;
+window.addEventListener('scroll',()=>{const y=window.scrollY,d=y-fabY;if(Math.abs(d)<6)return;
+  document.body.classList.toggle('fab-scroll',d>0&&y>140&&(window.innerHeight+y)<document.documentElement.scrollHeight-4);fabY=y},{passive:true});
 function watchFab(){
   if(fabObs){fabObs.disconnect();fabObs=null}document.body.classList.remove('fab-hide');
   const el=$('#cform')||$('.comments .gate');if(!el||!('IntersectionObserver' in window))return;
